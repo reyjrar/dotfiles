@@ -1,0 +1,31 @@
+#hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
+activity "%c activity -> %n%f %t"
+autodetach on
+altscreen on
+bell "%c bell -> %n%f %t^G"
+defflow auto
+defscrollback 10000
+defutf8 on
+msgwait 2                 # 1 second messages
+startup_message off        # disable the startup splash message
+shell -bash
+vbell_msg "[[[ ding ]]]"
+vbell off
+nethack on
+
+#terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+# the first two are for other terminal emulators, just in case.
+termcapinfo xterm "Co#256:AB=E[48;5;%dm:AF=E[38;5;%dm"
+termcapinfo xterm-color "Co#256:AB=E[48;5;%dm:AF=E[38;5;%dm"
+termcapinfo xterm-256color "Co#256:AB=E[48;5;%dm:AF=E[38;5;%dm"
+term xterm-color
+# erase background with current bg color
+#defbce "on"
+
+hardstatus alwayslastline                                        
+hardstatus string '%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+
+

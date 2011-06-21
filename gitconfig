@@ -1,0 +1,12 @@
+[user]
+	name = Brad Lhotsky
+	email = brad.lhotsky@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	ci = commit
+	st = status -s
+	br = branch
+	co = checkout
