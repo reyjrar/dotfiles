@@ -28,6 +28,12 @@ if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+# Perl Brew
+if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
+	 source ~/perl5/perlbrew/etc/bashrc
+fi
+
+
 #
 # For some reason this fjorks things.
 unset LS_COLORS
