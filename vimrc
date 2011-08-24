@@ -55,11 +55,7 @@ autocmd FileType perl set autowrite
 if has("gui_running") 
    colorscheme sand
 else
-  if &t_Co == 256
-   colorscheme xoria256
-  else
-   colorscheme ir_black
-  endif
+	colorscheme ir_black
 endif
 
 if has("gui_macvim")

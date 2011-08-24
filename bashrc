@@ -1,6 +1,6 @@
 # .bashrc
 export BASHRC=1
-export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/java/jre1.5.0/bin"
+export PATH="$HOME/bin:/usr/pgsql-9.0/bin:/opt/local/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/java/jre1.5.0/bin"
 
 # User specific aliases and functions
 alias ls='ls --time-style=long-iso -aF --color'
@@ -27,6 +27,12 @@ fi;
 if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
+
+# Perl Brew
+if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
+	 source ~/perl5/perlbrew/etc/bashrc
+fi
+
 
 #
 # For some reason this fjorks things.
