@@ -45,6 +45,7 @@ function get_user_color() {
 		"root"		)	user_color="$bldred";;
 		"brad"		)	user_color="$txtgrn";;
 		"lhotskyb"	)	user_color="$txtcyn";;
+		"blhotsky"	)	user_color="$txtcyn";;
 		*			)	user_color="$txtpur";;
 	esac
 
