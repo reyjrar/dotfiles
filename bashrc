@@ -8,7 +8,7 @@ if [ "$HOSTOS" == "Darwin" ]; then
 	alias ls='gls --time-style=long-iso -F --color'
 
 elif [ "$HOSTOS" == "Linux" ]; then
-	alias ls='gls --time-style=long-iso -F --color'
+	alias ls='ls --time-style=long-iso -F --color'
 else 
 	echo "No options specified for this OS($HOSTOS)"
 fi;

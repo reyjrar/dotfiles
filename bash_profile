@@ -38,24 +38,32 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
+# Set Host Coloration based on OS
+if [ `uname -s` == "Darwin" ]; then
+    # Darwin
+    host_color="$txtblu";
+elif [ "$HOSTOS" == "Linux" ]; then
+    host_color="$txtred";
+else
+    # Server Side, use username to determine color
+    host_color="$bldpur";
+fi;
+
 function get_user_color() {
-	# Check to see if you are root
-
-	case "$USER" in
-		"root"		)	user_color="$bldred";;
-		"brad"		)	user_color="$txtgrn";;
-		"lhotskyb"	)	user_color="$txtcyn";;
-		"blhotsky"	)	user_color="$txtcyn";;
-		*			)	user_color="$txtpur";;
-	esac
-
+    # Set User Color based on Name
+    case "$USER" in
+        "root"		)	user_color="$bldred";;
+        "brad"		)	user_color="$txtgrn";;
+        "blhotsky"	)	user_color="$txtcyn";;
+        *			)	user_color="$txtpur";;
+    esac
 	echo $user_color;
 }
 
 function before_prompt() {
 	history -a;		# Record history
 	
-	printf "$bldblk[$txtred%s$bldblk] $(get_user_color)%s $(vcprompt)\n" "$(date '+%H:%M:%S')" "$PWD" 
+	printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)\n" "$(date '+%H:%M:%S')" "$PWD" 
 }
 
 if [ "$PS1" ] && [ "$BASHRC" != "1" ]; then
@@ -66,7 +74,7 @@ fi;
 VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r $txtpur%m%u$bldblk]";
 PROMPT_COMMAND=before_prompt
 #PS1="\[\033[1;30m\]=\[\033[0;36m\]\h\[\033[1;30m\](\[\033[0;31m\]$(tty | sed s:/dev/::)\[\033[1;30m\]):\[\033[0;36m\]\$(pwd) \$(vcprompt)\[\033[1;30m\]=\n\[\033[1;30m\][\[\033[1;31m\]\t \[\033[1;36m\]\u\[\033[1;30m\]]\]\033[0;37m\]\\\$ \[\033[0m\]"
-PS1="$(get_user_color)\u$bldblk@$txtred\h $(get_user_color)\\\$ $txtrst"
+PS1="$(get_user_color)\u$bldblk@$host_color\h $(get_user_color)\\\$ $txtrst"
 BASH_ENV=$HOME/.bashrc
 USERNAME=""
 EDITOR="vim"
