@@ -1,11 +1,20 @@
 # .bashrc
 export BASHRC=1
-export PATH="$HOME/bin:/usr/pgsql-9.0/bin:/opt/perl/current/bin:/opt/local/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/java/jre1.5.0/bin"
+export PATH="$HOME/bin:/usr/pgsql-9.0/bin:/opt/perl/current/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/java/jre1.5.0/bin:$HOME/.vim/bin"
+
+# Operating System Based Decisions
+HOSTOS=`uname -s`
+if [ "$HOSTOS" == "Darwin" ]; then
+	alias ls='gls --time-style=long-iso -F --color'
+
+elif [ "$HOSTOS" == "Linux" ]; then
+	alias ls='ls --time-style=long-iso -F --color'
+else 
+	echo "No options specified for this OS($HOSTOS)"
+fi;
 
 # User specific aliases and functions
-alias ls='ls --time-style=long-iso -aF --color'
 alias who='who -H -u -T'
-alias mutt='mutt -y'
 alias root='root_login';
 alias screen="TERM=ansi screen"
 

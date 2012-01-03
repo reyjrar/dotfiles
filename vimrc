@@ -1,4 +1,5 @@
 set title
+set number
 set ignorecase
 set smartcase
 set ruler
@@ -13,19 +14,27 @@ set bg=dark
 set bs=2
 set vb t_vb=
 set dir=~/.vimswap
+set et
 set ts=4
-let perl_fold = 1
-let perl_fold_blocks = 1
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-let php_sql_query = 1
-let php_htmlInStrings = 1
 set foldlevel=999
+
+" MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
 
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
+
+function WordProcess()
+	set tw=76
+	set spelllang=en_us
+	set spell
+endfunction
 
 augroup filetype
     au! BufRead,BufNewFile *.html           set filetype=mason number
@@ -36,27 +45,29 @@ augroup filetype
     au! BufRead,BufNewFile *.mas            set filetype=mason number
     au! BufRead,BufNewFile *.comp           set filetype=mason number
     au! BufRead,BufNewFile *.pp             set filetype=puppet number
+    au! BufRead,BufNewFile *.txt            set filetype=text number
 augroup END
 
-" check perl code with :make
-autocmd FileType perl set makeprg=perl\ -c\ %\ $*
-autocmd FileType perl set errorformat=%f:%l:%m
-autocmd FileType perl set autowrite
+autocmd Filetype text call WordProcess()
 
 if has("gui_running") 
    colorscheme sand
 else
-	colorscheme ir_black
+	colorscheme molokai
 endif
 
 if has("gui_macvim")
 	set transparency=15
 endif
 
-syntax on
 
 if &t_Co > 2 || has("gui_running")
   set hlsearch
   highlight Search    NONE
   highlight Comment  ctermfg=white ctermbg=blue cterm=none
 endif
+
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
