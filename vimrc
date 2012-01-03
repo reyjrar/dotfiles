@@ -24,17 +24,8 @@ let php_htmlInStrings = 1
 set foldlevel=999
 let g:miniBufExplMapWindowNavVim = 1
 
+map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
-
-  function! PerlMap()
-    map <f1> :w<CR>:!perl %<CR>
-    map <f2> :w<CR>:!perl -c %<CR>
-    map <f3> :w<CR>:!perldoc %<CR>
-    map <f4> :w<CR>:!podchecker %<CR>
-	set number
-  endfunction
-
-autocmd Filetype perl call PerlMap()
 
 augroup filetype
     au! BufRead,BufNewFile *.html           set filetype=mason number
