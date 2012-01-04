@@ -27,7 +27,6 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
-
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
 
