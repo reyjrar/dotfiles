@@ -1,4 +1,15 @@
 # .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Source global definitions
+if [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+
 export BASHRC=1
 export PATH="$HOME/bin:/usr/pgsql-9.0/bin:/opt/perl/current/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/java/jre1.5.0/bin:$HOME/.vim/bin"
 
@@ -31,11 +42,6 @@ if [ "$PS1" ]; then
         . $HOME/.bash_profile
     fi;
 fi;
-
-# Source global definitions
-if [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
-fi
 
 # Perl Brew
 if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
