@@ -14,8 +14,14 @@ set bg=dark
 set bs=2
 set vb t_vb=
 set dir=~/.vimswap
-set et
-set ts=4
+
+" Tab handling
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set smartindent
+
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
