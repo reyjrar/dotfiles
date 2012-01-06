@@ -48,6 +48,10 @@ if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
 	 source ~/perl5/perlbrew/etc/bashrc
 fi
 
+# Local, non SCM'd settings
+if [ -f ~/.bash_local ]; then
+     source ~/.bash_local
+fi;
 
 #
 # For some reason this fjorks things.
