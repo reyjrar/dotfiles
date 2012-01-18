@@ -25,7 +25,7 @@ set smartindent
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-set foldlevel=999
+set nofoldenable
 
 " MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
@@ -77,3 +77,7 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
+
+" borrowed from: https://github.com/ellzey/dotfiles/blob/master/vimrc#L98
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
