@@ -52,34 +52,33 @@ fi;
 function get_user_color() {
     # Set User Color based on Name
     case "$USER" in
-        "root"		)	user_color="$bldred";;
-        "brad"		)	user_color="$txtgrn";;
-        "blhotsky"	)	user_color="$txtcyn";;
-        *			)	user_color="$txtpur";;
+        "root"      )   user_color="$bldred";;
+        "brad"      )   user_color="$txtgrn";;
+        "blhotsky"  )   user_color="$txtcyn";;
+        *           )   user_color="$txtpur";;
     esac
-	echo $user_color;
+    echo $user_color;
 }
 
 function before_prompt() {
-	history -a;		# Record history
-	
+    history -a;     # Record history
     if [ -x ~/bin/vcprompt ]; then
-	    printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)\n" "$(date '+%H:%M:%S')" "$PWD" 
+        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)\n" "$(date '+%H:%M:%S')" "$PWD"
     else
-	    printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s\n" "$(date '+%H:%M:%S')" "$PWD" 
+        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s\n" "$(date '+%H:%M:%S')" "$PWD"
     fi;
 
 }
 
 if [ "$PS1" ] && [ "$BASHRC" != "1" ]; then
-	. ~/.bashrc
+    . ~/.bashrc
 fi;
 
 # User specific environment and startup programs
 VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r $txtpur%m%u$bldblk]";
 PROMPT_COMMAND=before_prompt
 #PS1="\[\033[1;30m\]=\[\033[0;36m\]\h\[\033[1;30m\](\[\033[0;31m\]$(tty | sed s:/dev/::)\[\033[1;30m\]):\[\033[0;36m\]\$(pwd) \$(vcprompt)\[\033[1;30m\]=\n\[\033[1;30m\][\[\033[1;31m\]\t \[\033[1;36m\]\u\[\033[1;30m\]]\]\033[0;37m\]\\\$ \[\033[0m\]"
-PS1="$(get_user_color)\u$bldblk@$host_color\h $(get_user_color)\\\$ $txtrst"
+PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
 BASH_ENV=$HOME/.bashrc
 USERNAME=""
 EDITOR="vim"
