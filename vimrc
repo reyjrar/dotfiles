@@ -1,37 +1,44 @@
-set title
-set number
-set ignorecase
-set smartcase
-set ruler
-set noexpandtab
-set nostartofline
+" Features
+set nocompatible                                " Don't try to run in vi-compatible mode
+set autoread                                    " Reload files changed outside the editor
+set title                                       " Attempt to set the terminal title
+set ignorecase                                  " Ignore case in searches
+set smartcase                                   "  ^- except when I use case
+set nostartofline                               " Commands evaluate from cursor position
 set showmatch
 set showcmd
-set showmode
 set magic
 set ttyfast
-set bg=dark
-set bs=2
-set vb t_vb=
+set bs=2                                        " Backspace can wrap
+set vb t_vb=                                    " Ignore Bells
 set dir=~/.vimswap
+set nofoldenable                                " Disable folding
+set nowrap                                      " Do not wrap lines
+
+" UI Tweaks
+set ruler
+set bg=dark
+set number
+set showmode
+set nohlsearch
+set cursorline
 
 " Tab handling
+set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-set smartindent
 
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-set nofoldenable
 
 " MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1 
-let g:miniBufExplMapCTabSwitchBufs = 1 
-let g:miniBufExplModSelTarget = 1 
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
 
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
@@ -56,7 +63,7 @@ augroup END
 
 autocmd Filetype text call WordProcess()
 
-if has("gui_running") 
+if has("gui_running")
    colorscheme sand
 else
 	colorscheme molokai
