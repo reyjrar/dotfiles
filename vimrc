@@ -73,13 +73,6 @@ if has("gui_macvim")
 	set transparency=15
 endif
 
-
-if &t_Co > 2 || has("gui_running")
-  set hlsearch
-  highlight Search    NONE
-  highlight Comment  ctermfg=white ctermbg=blue cterm=none
-endif
-
 syntax on
 filetype on
 filetype plugin on
