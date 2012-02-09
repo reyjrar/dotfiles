@@ -61,13 +61,20 @@ function get_user_color() {
 }
 
 function before_prompt() {
+    # Grab global $?;
+    retval=$?
+
     history -a;     # Record history
+
     if [ -x ~/bin/vcprompt ]; then
-        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)\n" "$(date '+%H:%M:%S')" "$PWD"
+        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)" "$(date '+%H:%M:%S')" "$PWD"
     else
-        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s\n" "$(date '+%H:%M:%S')" "$PWD"
+        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
     fi;
 
+    [ $retval -ne 0 ] && printf "$txtred(ERR:${bldred}${retval}${txtred})$txtrst";
+
+    printf "\n";
 }
 
 if [ "$PS1" ] && [ "$BASHRC" != "1" ]; then
