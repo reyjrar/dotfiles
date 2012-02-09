@@ -66,7 +66,7 @@ function before_prompt() {
 
     history -a;     # Record history
 
-    if [ -x ~/bin/vcprompt ]; then
+    if [ -x ~/bin/vcprompt ] && [ "$VCPROMPT" != "disable" ]; then
         printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)" "$(date '+%H:%M:%S')" "$PWD"
     else
         printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
