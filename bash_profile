@@ -66,13 +66,14 @@ function before_prompt() {
 
     history -a;     # Record history
 
+    printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
+
     if [ -x ~/bin/vcprompt ] && [ "$VCPROMPT" != "disable" ]; then
-        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s $(vcprompt)" "$(date '+%H:%M:%S')" "$PWD"
-    else
-        printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
+        vc_out=`~/bin/vcprompt`;
+        [ ${#vc_out} -gt 0 ] && printf " $vc_out";
     fi;
 
-    [ $retval -ne 0 ] && printf "$txtred(ERR:${bldred}${retval}${txtred})$txtrst";
+    [ $retval -ne 0 ] && printf " $bldred[*${txtred}${retval}${bldred}*]$txtrst";
 
     printf "\n";
 }
