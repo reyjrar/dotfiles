@@ -64,7 +64,8 @@ augroup END
 autocmd Filetype text call WordProcess()
 
 if has("gui_running")
-   colorscheme sand
+    set bg=light
+    colorscheme solarized
 else
 	colorscheme molokai
 endif
