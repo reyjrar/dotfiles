@@ -1,12 +1,15 @@
 [user]
-	name = Brad Lhotsky
-	email = brad.lhotsky@booking.com
+    name = Brad Lhotsky
+    email = brad.lhotsky@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+    diff = auto
+    status = auto
+    branch = auto
 [alias]
-	ci = commit
-	st = status -s
-	br = branch
-	co = checkout
+    ci = commit -a
+    st = status -s
+    br = branch
+    co = checkout
+    last = log -1 HEAD
+    unstage = reset HEAD --
+    lp = log --format=\"%h - %an, %ar : %s\"
