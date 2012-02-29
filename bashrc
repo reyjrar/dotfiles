@@ -57,8 +57,7 @@ fi;
 # For some reason this fjorks things.
 unset LS_COLORS
 
-function root_login ()
-{
+function root_login () {
     local timeout=1800;
     local keyActive=`ssh-add -l |grep 'administrator.dsa'|wc -l`;
 
@@ -88,4 +87,24 @@ function root_login ()
         ssh -l root $*;
     fi;
 
+}
+function contents() {
+    if [ -f "$1" ] && [ -r "$1" ]; then
+        file_lines=`wc -l $1 | awk '{print $1}'`;
+        rc=$?;
+        if [[ $rc -ne 0 ]]; then
+            echo "error reading file: $1";
+            exit $rc;
+        fi;
+        if [[ $file_lines -gt $LINES ]]; then
+            out=`expr $LINES / 2 - 1`;
+            head -$out $1
+            echo "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
+            tail -$out $1
+        else
+            cat $1;
+        fi;
+    else
+        ls -lh $1
+    fi
 }
