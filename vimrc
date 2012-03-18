@@ -14,6 +14,7 @@ set vb t_vb=                                    " Ignore Bells
 set dir=~/.vimswap
 set nofoldenable                                " Disable folding
 set nowrap                                      " Do not wrap lines
+set encoding=utf-8
 
 " UI Tweaks
 set ruler
@@ -22,6 +23,8 @@ set number
 set showmode
 set nohlsearch
 set cursorline
+set laststatus=2
+set statusline=%{fugitive#statusline()}
 
 " Tab handling
 set autoindent
@@ -30,9 +33,13 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" Adding Pathogen
+call pathogen#infect()
+
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
+let g:Powerline_symbols = 'fancy'
 
 " MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
