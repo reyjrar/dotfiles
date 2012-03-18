@@ -14,7 +14,7 @@ if [ "$rc" -ne "0" ]; then
     exit 1;
 fi;
 
-# Added to distribution
+# Add to distribution
 if [ -f ~/.distrib_hosts ]; then
     grep "$HOST" ~/.distrib_hosts
     rc=$?;
