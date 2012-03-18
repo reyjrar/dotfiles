@@ -36,11 +36,11 @@ if [ "$rc" -ne "0" ]; then
     $SSH $HOST "mkdir ~/.vimswap"
     echo "  +--> created ~/.vimswamp";
 fi;
-$SSH $HOST "test -d ~/.bin"
+$SSH $HOST "test -d ~/bin"
 rc=$?
 if [ "$rc" -ne "0" ]; then
-    $SSH $HOST "mkdir ~/.bin"
-    echo "  +--> created ~/.bin";
+    $SSH $HOST "mkdir ~/bin"
+    echo "  +--> created ~/bin";
 fi;
 
 $SCP ~/bin/vcprompt $HOST:~/bin
