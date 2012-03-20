@@ -73,6 +73,8 @@ function before_prompt() {
         [ ${#vc_out} -gt 0 ] && printf " $vc_out";
     fi;
 
+    [ ! -z $PROMPT_EXTRA ] && printf " $PROMPT_EXTRA";
+
     [ $retval -ne 0 ] && printf " $bldred[*${txtred}${retval}${bldred}*]$txtrst";
 
     printf "\n";

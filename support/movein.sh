@@ -45,6 +45,7 @@ fi;
 
 $SCP ~/bin/vcprompt $HOST:~/bin
 $SCP ~/bin/dotfiles-install.sh $HOST:~/bin
+$RSYNC -ave ssh ~/bin/*.sh $HOST:~/bin
 echo " => Copied Support Scripts";
 
 ## Rsync for dotfiles
