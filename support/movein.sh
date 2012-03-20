@@ -63,7 +63,7 @@ if [ "$rc" -ne "0" ]; then
 fi;
 
 ## Vim Configs
-$RSYNC -av --delete ~/.vim -e ssh $HOST:~
+$RSYNC -av --exclude=.git --delete ~/.vim -e ssh $HOST:~
 echo " => Sync of vim setup complete"
 
 echo "DONE.";
