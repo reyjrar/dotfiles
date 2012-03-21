@@ -10,9 +10,25 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# Path Injection
+function path_inject() {
+    if [ -d "$1" ]; then
+        PATH="$1:$PATH";
+    fi;
+}
+
+path_inject /sbin
+path_inject /usr/sbin
+path_inject /usr/local/sbin
+path_inject /usr/local/bin
+path_inject /opt/local/sbin
+path_inject /opt/local/bin
+path_inject /opt/perl/current/bin
+path_inject /usr/pgsql-9.0/bin
+path_inject $HOME/bin
+
 export BASHRC=1
-export PATH="$HOME/bin:/usr/pgsql-9.0/bin:/opt/perl/current/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/sbin:/sbin:/usr/java/jre1.5.0/bin:$HOME/.vim/bin"
-export LESS="-RMN"
+export LESS="-RM"
 
 # Operating System Based Decisions
 HOSTOS=`uname -s`
@@ -109,3 +125,5 @@ function contents() {
         ls -lh $1
     fi
 }
+
+
