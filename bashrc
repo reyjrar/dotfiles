@@ -27,8 +27,6 @@ path_inject /opt/perl/current/bin
 path_inject /usr/pgsql-9.0/bin
 path_inject $HOME/bin
 
-export BASHRC=1
-export LESS="-RM"
 
 # Operating System Based Decisions
 HOSTOS=`uname -s`
@@ -45,6 +43,7 @@ fi;
 alias who='who -H -u -T'
 alias root='root_login';
 alias screen="TERM=ansi screen"
+export LESS="-RM"
 
 #
 # Interactive Shells only
@@ -55,9 +54,9 @@ if [ "$PS1" ]; then
     export HISTCONTROL="ignoredups"
     export HISTIGNORE="&:ls:[bf]g:exit"
 
-    if [ "$PROFILED" != "0" ]; then
-        . $HOME/.bash_profile
-    fi;
+#    if [ -z "$PROFILED" ] && [ -e ~/.bash_profile ]; then
+#        . ~/.bash_profile
+#    fi;
 fi;
 
 # Perl Brew
@@ -125,5 +124,3 @@ function contents() {
         ls -lh $1
     fi
 }
-
-
