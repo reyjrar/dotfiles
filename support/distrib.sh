@@ -33,7 +33,7 @@ elif [ "$MODE" == "local" ]; then
     fi;
     for host in `cat ~/.distrib_hosts`; do
         echo " => Resetting a default ~/.bash_local on $host";
-        $SCP ~/.bash_local $HOST:~
+        $SCP ~/.bash_local $host:~
     done;
 fi;
 
