@@ -1,7 +1,4 @@
-# .bash_profile
-# -------------
 # Set up the prompt, and export variables
-export BASH_PROFILE=1;
 
 # Colors:
 txtblk='\e[0;30m' # Black - Regular
@@ -39,15 +36,11 @@ bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
 # Set Host Coloration based on OS
-if [ `uname -s` == "Darwin" ]; then
-    # Darwin
-    host_color="$txtblu";
-elif [ "$HOSTOS" == "Linux" ]; then
-    host_color="$txtred";
-else
-    # Server Side, use username to determine color
-    host_color="$bldpur";
-fi;
+case `uname -s` in
+    "Darwin"    ) host_color="$txtblu";;
+    "Linux"     ) host_color="$txtred";;
+    *           ) host_color="$bldpur";;
+esac;
 
 function get_user_color() {
     # Set User Color based on Name
@@ -80,7 +73,7 @@ function before_prompt() {
     printf "\n";
 }
 
-if [ "$PS1" ] && [ "$BASHRC" != "1" ]; then
+if [ "$PS1" ] && [ "$BASHRC" != 1 ]; then
     . ~/.bashrc
 fi;
 

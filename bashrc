@@ -1,4 +1,5 @@
 # .bashrc
+export BASHRC=1;
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -53,10 +54,6 @@ if [ "$PS1" ]; then
 
     export HISTCONTROL="ignoredups"
     export HISTIGNORE="&:ls:[bf]g:exit"
-
-    if [ -z "$BASH_PROFILE" ] && [ -e ~/.bash_profile ]; then
-        . ~/.bash_profile
-    fi;
 fi;
 
 # Perl Brew
