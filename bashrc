@@ -54,9 +54,9 @@ if [ "$PS1" ]; then
     export HISTCONTROL="ignoredups"
     export HISTIGNORE="&:ls:[bf]g:exit"
 
-#    if [ -z "$PROFILED" ] && [ -e ~/.bash_profile ]; then
-#        . ~/.bash_profile
-#    fi;
+    if [ -z "$BASH_PROFILE" ] && [ -e ~/.bash_profile ]; then
+        . ~/.bash_profile
+    fi;
 fi;
 
 # Perl Brew

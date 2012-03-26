@@ -1,6 +1,7 @@
 # .bash_profile
 # -------------
 # Set up the prompt, and export variables
+export BASH_PROFILE=1;
 
 # Colors:
 txtblk='\e[0;30m' # Black - Regular
@@ -87,7 +88,6 @@ fi;
 VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r $txtpur%m%u$bldblk]";
 PROMPT_COMMAND=before_prompt
 PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
-#BASH_ENV=$HOME/.bashrc
 USERNAME=""
 EDITOR="vim"
 
