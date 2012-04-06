@@ -13,3 +13,5 @@
     last = log -1 HEAD
     unstage = reset HEAD --
     lp = log --format=\"%h - %an, %ar : %s\"
+[branch]
+    autosetuprebase = always
