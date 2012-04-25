@@ -42,6 +42,15 @@ case `uname -s` in
     *           ) host_color="$bldpur";;
 esac;
 
+# Get the /24 we're connected to
+case "$(uname -s)" in
+    "Darwin"    ) netstat_opts="-rn -f inet";;
+    *           ) netstat_opts="-rn";;
+esac
+
+LOCAL_NETWORK=$(netstat $netstat_opts |grep -P '^(0.0.0.0|default)'|awk '{print $2}'| awk -F. '{print $1 "." $2 "." $3}')
+export LOCAL_NETWORK;
+
 function get_user_color() {
     # Set User Color based on Name
     case "$USER" in
@@ -66,7 +75,7 @@ function before_prompt() {
         [ ${#vc_out} -gt 0 ] && printf " $vc_out";
     fi;
 
-    [ ! -z $PROMPT_EXTRA ] && printf " $PROMPT_EXTRA";
+    [ ! -z $PROMPT_EXTRA ] && printf " $bldblk(${host_color}$PROMPT_EXTRA$bldblk)";
 
     [ $retval -ne 0 ] && printf " $bldred[*${txtred}${retval}${bldred}*]$txtrst";
 
