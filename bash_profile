@@ -51,6 +51,21 @@ esac
 LOCAL_NETWORK=$(netstat $netstat_opts |grep -P '^(0.0.0.0|default)'|awk '{print $2}'| awk -F. '{print $1 "." $2 "." $3}')
 export LOCAL_NETWORK;
 
+function prompt_extra() {
+    addition=$1;
+    # Color if not colored
+    echo $addition | grep '\\' &> /dev/null;
+    if [ "$?" != "0" ]; then
+        addition="${bldblk}(${host_color}${addition}${bldblk})$txtrst";
+    fi;
+
+    if [ -z $PROMPT_EXTRA ]; then
+        PROMPT_EXTRA=$addition;
+    else
+        PROMPT_EXTRA="$PROMPT_EXTRA$addition"
+    fi;
+}
+
 function get_user_color() {
     # Set User Color based on Name
     case "$USER" in
@@ -75,7 +90,7 @@ function before_prompt() {
         [ ${#vc_out} -gt 0 ] && printf " $vc_out";
     fi;
 
-    [ ! -z $PROMPT_EXTRA ] && printf " $bldblk(${host_color}$PROMPT_EXTRA$bldblk)";
+    [ ! -z $PROMPT_EXTRA ] && printf " $PROMPT_EXTRA";
 
     [ $retval -ne 0 ] && printf " $bldred[*${txtred}${retval}${bldred}*]$txtrst";
 
