@@ -47,6 +47,7 @@ alias who='who -H -u -T'
 alias root='root_login';
 alias screen="TERM=ansi screen"
 export LESS="-RM"
+alias c="contents"
 
 #
 # Interactive Shells only

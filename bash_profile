@@ -146,7 +146,7 @@ function contents() {
             cat $1;
         fi;
     else
-        ls -lh $1
+        ls -lhF --color=auto $1
     fi
 }
 
