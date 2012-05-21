@@ -150,6 +150,18 @@ function contents() {
     fi
 }
 
+function send_bash_local() {
+    host=$1
+    if [ -f ~/.distrib_hosts ]; then
+        grep "^$host$" ~/.distrib_hosts &> /dev/null
+        rc=$?
+        if [[ $rc -ne 0 ]]; then
+            echo "!! warning : host $host was not found in ~/.distrib_hosts";
+        fi;
+    fi;
+    /usr/bin/scp .bash_local $host:~
+}
+
 if [ "$PS1" ] && [ "$BASHRC" != 1 ]; then
     . ~/.bashrc
 fi;
