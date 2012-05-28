@@ -146,8 +146,20 @@ function contents() {
             cat $1;
         fi;
     else
-        ls -lh $1
+        ls -lhF --color=auto $1
     fi
+}
+
+function send_bash_local() {
+    host=$1
+    if [ -f ~/.distrib_hosts ]; then
+        grep "^$host$" ~/.distrib_hosts &> /dev/null
+        rc=$?
+        if [[ $rc -ne 0 ]]; then
+            echo "!! warning : host $host was not found in ~/.distrib_hosts";
+        fi;
+    fi;
+    /usr/bin/scp .bash_local $host:~
 }
 
 if [ "$PS1" ] && [ "$BASHRC" != 1 ]; then
@@ -155,7 +167,7 @@ if [ "$PS1" ] && [ "$BASHRC" != 1 ]; then
 fi;
 
 # User specific environment and startup programs
-VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r $txtpur%m%u$bldblk]";
+VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r$txtpur%m%u$bldblk]";
 PROMPT_COMMAND=before_prompt
 PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
 USERNAME=""

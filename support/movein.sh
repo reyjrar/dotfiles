@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if [ "$1" == "-l" ]; then
+    LOCAL_OVERWRITE=1;
+    shift 1;
+else
+    LOCAL_OVERWRITE=0;
+fi;
+
 HOST=$1
 
 SSH="/usr/bin/ssh"
@@ -55,9 +62,14 @@ $SSH $HOST "~/bin/dotfiles-install.sh"
 echo " => dotfiles installed."
 
 ## bash_local for non-distributed changes
-$SSH $HOST "test -f ~/.bash_local"
-rc=$?
-if [ "$rc" -ne "0" ]; then
+if [ $LOCAL_OVERWRITE -eq 0 ]; then
+    $SSH $HOST "test -f ~/.bash_local"
+    rc=$?
+    if [ "$rc" -ne "0" ]; then
+        LOCAL_OVERWRITE=1;
+    fi;
+fi;
+if [ $LOCAL_OVERWRITE -eq 1 ]; then
     $SCP ~/.bash_local $HOST:~
     echo " => Setting a default ~/.bash_local";
 fi;
