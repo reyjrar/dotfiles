@@ -6,6 +6,10 @@ if [ "$1" == "-l" ]; then
 else
     LOCAL_OVERWRITE=0;
 fi;
+if [ "$1" == "-n" ]; then
+    NO_DNS_CHECK=1;
+    shift 1;
+fi;
 
 HOST=$1
 
@@ -16,7 +20,7 @@ RSYNC="/usr/bin/rsync"
 # Check the Host
 host $HOST &> /dev/null
 rc=$?
-if [ "$rc" -ne "0" ]; then
+if [ -z $NO_DNS_CHECK ] && [ "$rc" -ne "0" ]; then
     echo "Invalid host: $HOST";
     exit 1;
 fi;
