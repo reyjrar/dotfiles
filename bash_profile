@@ -167,7 +167,7 @@ if [ "$PS1" ] && [ "$BASHRC" != 1 ]; then
 fi;
 
 # User specific environment and startup programs
-VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r $txtpur%m%u$bldblk]";
+VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r$txtpur%m%u$bldblk]";
 PROMPT_COMMAND=before_prompt
 PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
 USERNAME=""
