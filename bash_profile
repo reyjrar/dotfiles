@@ -172,5 +172,6 @@ PROMPT_COMMAND=before_prompt
 PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
 USERNAME=""
 EDITOR="vim"
+LC_ALL="en_US.UTF-8"
 
-export USERNAME EDITOR VCPROMPT_FORMAT PS1 PROMPT_COMMAND
+export USERNAME EDITOR VCPROMPT_FORMAT PS1 PROMPT_COMMAND LC_ALL
