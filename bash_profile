@@ -1,6 +1,7 @@
+# Enable Debugging in the Shell with =1
+DEBUG=0
 # Source .bashrc for interactive shells
 case $- in *i*) INTERACTIVE=1;; esac
-DEBUG=0
 
 if [ $INTERACTIVE -eq 1 ]; then
     # Interactive session, load ALL THE THINGS!
