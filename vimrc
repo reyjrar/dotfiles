@@ -15,6 +15,7 @@ set dir=~/.vimswap
 set nofoldenable                                " Disable folding
 set nowrap                                      " Do not wrap lines
 set encoding=utf-8
+set modeline
 
 " UI Tweaks
 set ruler
