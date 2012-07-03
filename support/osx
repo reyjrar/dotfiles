@@ -24,8 +24,9 @@ defaults write com.apple.dock showhidden -bool false
 #defaults write com.apple.menuextra.battery ShowPercent -string "NO"
 #defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
-# Always show scrollbars
-#defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Always show scrollbars = "Always"
+# Let the application decide = "Auto"
+defaults write NSGlobalDomain AppleShowScrollBars -string "Auto"
 
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons if true
 defaults write com.apple.finder QuitMenuItem -bool false

@@ -34,6 +34,9 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" Enable tags:
+set tags=./tags;/
+
 " Adding Pathogen
 call pathogen#infect()
 
