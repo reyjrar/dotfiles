@@ -2,6 +2,7 @@
     name = Brad Lhotsky
     email = brad.lhotsky@gmail.com
 [color]
+    ui = auto
     diff = auto
     status = auto
     branch = auto
