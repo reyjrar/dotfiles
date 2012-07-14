@@ -34,6 +34,9 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" Auto-complete settings
+set complete=.,b,u,]
+
 " Adding Pathogen
 call pathogen#infect()
 
@@ -57,22 +60,30 @@ function WordProcess()
 	set spell
 endfunction
 
+fun! StripTrailingWhitespace()
+    " Only strip if the b:noStripeWhitespace variable isn't set
+    if exists('b:noStripWhitespace')
+        return
+    endif
+    %s/\s\+$//e
+endfun
+
 augroup filetype
-    au! BufRead,BufNewFile *.html           set filetype=mason number
-    au! BufRead,BufNewFile *.m              set filetype=mason number
-    au! BufRead,BufNewFile autohandler      set filetype=mason number
-    au! BufRead,BufNewFile syshandler       set filetype=mason number
-    au! BufRead,BufNewFile dhandler         set filetype=mason number
-    au! BufRead,BufNewFile *.mas            set filetype=mason number
-    au! BufRead,BufNewFile *.comp           set filetype=mason number
-    au! BufRead,BufNewFile *.pp             set filetype=puppet number
-    au! BufRead,BufNewFile *.txt            set filetype=text number
+    au! BufRead,BufNewFile *.html           set filetype=mason
+    au! BufRead,BufNewFile *.m              set filetype=mason
+    au! BufRead,BufNewFile autohandler      set filetype=mason
+    au! BufRead,BufNewFile syshandler       set filetype=mason
+    au! BufRead,BufNewFile dhandler         set filetype=mason
+    au! BufRead,BufNewFile *.mas            set filetype=mason
+    au! BufRead,BufNewFile *.comp           set filetype=mason
+    au! BufRead,BufNewFile *.pp             set filetype=puppet
+    au! BufRead,BufNewFile *.txt            set filetype=text
 augroup END
 
 autocmd Filetype text call WordProcess()
+autocmd BufWritePre * call StripTrailingWhitespace()
 
 if has("gui_running")
-    set bg=light
     colorscheme solarized
 else
 	colorscheme molokai
