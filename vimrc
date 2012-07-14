@@ -33,9 +33,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-
 " Auto-complete settings
 set complete=.,b,u,]
+" Enable tags:
+set tags=./tags;/
 
 " Adding Pathogen
 call pathogen#infect()

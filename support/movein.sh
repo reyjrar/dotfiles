@@ -17,6 +17,30 @@ SSH="/usr/bin/ssh"
 SCP="/usr/bin/scp"
 RSYNC="/usr/bin/rsync"
 
+if [ $DEBUG > 0 ]; then
+    RSYNC_OPTS='-v'
+else
+    SCP_OPTS='-q'
+fi
+
+DIRS="
+    .vimswap
+    bin
+    support
+"
+function remote_mkdir() {
+    dir=$1
+    $SSH $HOST "test -d ~/$dir"
+    rc=$?
+    if [ "$rc" -ne "0" ]; then
+        $SSH $HOST "mkdir ~/$dir"
+        echo "  +--> created ~/$dir";
+    else
+        (( $DEBUG )) && echo " - remote_mkdir($dir) -> directory exists"
+    fi;
+
+}
+
 # Check the Host
 host $HOST &> /dev/null
 rc=$?
@@ -41,22 +65,14 @@ if [ -f ~/.distrib_hosts ]; then
 fi;
 
 ## Setups
-$SSH $HOST "test -d ~/.vimswap"
-rc=$?
-if [ "$rc" -ne "0" ]; then
-    $SSH $HOST "mkdir ~/.vimswap"
-    echo "  +--> created ~/.vimswamp";
-fi;
-$SSH $HOST "test -d ~/bin"
-rc=$?
-if [ "$rc" -ne "0" ]; then
-    $SSH $HOST "mkdir ~/bin"
-    echo "  +--> created ~/bin";
-fi;
+for dir in $DIRS; do
+    remote_mkdir $dir;
+done
 
-$SCP ~/bin/vcprompt $HOST:~/bin
-$SCP ~/bin/dotfiles-install.sh $HOST:~/bin
-$RSYNC -ave ssh ~/bin/*.sh $HOST:~/bin
+$SCP $SCP_OPTS ~/bin/vcprompt $HOST:~/bin
+$SCP $SCP_OPTS ~/bin/dotfiles-install.sh $HOST:~/bin
+$RSYNC $RSYNC_OPTS -ae ssh ~/support/tmux-powerline ~/support
+$RSYNC $RSYNC_OPTS -ae ssh ~/bin/*.sh $HOST:~/bin
 echo " => Copied Support Scripts";
 
 ## Rsync for dotfiles
@@ -74,12 +90,12 @@ if [ $LOCAL_OVERWRITE -eq 0 ]; then
     fi;
 fi;
 if [ $LOCAL_OVERWRITE -eq 1 ]; then
-    $SCP ~/.bash_local $HOST:~
+    $SCP $SCP_OPTS ~/.bash_local $HOST:~
     echo " => Setting a default ~/.bash_local";
 fi;
 
 ## Vim Configs
-$RSYNC -av --exclude=.git --delete ~/.vim -e ssh $HOST:~
+$RSYNC $RSYNC_OPTS -a --exclude=.git --delete ~/.vim -e ssh $HOST:~
 echo " => Sync of vim setup complete"
 
 echo "DONE.";
