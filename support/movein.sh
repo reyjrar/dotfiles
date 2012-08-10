@@ -29,7 +29,7 @@ DIRS="
     support
 "
 function remote_mkdir() {
-    dir=$1
+    local dir=$1
     $SSH $HOST "test -d ~/$dir"
     rc=$?
     if [ "$rc" -ne "0" ]; then
@@ -57,7 +57,7 @@ if [ -f ~/.distrib_hosts ]; then
     if [ "$rc" -ne "0" ]; then
         cp ~/.distrib_hosts /tmp/distrib_hosts.$$
         echo $HOST >> /tmp/distrib_hosts.$$
-        sort /tmp/distrib_hosts.$$ > ~/.distrib_hosts
+        sort -u /tmp/distrib_hosts.$$ > ~/.distrib_hosts
         rm /tmp/distrib_hosts.$$
         hosts=`wc -l ~/.distrib_hosts`;
         echo " => Added to ~/.distrib_hosts (now $hosts hosts)"
@@ -71,7 +71,7 @@ done
 
 $SCP $SCP_OPTS ~/bin/vcprompt $HOST:~/bin
 $SCP $SCP_OPTS ~/bin/dotfiles-install.sh $HOST:~/bin
-$RSYNC $RSYNC_OPTS -ae ssh ~/support/tmux-powerline ~/support
+$RSYNC $RSYNC_OPTS -a --exclude=.git -e ssh ~/support/tmux-powerline $HOST:~/support
 $RSYNC $RSYNC_OPTS -ae ssh ~/bin/*.sh $HOST:~/bin
 echo " => Copied Support Scripts";
 
@@ -95,8 +95,8 @@ if [ $LOCAL_OVERWRITE -eq 1 ]; then
 fi;
 
 ## Vim Configs
-$RSYNC $RSYNC_OPTS -a --exclude=.git --delete ~/.vim -e ssh $HOST:~
+$RSYNC $RSYNC_OPTS -a --exclude=.git --delete -e ssh ~/.vim $HOST:~
 echo " => Sync of vim setup complete"
 
 echo "DONE.";
-exit 0;
+exit;
