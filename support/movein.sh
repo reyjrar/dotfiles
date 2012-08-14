@@ -76,7 +76,7 @@ $RSYNC $RSYNC_OPTS -ae ssh ~/bin/*.sh $HOST:~/bin
 echo " => Copied Support Scripts";
 
 ## Rsync for dotfiles
-$RSYNC -a --delete --exclude=.git ~/code/dotfiles -e ssh $HOST:~
+$RSYNC $RSYNC_OPTS -a --delete --exclude=.git ~/code/dotfiles -e ssh $HOST:~
 echo " => Sync of dotfiles complete, running install"
 $SSH $HOST "~/bin/dotfiles-install.sh"
 echo " => dotfiles installed."
