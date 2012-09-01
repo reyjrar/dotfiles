@@ -45,6 +45,7 @@ let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
 let g:Powerline_symbols = 'fancy'
+let mojo_highlight_data = 1
 
 " MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
