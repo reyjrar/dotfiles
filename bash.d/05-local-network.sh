@@ -4,5 +4,5 @@ case "$(uname -s)" in
     *           ) netstat_opts="-rn";;
 esac
 
-LOCAL_NETWORK=$(netstat $netstat_opts |grep -P '^(0.0.0.0|default)'|awk '{print $2}'| awk -F. '{print $1 "." $2 "." $3}')
+LOCAL_NETWORK=$(netstat $netstat_opts |grep '^(0.0.0.0|default)'|awk '{print $2}'| awk -F. '{print $1 "." $2 "." $3}')
 export LOCAL_NETWORK;
