@@ -13,7 +13,10 @@ if [ ! -f ~/.distrib_hosts ]; then
 fi;
 
 ## Setups
-if [ "$MODE" == "movein" ]; then
+if [ -z $MODE ]; then
+    echo "usage: $0 [movein|local]"
+    exit 1;
+elif [ "$MODE" == "movein" ]; then
     if [ ! -x "$MOVEIN" ]; then
         echo "!! Could not execute $MOVEIN !!"
         exit 1;

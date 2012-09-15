@@ -63,11 +63,13 @@ function WordProcess()
 endfunction
 
 fun! StripTrailingWhitespace()
+    let l:cursorpos = getpos(".")
     " Only strip if the b:noStripeWhitespace variable isn't set
     if exists('b:noStripWhitespace')
         return
     endif
     %s/\s\+$//e
+    call setpos('.', l:cursorpos)
 endfun
 
 augroup filetype
