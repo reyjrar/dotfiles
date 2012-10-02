@@ -45,6 +45,7 @@ let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
 let g:Powerline_symbols = 'fancy'
+let mojo_highlight_data = 1
 
 " MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
@@ -62,11 +63,13 @@ function WordProcess()
 endfunction
 
 fun! StripTrailingWhitespace()
+    let l:cursorpos = getpos(".")
     " Only strip if the b:noStripeWhitespace variable isn't set
     if exists('b:noStripWhitespace')
         return
     endif
     %s/\s\+$//e
+    call setpos('.', l:cursorpos)
 endfun
 
 augroup filetype

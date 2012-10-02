@@ -18,3 +18,6 @@ else
     source ~/.bash.d/02-base-paths.sh
     source ~/.bash.d/15-aliases.sh
 fi;
+
+# Clear any bad RC's
+true;

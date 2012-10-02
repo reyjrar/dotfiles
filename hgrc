@@ -1,3 +1,8 @@
 [ui]
 username = "Brad Lhotsky <brad.lhotsky@gmail.com>"
 verbose = True
+merge = filemerge
+
+[merge-tools]
+filemerge.executable = opendiff
+filemerge.args = $local $other -ancestor $base -merge $output
