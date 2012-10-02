@@ -78,6 +78,7 @@ augroup filetype
     au! BufRead,BufNewFile *.mas            set filetype=mason
     au! BufRead,BufNewFile *.comp           set filetype=mason
     au! BufRead,BufNewFile *.pp             set filetype=puppet
+    au! BufRead,BufNewFile *.psgi           set filetype=perl
     au! BufRead,BufNewFile *.txt            set filetype=text
 augroup END
 
