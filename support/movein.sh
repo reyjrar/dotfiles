@@ -70,7 +70,6 @@ for dir in $DIRS; do
 done
 
 $SCP $SCP_OPTS ~/bin/vcprompt $HOST:~/bin
-$SCP $SCP_OPTS ~/bin/dotfiles-install.sh $HOST:~/bin
 $RSYNC $RSYNC_OPTS -a --exclude=.git -e ssh ~/support/tmux-powerline $HOST:~/support
 $RSYNC $RSYNC_OPTS -ae ssh ~/bin/*.sh $HOST:~/bin
 echo " => Copied Support Scripts";
