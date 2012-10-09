@@ -83,6 +83,7 @@ augroup filetype
     au! BufRead,BufNewFile *.pp             set filetype=puppet
     au! BufRead,BufNewFile *.psgi           set filetype=perl
     au! BufRead,BufNewFile *.txt            set filetype=text
+    au! BufRead,BufNewFile *.patch          let b:noStripWhitespace = 1
 augroup END
 
 autocmd Filetype text call WordProcess()
