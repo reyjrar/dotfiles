@@ -3,6 +3,11 @@ EDITOR="vim"
 LC_ALL="en_US.UTF-8"
 HOSTOS=`uname -s`
 
-export EDITOR LC_ALL HOSTOS
+case "$(uname -s)" in
+    "Darwin"    ) PLATFORM="mac";;
+    *           ) PLATFORM="linux";;
+esac
+
+export EDITOR LC_ALL HOSTOS PLATFORM
 unset USERNAME
 unset LS_COLORS
