@@ -14,5 +14,6 @@
     last = log -1 HEAD
     unstage = reset HEAD --
     lp = log --format=\"%h - %an, %ar : %s\"
+    hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s' --all
 [branch]
     autosetuprebase = always
