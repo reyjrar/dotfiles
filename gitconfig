@@ -8,6 +8,7 @@
     branch = auto
 [alias]
     ci = commit -a
+    cp = commit -p
     st = status -s
     br = branch
     co = checkout

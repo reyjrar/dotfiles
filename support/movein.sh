@@ -17,7 +17,7 @@ SSH="/usr/bin/ssh"
 SCP="/usr/bin/scp"
 RSYNC="/usr/bin/rsync"
 
-if [ $DEBUG -gt 0 ]; then
+if [ ${DEBUG:-0} -gt 0 ]; then
     RSYNC_OPTS='-v'
 else
     SCP_OPTS='-q'
