@@ -17,7 +17,7 @@ SSH="/usr/bin/ssh"
 SCP="/usr/bin/scp"
 RSYNC="/usr/bin/rsync"
 
-if [ $DEBUG > 0 ]; then
+if [ $DEBUG -gt 0 ]; then
     RSYNC_OPTS='-v'
 else
     SCP_OPTS='-q'
@@ -40,6 +40,7 @@ function remote_mkdir() {
     fi;
 
 }
+
 
 # Check the Host
 host $HOST &> /dev/null
@@ -98,4 +99,4 @@ $RSYNC $RSYNC_OPTS -a --exclude=.git --delete -e ssh ~/.vim $HOST:~
 echo " => Sync of vim setup complete"
 
 echo "DONE.";
-exit;
+true;
