@@ -6,6 +6,7 @@ path_inject /usr/local/sbin
 path_inject /usr/local/bin
 path_inject /opt/local/sbin
 path_inject /opt/local/bin
+path_inject /opt/local/libexec/gnubin
 path_inject /var/ossec/bin
 path_inject /opt/perl/current/bin
 path_inject /usr/pgsql-9.1/bin
