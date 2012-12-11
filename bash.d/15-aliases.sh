@@ -10,8 +10,10 @@ esac;
 
 # User specific aliases and functions
 alias who='who -H -u -T'
-alias root='root_login';
+alias root='root_login'
 alias c="contents"
+# Get Aliases
+alias gg='git grep'
 
 # Some commands can be customized with ENV Variables
 export LESS="-RM"
