@@ -46,6 +46,9 @@ let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
 let g:Powerline_symbols = 'fancy'
 let mojo_highlight_data = 1
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
 
 " MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
