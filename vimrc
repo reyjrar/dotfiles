@@ -90,6 +90,7 @@ augroup filetype
 augroup END
 
 autocmd Filetype text call WordProcess()
+autocmd Filetype markdown call WordProcess()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 if has("gui_running")
