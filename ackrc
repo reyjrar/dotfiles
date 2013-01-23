@@ -1,2 +1,3 @@
 --type-set=puppet=.pp
 --type-set=erb=.erb
+--type-add=mason=.comp

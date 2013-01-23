@@ -13,7 +13,7 @@ fi;
 
 HOST=$1
 
-SSH="/usr/bin/ssh"
+SSH="/usr/bin/ssh -x"
 SCP="/usr/bin/scp"
 RSYNC="/usr/bin/rsync"
 

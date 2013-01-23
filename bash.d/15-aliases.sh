@@ -15,6 +15,13 @@ alias c="contents"
 # Get Aliases
 alias gg='git grep'
 
+# Hive
+command -v rlwrap &> /dev/null
+rc=$?
+if [[ "$rc" -eq "0" ]]; then
+        alias rlhive='rlwrap -i --prompt-colour=yellow -f ~/.hive_completion -a hive $*'
+fi;
+
 # Some commands can be customized with ENV Variables
 export LESS="-RM"
 

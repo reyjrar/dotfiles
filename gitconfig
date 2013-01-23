@@ -18,3 +18,7 @@
     hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s' --all
 [branch]
     autosetuprebase = always
+[push]
+	default = upstream
+[pull]
+    rebase = true
