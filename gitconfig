@@ -19,6 +19,6 @@
 [branch]
     autosetuprebase = always
 [push]
-	default = upstream
+    default = upstream
 [pull]
     rebase = true
