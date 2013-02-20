@@ -58,6 +58,7 @@ let g:miniBufExplModSelTarget = 1
 
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
+set pastetoggle=<F3>
 
 function WordProcess()
 	set tw=76
