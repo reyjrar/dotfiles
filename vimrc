@@ -44,9 +44,9 @@ map <f5> :TlistToggle<CR>
 set pastetoggle=<F3>
 
 function WordProcess()
-	set tw=76
-	set spelllang=en_us
-	set spell
+    set tw=76
+    set spelllang=en_us
+    set spell
 endfunction
 
 fun! StripTrailingWhitespace()
@@ -87,14 +87,12 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-
 " Color schemes
 Bundle 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 Bundle 'tomasr/molokai'
-
 " UI Plugins
 Bundle 'ack.vim'
 Bundle 'kien/ctrlp.vim'
@@ -113,10 +111,9 @@ Bundle 'troydm/easybuffer.vim'
 "let g:miniBufExplMapCTabSwitchBufs = 1
 "let g:miniBufExplModSelTarget = 1
 Bundle 'godlygeek/tabular'
-
+Bundle 'nathanaelkane/vim-indent-guides'
 " Git integration
 Bundle 'tpope/vim-fugitive'
-
 " Perl Syntax Highlighting
 Bundle 'c9s/perlomni.vim'
 Bundle 'vim-perl/vim-perl'
@@ -125,18 +122,14 @@ let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
 Bundle 'yko/mojo.vim'
 let mojo_highlight_data = 1
-
 " Make working with Ruby less violent
 Bundle 'tpope/vim-endwise'
-
 " Other Languages
 Bundle 'vim-scripts/Vim-R-plugin'
-
 " Markup/Serialization Language Support
 Bundle 'Rykka/riv.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'leshill/vim-json'
-
 " Sysadmin Stuff
 Bundle 'zaiste/tmux.vim'
 Bundle 'vim-scripts/iptables'
@@ -145,13 +138,12 @@ Bundle 'rodjek/vim-puppet'
 if has("gui_running")
     colorscheme solarized
 else
-	colorscheme molokai
+    colorscheme molokai
 endif
 
 if has("gui_macvim")
-	set transparency=15
+    set transparency=15
 endif
-
 
 filetype plugin on
 filetype indent on
