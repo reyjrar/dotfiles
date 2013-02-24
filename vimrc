@@ -38,24 +38,7 @@ set complete=.,b,u,]
 " Enable tags:
 set tags=./tags;/
 
-" Adding Pathogen
-call pathogen#infect()
-
-let perl_extended_vars = 1
-let perl_want_scope_in_variables = 1
-let perl_include_pod = 1
-let g:Powerline_symbols = 'fancy'
-let mojo_highlight_data = 1
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-
-" MiniBufExplorer
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-
+" Maps and Functions
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
 set pastetoggle=<F3>
@@ -76,6 +59,7 @@ fun! StripTrailingWhitespace()
     call setpos('.', l:cursorpos)
 endfun
 
+" Auto commands and filetype assignment
 augroup filetype
     au! BufRead,BufNewFile *.html           set filetype=mason
     au! BufRead,BufNewFile *.m              set filetype=mason
@@ -94,6 +78,70 @@ autocmd Filetype text call WordProcess()
 autocmd Filetype markdown call WordProcess()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
+
+" Vundle Plugin Configurations
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" Color schemes
+Bundle 'altercation/vim-colors-solarized'
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+Bundle 'tomasr/molokai'
+
+" UI Plugins
+Bundle 'ack.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdcommenter.git'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'Lokaltog/vim-powerline'
+let g:Powerline_symbols = 'fancy'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'troydm/easybuffer.vim'
+"Bundle 'fholgado/minibufexpl.vim'
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
+Bundle 'godlygeek/tabular'
+
+" Git integration
+Bundle 'tpope/vim-fugitive'
+
+" Perl Syntax Highlighting
+Bundle 'c9s/perlomni.vim'
+Bundle 'vim-perl/vim-perl'
+let perl_extended_vars = 1
+let perl_want_scope_in_variables = 1
+let perl_include_pod = 1
+Bundle 'yko/mojo.vim'
+let mojo_highlight_data = 1
+
+" Make working with Ruby less violent
+Bundle 'tpope/vim-endwise'
+
+" Other Languages
+Bundle 'vim-scripts/Vim-R-plugin'
+
+" Markup/Serialization Language Support
+Bundle 'Rykka/riv.vim'
+Bundle 'tpope/vim-markdown'
+Bundle 'leshill/vim-json'
+
+" Sysadmin Stuff
+Bundle 'zaiste/tmux.vim'
+Bundle 'vim-scripts/iptables'
+Bundle 'rodjek/vim-puppet'
+
 if has("gui_running")
     colorscheme solarized
 else
@@ -104,10 +152,10 @@ if has("gui_macvim")
 	set transparency=15
 endif
 
-syntax on
-filetype on
+
 filetype plugin on
 filetype indent on
+syntax on
 
 " borrowed from: https://github.com/ellzey/dotfiles/blob/master/vimrc#L98
 highlight ExtraWhitespace ctermbg=red guibg=red
