@@ -42,6 +42,10 @@ set tags=./tags;/
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
 set pastetoggle=<F3>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 
 function WordProcess()
     set tw=76
@@ -105,11 +109,6 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'troydm/easybuffer.vim'
-"Bundle 'fholgado/minibufexpl.vim'
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
 " Git integration
@@ -137,6 +136,7 @@ Bundle 'rodjek/vim-puppet'
 
 if has("gui_running")
     colorscheme solarized
+    set mousefocus
 else
     colorscheme molokai
 endif
