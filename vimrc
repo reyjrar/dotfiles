@@ -112,6 +112,11 @@ Bundle 'tpope/vim-surround'
 Bundle 'troydm/easybuffer.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 Bundle 'sjl/gundo.vim'
 " Git integration
 Bundle 'tpope/vim-fugitive'
