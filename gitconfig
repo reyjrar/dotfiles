@@ -7,7 +7,7 @@
     status = auto
     branch = auto
 [alias]
-    ci = commit -a
+    ci = commit
     cp = commit -p
     st = status -s
     br = branch
