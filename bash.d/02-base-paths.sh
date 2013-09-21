@@ -7,8 +7,10 @@ path_inject /usr/local/bin
 path_inject /opt/local/sbin
 path_inject /opt/local/bin
 path_inject /opt/local/libexec/gnubin
+path_inject /opt/android/sdk/tools
+path_inject /opt/android/sdk/platform-tools
 path_inject /var/ossec/bin
 path_inject /opt/perl/current/bin
-path_inject /usr/pgsql-9.1/bin
-path_inject /usr/pgsql-9.0/bin
+path_inject /usr/pgsql-9.2/bin
+path_inject /usr/pgsql-9.3/bin
 path_inject $HOME/bin
