@@ -1,3 +1,6 @@
+# Bash Profile
+#--------------
+
 # Enable Debugging in the Shell with =1
 DEBUG=0
 # Source .bashrc for interactive shells
@@ -21,3 +24,4 @@ fi;
 
 # Clear any bad RC's
 true;
+# vim:ft=sh

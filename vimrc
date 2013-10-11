@@ -16,6 +16,7 @@ set nofoldenable                                " Disable folding
 set nowrap                                      " Do not wrap lines
 set encoding=utf-8
 set modeline
+set modelines=5
 
 " UI Tweaks
 set ruler
@@ -80,6 +81,7 @@ augroup END
 
 autocmd Filetype text call WordProcess()
 autocmd Filetype markdown call WordProcess()
+autocmd Filetype mail call WordProcess()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 
@@ -98,6 +100,7 @@ let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 Bundle 'tomasr/molokai'
 " UI Plugins
+Bundle 'tsaleh/vim-matchit'
 Bundle 'ack.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdcommenter'
