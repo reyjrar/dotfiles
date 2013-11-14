@@ -32,6 +32,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set shiftround
 set smarttab
 " Auto-complete settings
 set complete=.,b,u,]
@@ -48,7 +49,7 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
 function WordProcess()
-    set tw=76
+    set tw=78
     set spelllang=en_us
     set spell
 endfunction
@@ -83,6 +84,34 @@ autocmd Filetype markdown call WordProcess()
 autocmd Filetype mail call WordProcess()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
+" BEGIN: Conway's Tweaks
+
+" Visual Block mode is far more useful that Visual mode (so swap the commands)...
+nnoremap v <C-V>
+nnoremap <C-V> v
+
+vnoremap v <C-V>
+vnoremap <C-V> v
+
+"Square up visual selections...
+set virtualedit=block
+
+" Make BS/DEL work as expected in visual modes (i.e. delete the selected text)...
+vmap <BS> x
+" When shifting, retain selection over multiple shifts...
+vmap <expr> > KeepVisualSelection(">")
+vmap <expr> < KeepVisualSelection("<")
+
+function! KeepVisualSelection(cmd)
+    set nosmartindent
+    if mode() ==# "V"
+        return a:cmd . ":set smartindent\<CR>gv"
+    else
+        return a:cmd . ":set smartindent\<CR>"
+    endif
+endfunction
+
+" END: Conway's Tweaks
 
 " Vundle Plugin Configurations
 filetype off                   " required!
