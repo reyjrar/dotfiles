@@ -26,7 +26,6 @@ set showmode
 set nohlsearch
 set cursorline
 set laststatus=2
-set statusline=%{fugitive#statusline()}
 
 " Tab handling
 set autoindent
@@ -105,7 +104,6 @@ Bundle 'ack.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
 Bundle 'Raimondi/delimitMate'
