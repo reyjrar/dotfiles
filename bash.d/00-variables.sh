@@ -8,6 +8,7 @@ case "$(uname -s)" in
     *           ) PLATFORM="linux";;
 esac
 
+export LESS="-RM"
 export EDITOR LC_ALL HOSTOS PLATFORM
 unset USERNAME
 unset LS_COLORS
