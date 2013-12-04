@@ -156,7 +156,7 @@ Bundle 'vim-perl/vim-perl'
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-"Bundle 'yko/mojo.vim'
+Bundle 'yko/mojo.vim'
 let mojo_highlight_data = 1
 " Make working with Ruby less violent
 Bundle 'tpope/vim-endwise'
