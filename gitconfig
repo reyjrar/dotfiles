@@ -6,6 +6,8 @@
     diff = auto
     status = auto
     branch = auto
+[diff]
+    tool = vimdiff
 [alias]
     ci = commit
     cp = commit -p
