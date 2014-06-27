@@ -4,6 +4,7 @@
 # Enable Debugging in the Shell with =1
 DEBUG=0
 # Source .bashrc for interactive shells
+INTERACTIVE=0
 case $- in *i*) INTERACTIVE=1;; esac
 
 if [ $INTERACTIVE -eq 1 ]; then

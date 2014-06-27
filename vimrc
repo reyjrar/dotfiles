@@ -116,60 +116,60 @@ endfunction
 " Vundle Plugin Configurations
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 " Color schemes
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
-Bundle 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 " UI Plugins
-Bundle 'tsaleh/vim-matchit'
-Bundle 'ack.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'ack.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'troydm/easybuffer.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'troydm/easybuffer.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 " Git integration
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Perl Syntax Highlighting
-Bundle 'c9s/perlomni.vim'
-Bundle 'vim-perl/vim-perl'
+Plugin 'c9s/perlomni.vim'
+Plugin 'vim-perl/vim-perl'
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-Bundle 'yko/mojo.vim'
+Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
 " Make working with Ruby less violent
-Bundle 'tpope/vim-endwise'
+Plugin 'tpope/vim-endwise'
 " Other Languages
-Bundle 'vim-scripts/Vim-R-plugin'
+Plugin 'vim-scripts/Vim-R-plugin'
 " Markup/Serialization Language Support
-Bundle 'Rykka/riv.vim'
-Bundle 'tpope/vim-markdown'
-Bundle 'leshill/vim-json'
+Plugin 'Rykka/riv.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'leshill/vim-json'
 " Sysadmin Stuff
-Bundle 'zaiste/tmux.vim'
-Bundle 'vim-scripts/iptables'
-Bundle 'rodjek/vim-puppet'
+Plugin 'zaiste/tmux.vim'
+Plugin 'vim-scripts/iptables'
+Plugin 'rodjek/vim-puppet'
+call vundle#end()
 
 if has("gui_running")
     colorscheme solarized

@@ -1,5 +1,4 @@
 # User specific aliases and functions
-alias ls='ls --time-style=long-iso -F --color'
 alias who='who -H -u -T'
 alias root='root_login'
 alias c="contents"
@@ -14,3 +13,10 @@ rc=$?
 if [[ "$rc" -eq "0" ]]; then
         alias rlhive='rlwrap -i --prompt-colour=yellow -f ~/.hive_completion -a hive $*'
 fi;
+
+if [ "$HOSTOS" == "OpenBSD" ]; then
+    alias ls='gls --time-style=long-iso -F --color'
+else
+    alias ls='ls --time-style=long-iso -F --color'
+fi
+
