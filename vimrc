@@ -144,12 +144,6 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'troydm/easybuffer.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 Plugin 'sjl/gundo.vim'
 " Git integration
 Plugin 'tpope/vim-fugitive'
@@ -167,7 +161,6 @@ Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'fsouza/go.vim'
-Plugin 'fsouza/rust.vim'
 " Markup/Serialization Language Support
 Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
