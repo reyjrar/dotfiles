@@ -76,11 +76,13 @@ augroup filetype
     au! BufRead,BufNewFile *.pp             set filetype=puppet
     au! BufRead,BufNewFile *.psgi           set filetype=perl
     au! BufRead,BufNewFile *.txt            set filetype=text
+    au! BufRead,BufNewFile *.tt             set filetype=tt2html
+    au! BufRead,BufNewFile *.tt2            set filetype=tt2html
     au! BufRead,BufNewFile *.patch          let b:noStripWhitespace = 1
 augroup END
 
 autocmd Filetype text call WordProcess()
-autocmd Filetype markdown call WordProcess()
+autocmd Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
 autocmd Filetype mail call WordProcess()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
