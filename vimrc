@@ -139,15 +139,17 @@ let g:Powerline_symbols = 'fancy'
 "Plugin 'bling/vim-airline'
 "let g:airline_powerline_fonts = 1
 Plugin 'Raimondi/delimitMate'
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
 Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-unimpaired'
 Plugin 'troydm/easybuffer.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
+Plugin 'lfilho/cosco.vim'
+noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
 Plugin 'tpope/vim-fugitive'
 " Perl Syntax Highlighting
@@ -156,13 +158,14 @@ Plugin 'vim-perl/vim-perl'
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
+let perl_sync_dist = 500
 Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
 " Make working with Ruby less violent
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
 " Other Languages
 Plugin 'vim-scripts/Vim-R-plugin'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'fsouza/go.vim'
 " Markup/Serialization Language Support
 Plugin 'Rykka/riv.vim'
