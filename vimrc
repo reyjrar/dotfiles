@@ -139,6 +139,7 @@ let g:Powerline_symbols = 'fancy'
 "Plugin 'bling/vim-airline'
 "let g:airline_powerline_fonts = 1
 Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
