@@ -135,6 +135,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'taglist.vim'
 let g:Powerline_symbols = 'fancy'
 "Plugin 'bling/vim-airline'
 "let g:airline_powerline_fonts = 1

@@ -1,0 +1,10 @@
+# Basic Options
+--recursive=yes
+--tag-relative=yes
+--exclude=.git
+
+# Perl
+--exclude=blib
+--exclude='*~'
+--languages=Perl,C,JavaScript,SQL,Python,Ruby,Make,Lua,Sh,Basic
+--langmap=Perl:+.t
