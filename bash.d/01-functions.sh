@@ -44,7 +44,7 @@ function send_bash_local() {
 function tmux_wrapper() {
     version=`tmux -V |cut -d' ' -f 1`
 
-    if [ "$version" > "1.6" ]; then
+    if [[ "$version" > "1.6" ]]; then
         command tmux -2 new-session -A -s base
     else
         command tmux -2 attach-session -t 0 || tmux new-session
