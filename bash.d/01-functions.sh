@@ -8,38 +8,6 @@ function path_inject() {
     (( $DEBUG )) && echo;
 }
 
-function root_login() {
-    local timeout=1800;
-    local keyActive=`ssh-add -l |grep 'administrator.dsa'|wc -l`;
-
-    local adminKey="$HOME/.ssh/administrator.dsa";
-
-    if [ -f "$adminKey" ] || [ "$keyActive" -gt "0" ]; then
-
-        local hasAgent="$keyActive";
-        if [ "$SSH_AUTH_SOCK" ] && [ -e "$SSH_AUTH_SOCK" ]; then
-            hasAgent=1;
-        fi;
-
-        if [ "$hasAgent" -gt "0" ]; then
-
-            if [ "$keyActive" -eq "0" ]; then
-                ssh-add -t $timeout $adminKey;
-            fi;
-
-            ssh -l root $*;
-
-        else
-            echo ">>> SSH Agent not running";
-            ssh -i $adminKey -l root $*;
-        fi;
-    else
-        echo ">>> Admin Key not found: ($adminKey)";
-        ssh -l root $*;
-    fi;
-
-}
-
 function contents() {
     if [ -f "$1" ] && [ -r "$1" ]; then
         file_lines=`wc -l $1 | awk '{print $1}'`;
@@ -71,4 +39,28 @@ function send_bash_local() {
         fi;
     fi;
     /usr/bin/scp .bash_local $host:~
+}
+
+function tmux_wrapper() {
+    version=`tmux -V |cut -d' ' -f 1`
+
+    if [ "$version" > "1.6" ]; then
+        command tmux -2 new-session -A -s base
+    else
+        command tmux -2 attach-session -t 0 || tmux new-session
+    fi
+}
+
+function ssh() {
+    if [ "$HOSTOS" == "Darwin" ] && [ ! -z "$SSH_PRIMARY_AUTH_KEY" ] && [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
+        (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY";
+        ssh-add -l || ssh-add "$SSH_PRIMARY_AUTH_KEY"
+    fi
+
+    if [ -z "$TMUX" ]; then
+        command ssh -t "$@" "tmux_wrapper || tmux || screen || bash -l"
+    else
+        echo -e "[${bldylw}warn${txtrst}] Running tmux locally, skipping tmux on remote side.";
+        command ssh "$@"
+    fi
 }
