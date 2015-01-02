@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+REMOTE_ENV=""
 
 if [ "$1" == "-l" ]; then
     LOCAL_OVERWRITE=1;
@@ -10,12 +12,17 @@ if [ "$1" == "-n" ]; then
     NO_DNS_CHECK=1;
     shift 1;
 fi;
+if [ "$1" == "-i" ]; then
+    REMOTE_ENV+=" DO_INSTALL=1";
+    shift 1;
+fi
 
 HOST=$1
 
 SSH="/usr/bin/ssh -x"
 SCP="/usr/bin/scp"
 RSYNC="/usr/bin/rsync"
+TMPFILE="/tmp/movein.$USER.$$"
 
 if [ ${DEBUG:-0} -gt 0 ]; then
     RSYNC_OPTS='-v'
@@ -70,15 +77,16 @@ for dir in $DIRS; do
     remote_mkdir $dir;
 done
 
-$SCP $SCP_OPTS ~/bin/vcprompt $HOST:~/bin
+find ~/bin -type f -perm +u+x -print >> $TMPFILE;
 $RSYNC $RSYNC_OPTS -a --exclude=.git -e ssh ~/support/tmux-powerline $HOST:~/support
-$RSYNC $RSYNC_OPTS -ae ssh ~/bin/*.sh $HOST:~/bin
+$RSYNC $RSYNC_OPTS -ae ssh --files-from=$TMPFILE / $HOST:~/bin
 echo " => Copied Support Scripts";
+rm $TMPFILE;
 
 ## Rsync for dotfiles
 $RSYNC $RSYNC_OPTS -a --delete --exclude=.git ~/dotfiles -e ssh $HOST:~
 echo " => Sync of dotfiles complete, running install"
-$SSH $HOST "~/bin/dotfiles-install.sh"
+$SSH $HOST "$REMOTE_ENV ~/dotfiles/support/remote-install.sh"
 echo " => dotfiles installed."
 
 ## bash_local for non-distributed changes

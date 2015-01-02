@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -L ~/.bashrc ]; then
+if [ ! -z "$DO_INSTALL" ] || [ ! -L ~/.bash.d ]; then
     cd ~/dotfiles;
     ./bin/install.sh
 fi;
