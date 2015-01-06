@@ -54,7 +54,8 @@ function tmux_wrapper() {
 function ssh() {
     if [ "$HOSTOS" == "Darwin" ] && [ ! -z "$SSH_PRIMARY_AUTH_KEY" ] && [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
         (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY";
-        ssh-add -l || ssh-add "$SSH_PRIMARY_AUTH_KEY"
+        expiry="$(($(date --date "$(date --date tomorrow +%Y-%m-%d) 3:00:00" +%s) - $(date +%s)))"
+        ssh-add -l || ssh-add -t $expiry "$SSH_PRIMARY_AUTH_KEY"
     fi
 
     if [ -z "$TMUX" ]; then
@@ -62,5 +63,16 @@ function ssh() {
     else
         echo -e "[${bldylw}warn${txtrst}] Running tmux locally, skipping tmux on remote side.";
         command ssh "$@"
+    fi
+}
+update_auth_sock() {
+    # From: https://chrisdown.name/2013/08/02/fixing-stale-ssh-sockets-in-tmux.html
+    local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
+
+    if ! [[ "$socket_path" ]]; then
+        echo 'no socket path' >&2
+        return 1
+    else
+        export SSH_AUTH_SOCK="$socket_path"
     fi
 }
