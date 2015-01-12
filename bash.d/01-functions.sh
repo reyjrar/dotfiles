@@ -53,12 +53,12 @@ function tmux_wrapper() {
 
 function ssh() {
     if [ "$HOSTOS" == "Darwin" ] && [ ! -z "$SSH_PRIMARY_AUTH_KEY" ] && [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
-        (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY";
         expiry="$(($(date --date "$(date --date tomorrow +%Y-%m-%d) 3:00:00" +%s) - $(date +%s)))"
+        (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
         ssh-add -l || ssh-add -t $expiry "$SSH_PRIMARY_AUTH_KEY"
     fi
 
-    if [ -z "$TMUX" ]; then
+    if [ -z "$TMUX" ] && [ -z "$SSH_PLAIN" ]; then
         command ssh -t "$@" "tmux_wrapper || tmux || screen || bash -l"
     else
         echo -e "[${bldylw}warn${txtrst}] Running tmux locally, skipping tmux on remote side.";
