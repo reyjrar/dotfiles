@@ -54,6 +54,11 @@ function WordProcess()
     set spell
 endfunction
 
+function MailHandler()
+    call WordProcess()
+    setlocal fo+=aw
+endfunction
+
 fun! StripTrailingWhitespace()
     let l:cursorpos = getpos(".")
     " Only strip if the b:noStripWhitespace variable isn't set
@@ -83,7 +88,7 @@ augroup END
 
 autocmd Filetype text call WordProcess()
 autocmd Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
-autocmd Filetype mail call WordProcess()
+autocmd Filetype mail call MailHandler()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 " BEGIN: Conway's Tweaks
