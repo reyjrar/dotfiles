@@ -127,7 +127,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
