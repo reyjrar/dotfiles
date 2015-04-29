@@ -2,6 +2,7 @@
 
 COMPLETION_SCRIPTS="
     /etc/bash_completion
+    /opt/local/etc/bash_completion
     /opt/local/etc/profile.d/bash_completion.sh
     /etc/bash_completion.d/git
 "
