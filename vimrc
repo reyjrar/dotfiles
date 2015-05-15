@@ -176,6 +176,7 @@ Plugin 'fsouza/go.vim'
 " Markup/Serialization Language Support
 Plugin 'tpope/vim-markdown'
 Plugin 'leshill/vim-json'
+Plugin 'vim-scripts/sieve.vim'
 " Sysadmin Stuff
 Plugin 'zaiste/tmux.vim'
 Plugin 'vim-scripts/iptables'
