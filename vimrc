@@ -84,6 +84,7 @@ augroup filetype
     au! BufRead,BufNewFile *.tt             set filetype=tt2html
     au! BufRead,BufNewFile *.tt2            set filetype=tt2html
     au! BufRead,BufNewFile *.patch          let b:noStripWhitespace = 1
+    au! BufRead,BufNewFile *.sieve          set ft=sieve ff=unix
 augroup END
 
 autocmd Filetype text call WordProcess()
