@@ -61,7 +61,7 @@ function ssh() {
     if [ -z "$TMUX" ] && [ -z "$SSH_PLAIN" ]; then
         command ssh -t "$@" "tmux_wrapper || tmux || screen || bash -l"
     else
-        echo -e "[${bldylw}warn${txtrst}] Running tmux locally, skipping tmux on remote side.";
+        [ -z "$SSH_PLAIN" ] && echo -e "[${bldylw}warn${txtrst}] Running tmux locally, skipping tmux on remote side.";
         command ssh "$@"
     fi
 }
