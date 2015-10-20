@@ -1,6 +1,7 @@
 #!/bin/sh
 
 GIT_CONTRIB="/usr/share/git-core/contrib/completion/git-prompt.sh
+            /opt/local/share/git/git-prompt.sh
             /opt/local/share/git-core/git-prompt.sh
 "
 

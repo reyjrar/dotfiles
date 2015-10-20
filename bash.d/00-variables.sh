@@ -12,3 +12,7 @@ export LESS="-RM"
 export EDITOR LC_ALL HOSTOS PLATFORM
 unset USERNAME
 unset LS_COLORS
+
+if [ -f "$HOME/.bash_variables" ];  then
+    . "$HOME/.bash_variables"
+fi
