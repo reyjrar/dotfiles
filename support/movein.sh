@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# We need to run this from home
+cd $HOME;
+
 REMOTE_ENV=""
 
 if [ "$1" == "-l" ]; then
@@ -77,9 +80,9 @@ for dir in $DIRS; do
     remote_mkdir $dir;
 done
 
-find ~/bin -type f -perm +u+x -print >> $TMPFILE;
+find bin -type f -perm +u+x -print >> $TMPFILE;
 $RSYNC $RSYNC_OPTS -a --exclude=.git -e ssh ~/support/tmux-powerline $HOST:~/support
-$RSYNC $RSYNC_OPTS -ae ssh --files-from=$TMPFILE / $HOST:~/bin
+$RSYNC $RSYNC_OPTS -ae ssh --files-from=$TMPFILE . $HOST:~
 echo " => Copied Support Scripts";
 rm $TMPFILE;
 
