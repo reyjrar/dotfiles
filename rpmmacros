@@ -1,2 +1,0 @@
-%_topdir %(echo $HOME)/rpmbuild
-%packager Brad Lhotsky <brad.lhotsky@booking.com>
