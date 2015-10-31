@@ -38,6 +38,9 @@ DIRS="
     bin
     support
 "
+STATIC="
+    $HOME/.rpmmacros
+"
 function remote_mkdir() {
     local dir=$1
     $SSH $HOST "test -d ~/$dir"
@@ -91,6 +94,21 @@ $RSYNC $RSYNC_OPTS -a --delete --exclude=.git ~/dotfiles -e ssh $HOST:~
 echo " => Sync of dotfiles complete, running install"
 $SSH $HOST "$REMOTE_ENV ~/dotfiles/support/remote-install.sh"
 echo " => dotfiles installed."
+
+echo " => Uploading static configs.";
+for file in $STATIC; do
+    relative=${file#"$HOME/"}
+    $SSH $HOST "test -L $relative"
+    rc=$?
+    if [ "$rc" -eq "0" ]; then
+        echo -n "    !";
+        $SSH $HOST "/bin/rm -f $relative";
+    else
+        echo -n "    -";
+    fi
+    $SCP $SCP_OPTS $file $HOST:~/$relative
+    echo "+ $relative";
+done
 
 ## bash_local for non-distributed changes
 if [ $LOCAL_OVERWRITE -eq 0 ]; then
