@@ -175,6 +175,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'fsouza/go.vim'
 " Markup/Serialization Language Support
+Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'leshill/vim-json'
 Plugin 'vim-scripts/sieve.vim'
