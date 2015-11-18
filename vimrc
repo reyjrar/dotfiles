@@ -85,6 +85,7 @@ augroup filetype
     au! BufRead,BufNewFile *.tt2            set filetype=tt2html
     au! BufRead,BufNewFile *.patch          let b:noStripWhitespace = 1
     au! BufRead,BufNewFile *.sieve          set ft=sieve ff=unix
+    au! BufRead,BufNewFile *.trst           set ft=rst
 augroup END
 
 autocmd Filetype text call WordProcess()
@@ -141,7 +142,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
-Plugin 'taglist.vim'
 let g:Powerline_symbols = 'fancy'
 "Plugin 'bling/vim-airline'
 "let g:airline_powerline_fonts = 1
