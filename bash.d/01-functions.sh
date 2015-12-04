@@ -51,7 +51,7 @@ function tmux_wrapper() {
     fi
 }
 
-function ssh() {
+function fancy_ssh() {
     if [ "$HOSTOS" == "Darwin" ] && [ ! -z "$SSH_PRIMARY_AUTH_KEY" ] && [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
         expiry="$(($(date --date "$(date --date tomorrow +%Y-%m-%d) 3:00:00" +%s) - $(date +%s)))"
         (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
