@@ -1,2 +1,2 @@
 # Enable / Disable Shell features
-shopt -s cdspell dotglob nocaseglob
+shopt -s autocd cdspell dirspell dotglob nocaseglob
