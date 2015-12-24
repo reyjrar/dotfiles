@@ -52,7 +52,7 @@
 
 # mailcount.sh {
 	# Mailbox type to use. Can be any of {apple_mail, gmail, maildir, mbox, mailcheck}
-	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILBOX_TYPE=""
+	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILBOX_TYPE="maildir"
 
 	## Gmail
 	# Enter your Gmail username here WITH OUT @gmail.com.( OR @domain)
@@ -71,7 +71,7 @@
 
 	## Maildir
 	# Path to the maildir to check.
-	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILDIR_INBOX="/Users/brad/Maildir/Inbox"
+	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILDIR_INBOX="$HOME/Maildir/Inbox/new"
 
 	## mbox
 	# Path to the mbox to check.
@@ -79,7 +79,7 @@
 
 	## mailcheck
 	# Optional path to mailcheckrc
-	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILCHECKRC="/Users/brad/.mailcheckrc"
+	export TMUX_POWERLINE_SEG_MAILCOUNT_MAILCHECKRC="$HOME/.mailcheckrc"
 # }
 
 # now_playing.sh {

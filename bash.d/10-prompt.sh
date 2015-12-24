@@ -21,6 +21,9 @@ function before_prompt() {
 
     history -a;     # Record history
 
+    # Enable tmux-powerline cwd things
+    [ -n "$TMUX"  ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD"
+
     printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
 
     if [ -x ~/bin/vcprompt ] && [ "$VCPROMPT" != "disable" ]; then
