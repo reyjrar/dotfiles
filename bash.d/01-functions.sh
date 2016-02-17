@@ -51,9 +51,30 @@ function tmux_wrapper() {
     fi
 }
 
+function seconds_til_3am() {
+    # Check for GNU Compatibility
+    date --date today > /dev/null 2>&1
+    rc="$?";
+    if [ "$rc" -eq "0" ]; then
+        date="GNU";
+        expire_at=$(date --date "$(date --date tomorrow +%Y-%m-%d) 3:00:00" +%s);
+        expire_seconds=$(($expire_at - $(date +%s)))
+    else
+        date="BSD";
+        expire_at=$(date -j -f "%Y-%m-%dT%H:%M:%S" $(date -v+1d +"%Y-%m-%dT03:00:00") +%s)
+        expire_seconds=$(($expire_at - $(date -j +%s)))
+    fi
+
+    (($DEBUG)) && echo "[$date] expire_seconds=$expire_seconds" >&2
+    echo "$expire_seconds";
+}
+
 function fancy_ssh() {
-    if [ "$HOSTOS" == "Darwin" ] && [ ! -z "$SSH_PRIMARY_AUTH_KEY" ] && [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
-        expiry="$(($(date --date "$(date --date tomorrow +%Y-%m-%d) 3:00:00" +%s) - $(date +%s)))"
+    # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
+    [ -z "$SSH_PRIMARY_AUTH_KEY" ] && SSH_PRIMARY_AUTH_KEY="$HOME/.ssh/id_rsa";
+
+    if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
+        expiry="$(seconds_til_3am)"
         (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
         ssh-add -l || ssh-add -t $expiry "$SSH_PRIMARY_AUTH_KEY"
     fi
