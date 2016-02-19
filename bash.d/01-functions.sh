@@ -86,7 +86,8 @@ function fancy_ssh() {
         command ssh "$@"
     fi
 }
-update_auth_sock() {
+
+function update_auth_sock() {
     # From: https://chrisdown.name/2013/08/02/fixing-stale-ssh-sockets-in-tmux.html
     local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
 
