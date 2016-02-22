@@ -22,3 +22,10 @@ term xterm-256color
 
 hardstatus alwayslastline
 hardstatus string '%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+
+# Get rid of screen 0
+bind c screen 1
+bind 0 select 10
+
+# Create initial window
+screen 1
