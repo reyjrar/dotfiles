@@ -73,6 +73,17 @@ function fancy_ssh() {
     # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
     [ -z "$SSH_PRIMARY_AUTH_KEY" ] && SSH_PRIMARY_AUTH_KEY="$HOME/.ssh/id_rsa";
 
+    # Check host status
+    target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
+    if [ ! -z "$target_host" ]; then
+        nc_output=`nc -w 2 -z $target_host`
+        if [ $? -ne 0 ]; then
+            echo "Host is down or not responding: $target_host";
+        elif [ ! -z "$DEBUG" ]; then
+            echo $nc_output;
+        fi
+    fi
+
     if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
         expiry="$(seconds_til_3am)"
         (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
