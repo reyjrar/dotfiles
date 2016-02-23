@@ -104,12 +104,20 @@ function batch_ssh() {
 
 function update_auth_sock() {
     # From: https://chrisdown.name/2013/08/02/fixing-stale-ssh-sockets-in-tmux.html
-    local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
+    if [ ! -z "$TMUX" ]; then
+        local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
 
-    if ! [[ "$socket_path" ]]; then
-        echo 'no socket path' >&2
-        return 1
+        (($DEBUG)) && echo "[tmux] Fixing SSH_AUTH_SOCK=$socket_path"
+        if ! [[ "$socket_path" ]]; then
+            echo 'no socket path' >&2
+            return 1
+        else
+            export SSH_AUTH_SOCK="$socket_path"
+        fi
+    elif [ ! -z "$STY" ]; then
+        export SSH_AUTH_SOCK=$(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null |sort -n|tail -1|cut -d' ' -f2)
+        (($DEBUG)) && echo "[screen] Fixing SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
     else
-        export SSH_AUTH_SOCK="$socket_path"
+        echo "Unable to do anything useful.";
     fi
 }
