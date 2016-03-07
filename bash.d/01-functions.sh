@@ -76,18 +76,16 @@ function fancy_ssh() {
     # Check host status
     target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
     if [ ! -z "$target_host" ]; then
-        nc_output=`nc -w 2 -z $target_host`
+        nc -w 2 -z $target_host >/dev/null 2>&1
         if [ $? -ne 0 ]; then
             echo "Host is down or not responding: $target_host";
-        elif [ ! -z "$DEBUG" ]; then
-            echo $nc_output;
         fi
     fi
 
     if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
         expiry="$(seconds_til_3am)"
         (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
-        ssh-add -l || ssh-add -t $expiry "$SSH_PRIMARY_AUTH_KEY"
+        ssh-add -l > /dev/null || ssh-add -t $expiry "$SSH_PRIMARY_AUTH_KEY"
     fi
 
     if [ -z "$TMUX" ] && [ -z "$SSH_PLAIN" ]; then
