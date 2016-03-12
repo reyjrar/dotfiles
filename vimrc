@@ -69,6 +69,9 @@ fun! StripTrailingWhitespace()
     call setpos('.', l:cursorpos)
 endfun
 
+" Set tmux tab name
+autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+
 " Auto commands and filetype assignment
 augroup filetype
     au! BufRead,BufNewFile *.html           set filetype=mason
