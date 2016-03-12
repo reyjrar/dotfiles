@@ -41,6 +41,10 @@ function send_bash_local() {
     /usr/bin/scp .bash_local $host:~
 }
 
+function _set_win_title() {
+    printf "\033k$1\033\\"
+}
+
 function tmux_wrapper() {
     version=`tmux -V |cut -d' ' -f 2`
 
@@ -79,6 +83,8 @@ function fancy_ssh() {
         nc -w 2 -z $target_host >/dev/null 2>&1
         if [ $? -ne 0 ]; then
             echo "Host is down or not responding: $target_host";
+        else
+            _set_win_title "$target_host"
         fi
     fi
 
