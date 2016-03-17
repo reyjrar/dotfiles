@@ -171,6 +171,7 @@ let perl_include_pod = 1
 let perl_sync_dist = 500
 Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
+Plugin 'motemen/xslate-vim'
 " Make working with Ruby less violent
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
