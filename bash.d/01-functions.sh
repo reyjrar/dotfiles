@@ -80,12 +80,7 @@ function fancy_ssh() {
     # Check host status
     target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
     if [ ! -z "$target_host" ]; then
-        nc -w 2 -z $target_host >/dev/null 2>&1
-        if [ $? -ne 0 ]; then
-            echo "Host is down or not responding: $target_host";
-        else
-            _set_win_title "$target_host"
-        fi
+        _set_win_title "$target_host"
     fi
 
     if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
