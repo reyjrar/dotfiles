@@ -25,6 +25,7 @@ set number
 set showmode
 set nohlsearch
 set cursorline
+set cursorcolumn
 set laststatus=2
 
 " Tab handling
@@ -144,6 +145,8 @@ Plugin 'ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/SyntaxRange'
 Plugin 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
 "Plugin 'bling/vim-airline'
@@ -178,6 +181,7 @@ Plugin 'tpope/vim-endwise'
 " Other Languages
 Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'fsouza/go.vim'
+Plugin 'exu/pgsql.vim'
 " Markup/Serialization Language Support
 Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
@@ -187,6 +191,10 @@ Plugin 'vim-scripts/sieve.vim'
 Plugin 'zaiste/tmux.vim'
 Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
+" Extensions
+"Plugin 'dhruvasagar/vim-dotoo'
+"Plugin 'vimoutliner/vimoutliner'
+
 call vundle#end()
 
 if has("gui_running")
