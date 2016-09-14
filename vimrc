@@ -165,6 +165,15 @@ Plugin 'lfilho/cosco.vim'
 noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
 Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/neocomplete.vim'
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 " Perl Syntax Highlighting
 Plugin 'c9s/perlomni.vim'
 Plugin 'vim-perl/vim-perl'
@@ -180,8 +189,9 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
 " Other Languages
 Plugin 'vim-scripts/Vim-R-plugin'
-Plugin 'fsouza/go.vim'
 Plugin 'exu/pgsql.vim'
+"Plugin 'fsouza/go.vim'
+"Plugin 'fatih/vim-go'
 " Markup/Serialization Language Support
 Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
