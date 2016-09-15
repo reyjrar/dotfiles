@@ -26,6 +26,7 @@ set showmode
 set nohlsearch
 set cursorline
 set cursorcolumn
+highlight CursorColumn ctermbg=234
 set laststatus=2
 
 " Tab handling
