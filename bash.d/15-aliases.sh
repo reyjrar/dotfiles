@@ -3,7 +3,6 @@ alias who='who -H -u -T'
 alias c="contents"
 # Get Aliases
 alias gg='git grep'
-
 # Hive
 command -v rlwrap &> /dev/null
 rc=$?
@@ -21,3 +20,10 @@ else
     alias ls='ls --time-style=long-iso -F --color'
 fi
 
+# MetaCPAN Env
+METACPAN="$HOME/code/CPAN/metacpan-developer"
+if [ -d "$METACPAN" ]; then
+    alias mc="cd $METACPAN;"
+else
+    alias mc="echo  'No MetaCPAN dev environment found at $METACPAN!' && exit 1"
+fi
