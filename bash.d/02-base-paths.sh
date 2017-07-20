@@ -1,5 +1,4 @@
 # Basic Path Injections
-
 path_inject /sbin
 path_inject /usr/sbin
 path_inject /usr/local/sbin
