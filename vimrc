@@ -142,24 +142,22 @@ let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 Plugin 'tomasr/molokai'
 " UI Plugins
-Plugin 'ack.vim'
+"Plugin 'ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/SyntaxRange'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/SyntaxRange'
 Plugin 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
-"Plugin 'bling/vim-airline'
-"let g:airline_powerline_fonts = 1
 Plugin 'Raimondi/delimitMate'
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-speeddating'
-Plugin 'troydm/easybuffer.vim'
+"Plugin 'tpope/vim-speeddating'
+"Plugin 'troydm/easybuffer.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
 Plugin 'lfilho/cosco.vim'
@@ -191,10 +189,10 @@ Plugin 'tpope/vim-endwise'
 " Other Languages
 Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'exu/pgsql.vim'
-"Plugin 'fsouza/go.vim'
+Plugin 'fsouza/go.vim'
 "Plugin 'fatih/vim-go'
 " Markup/Serialization Language Support
-Plugin 'Rykka/riv.vim'
+"Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'leshill/vim-json'
 Plugin 'vim-scripts/sieve.vim'
@@ -203,8 +201,7 @@ Plugin 'zaiste/tmux.vim'
 Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
 " Extensions
-"Plugin 'dhruvasagar/vim-dotoo'
-"Plugin 'vimoutliner/vimoutliner'
+Plugin 'freitass/todo.txt-vim'
 
 call vundle#end()
 
