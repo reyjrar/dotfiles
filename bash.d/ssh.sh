@@ -5,11 +5,8 @@ alias ssh-add="fancy_sshadd"
 
 # Functions
 function fancy_sshadd {
-    # Add an expiry to a key automatically
-    if [[ -f "${@: -1}" ]]; then
-        command ssh-add -t $(seconds_til_3am) "$@"
     # No args and we find a key set load it
-    elif [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
+    if [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
         command ssh-add -l | grep "$SSH_PRIMARY_AUTH_KEY"
         rc=$?
         # Only if it's not already loaded
@@ -17,6 +14,9 @@ function fancy_sshadd {
             (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
             command ssh-add -t $(seconds_til_3am) "$SSH_PRIMARY_AUTH_KEY"
         fi
+    # Add an expiry to a key automatically
+    elif [[ -f "${@: -1}" ]]; then
+        command ssh-add -t $(seconds_til_3am) "$@"
     # otherwise, do what I said.
     else
         command ssh-add "$@"
