@@ -28,9 +28,11 @@ function fancy_ssh() {
     [ -z "$SSH_PRIMARY_AUTH_KEY" ] && SSH_PRIMARY_AUTH_KEY="$HOME/.ssh/id_rsa";
 
     # Check host status
-    target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
-    if [ ! -z "$target_host" ]; then
-        _set_win_title "$target_host"
+    if [[ $# != 0 ]]; then
+        target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
+        if [ ! -z "$target_host" ]; then
+            _set_win_title "$target_host"
+        fi
     fi
 
     if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
