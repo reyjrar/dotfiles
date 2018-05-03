@@ -200,6 +200,7 @@ Plugin 'vim-scripts/sieve.vim'
 Plugin 'zaiste/tmux.vim'
 Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
+Plugin 'apeschel/vim-syntax-syslog-ng'
 " Extensions
 Plugin 'freitass/todo.txt-vim'
 

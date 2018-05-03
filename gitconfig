@@ -1,6 +1,5 @@
-[user]
-    name = Brad Lhotsky
-    email = brad@divisionbyzero.net
+[include]
+    path = ~/.gitid
 [color]
     ui = auto
     diff = auto

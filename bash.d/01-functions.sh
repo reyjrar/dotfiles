@@ -42,7 +42,7 @@ function send_bash_local() {
 }
 
 function _set_win_title() {
-    printf "\033k$1\033\\"
+    printf "\033]2;$1\007"
 }
 
 function tmux_wrapper() {
