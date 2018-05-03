@@ -142,11 +142,11 @@ let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 Plugin 'tomasr/molokai'
 " UI Plugins
-"Plugin 'ack.vim'
+Plugin 'ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/SyntaxRange'
 Plugin 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
@@ -155,13 +155,13 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-speeddating'
 "Plugin 'troydm/easybuffer.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'sjl/gundo.vim'
-Plugin 'lfilho/cosco.vim'
-noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
+"Plugin 'sjl/gundo.vim'
+"Plugin 'lfilho/cosco.vim'
+"noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
 Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/neocomplete.vim'
@@ -182,14 +182,14 @@ let perl_include_pod = 1
 let perl_sync_dist = 500
 Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
-Plugin 'motemen/xslate-vim'
+"Plugin 'motemen/xslate-vim'
 " Make working with Ruby less violent
-Plugin 'vim-ruby/vim-ruby'
+"Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
 " Other Languages
-Plugin 'vim-scripts/Vim-R-plugin'
-Plugin 'exu/pgsql.vim'
-Plugin 'fsouza/go.vim'
+"Plugin 'vim-scripts/Vim-R-plugin'
+"Plugin 'exu/pgsql.vim'
+"Plugin 'fsouza/go.vim'
 "Plugin 'fatih/vim-go'
 " Markup/Serialization Language Support
 "Plugin 'Rykka/riv.vim'
@@ -202,7 +202,7 @@ Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
 Plugin 'apeschel/vim-syntax-syslog-ng'
 " Extensions
-Plugin 'freitass/todo.txt-vim'
+"Plugin 'freitass/todo.txt-vim'
 
 call vundle#end()
 
