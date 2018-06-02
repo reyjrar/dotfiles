@@ -201,6 +201,7 @@ Plugin 'zaiste/tmux.vim'
 Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
 Plugin 'apeschel/vim-syntax-syslog-ng'
+Plugin 'mephux/bro.vim'
 " Extensions
 "Plugin 'freitass/todo.txt-vim'
 

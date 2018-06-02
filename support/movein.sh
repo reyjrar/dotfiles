@@ -40,6 +40,7 @@ DIRS="
 "
 STATIC="
     $HOME/.rpmmacros
+    $HOME/.gitid
 "
 function remote_mkdir() {
     local dir=$1
