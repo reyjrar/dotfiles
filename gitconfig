@@ -25,3 +25,5 @@
     default = upstream
 [pull]
     rebase = true
+[user]
+	email = brad@divisionbyzero.net

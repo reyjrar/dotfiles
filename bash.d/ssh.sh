@@ -7,7 +7,10 @@ alias ssh-add="fancy_sshadd"
 function fancy_sshadd {
     # No args and we find a key set load it
     if [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
-        command ssh-add -l | grep "$SSH_PRIMARY_AUTH_KEY"
+        if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
+            export SSH_PRIMARY_AUTH_ID="$SSH_PRIMARY_AUTH_KEY"
+        fi
+        command ssh-add -l | grep "$SSH_PRIMARY_AUTH_ID"
         rc=$?
         # Only if it's not already loaded
         if [[ $rc != 0 ]]; then

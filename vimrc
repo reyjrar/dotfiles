@@ -24,8 +24,9 @@ set bg=dark
 set number
 set showmode
 set nohlsearch
-set cursorline
-set cursorcolumn
+set lazyredraw
+"set cursorline
+"set cursorcolumn
 highlight CursorColumn ctermbg=234
 set laststatus=2
 
@@ -136,10 +137,10 @@ call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 " Color schemes
-Plugin 'altercation/vim-colors-solarized'
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
+"Plugin 'altercation/vim-colors-solarized'
+"let g:solarized_termtrans = 1
+"let g:solarized_termcolors = 256
+"let g:solarized_visibility = "high"
 Plugin 'tomasr/molokai'
 " UI Plugins
 Plugin 'ack.vim'
@@ -147,7 +148,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-"Plugin 'vim-scripts/SyntaxRange'
+"Plugin 'vim-scripts/SyntaxRange
 Plugin 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
 Plugin 'Raimondi/delimitMate'
@@ -179,7 +180,7 @@ Plugin 'vim-perl/vim-perl'
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-let perl_sync_dist = 500
+"let perl_sync_dist = 500
 Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
 "Plugin 'motemen/xslate-vim'
@@ -207,11 +208,17 @@ Plugin 'mephux/bro.vim'
 
 call vundle#end()
 
-if has("gui_running")
+let iterm_bg = $ITERM_BG
+if iterm_bg == "light"
+    set background=light
+    colorscheme solarized
+elseif has("gui_running")
+    set background=light
     colorscheme solarized
     set mousefocus
 else
-    colorscheme molokai
+    set background=dark
+	colorscheme molokai
 endif
 
 if has("gui_macvim")
