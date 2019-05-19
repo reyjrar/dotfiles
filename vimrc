@@ -77,6 +77,7 @@ autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
 
 " Auto commands and filetype assignment
 augroup filetype
+    au! BufRead,BufNewFile *.mmd            set filetype=markdown
     au! BufRead,BufNewFile *.html           set filetype=mason
     au! BufRead,BufNewFile *.m              set filetype=mason
     au! BufRead,BufNewFile autohandler      set filetype=mason
