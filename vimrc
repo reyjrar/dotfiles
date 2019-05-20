@@ -25,8 +25,8 @@ set number
 set showmode
 set nohlsearch
 set lazyredraw
-"set cursorline
-"set cursorcolumn
+set nocursorline
+set nocursorcolumn
 highlight CursorColumn ctermbg=234
 set laststatus=2
 
