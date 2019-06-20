@@ -8,7 +8,7 @@
 [diff]
     tool = vimdiff
 [alias]
-    ci = commit
+    ci = commit -v
     cp = commit -p
     st = status -s
     br = branch
