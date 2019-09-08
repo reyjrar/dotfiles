@@ -90,6 +90,10 @@ $RSYNC $RSYNC_OPTS -ae ssh --files-from=$TMPFILE . $HOST:~
 echo " => Copied Support Scripts";
 rm $TMPFILE;
 
+## Vim Configs
+$RSYNC $RSYNC_OPTS -a --exclude=.git --delete -e ssh ~/.vim $HOST:~
+echo " => Sync of vim setup complete"
+
 ## Rsync for dotfiles
 $RSYNC $RSYNC_OPTS -a --delete --exclude=.git ~/dotfiles -e ssh $HOST:~
 echo " => Sync of dotfiles complete, running install"
@@ -123,10 +127,6 @@ if [ $LOCAL_OVERWRITE -eq 1 ]; then
     $SCP $SCP_OPTS ~/.bash_local $HOST:~
     echo " => Setting a default ~/.bash_local";
 fi;
-
-## Vim Configs
-$RSYNC $RSYNC_OPTS -a --exclude=.git --delete -e ssh ~/.vim $HOST:~
-echo " => Sync of vim setup complete"
 
 echo "DONE.";
 true;
