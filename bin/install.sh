@@ -63,6 +63,22 @@ function install_link() {
     echo "linked to $dst";
 }
 
+function install_vundle() {
+    vundle_repo="https://github.com/VundleVim/Vundle.vim.git"
+    vundle_dir="$HOME/.vim/bundle/Vundle.vim"
+
+    echo -n "setting up Vundle .. ";
+    if [[ ! -d "$vundle_dir" ]]; then
+        echo "not found, installing"
+        git clone "$vundle_repo" "$vundle_dir"
+        vim +PluginInstall +qall
+        echo ""
+        echo "setup vim+Vundle."
+    else
+        echo "already installed."
+    fi
+}
+
 bindir=`dirname $0`;
 basedir=`rel2abs ${bindir/bin}`;
 
@@ -74,6 +90,8 @@ for rc in `ls -1 $basedir`; do
 	fi;
 done;
 
+# Install vundle
+install_vundle;
 
 if [ "$MASTER" == "1" ]; then
     [ ! -d "$HOME/bin" ] && mkdir 0750 "$HOME/bin";
