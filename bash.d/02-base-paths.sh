@@ -13,3 +13,6 @@ path_inject /opt/perl/current/bin
 path_inject /usr/pgsql-9.3/bin
 path_inject /usr/pgsql-9.4/bin
 path_inject $HOME/bin
+
+# CDPATH is freaking magic
+export CDPATH="$CDPATH:.:~/code/CPAN:$SB_HOME"

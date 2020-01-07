@@ -160,13 +160,12 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
-"Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-speeddating'
-"Plugin 'troydm/easybuffer.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-speeddating'
 Plugin 'godlygeek/tabular'
-"Plugin 'sjl/gundo.vim'
-"Plugin 'lfilho/cosco.vim'
-"noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
+Plugin 'sjl/gundo.vim'
+Plugin 'lfilho/cosco.vim'
+noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
 Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/neocomplete.vim'
