@@ -218,8 +218,10 @@ if iterm_bg == "light"
 elseif has("gui_running")
     set background=light
     colorscheme solarized
+    set mouse=a
     set mousefocus
 else
+    set mouse=
     set background=dark
 	colorscheme molokai
 endif
