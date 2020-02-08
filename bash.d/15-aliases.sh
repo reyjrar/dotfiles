@@ -14,7 +14,7 @@ if [ "$HOSTOS" == "OpenBSD" ] || [ "$HOSTOS" == "FreeBSD" ]; then
     if [ -x "/usr/local/bin/gls" ]; then
         alias ls='gls --time-style=long-iso -F --color'
     else
-        alias ls="ls -F"
+        alias ls="ls -FG -D '%F %T'"
     fi
 else
     alias ls='ls --time-style=long-iso -F --color'
