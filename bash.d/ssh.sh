@@ -4,6 +4,8 @@ alias ssh="fancy_ssh"
 alias ssh-add="fancy_sshadd"
 # Don't have SCP setup the ControlMaster because it doesn't setup agent forwarding
 alias scp='scp -o ControlMaster=no'
+# For the times before signed keys
+alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 # Functions
 function fancy_sshadd {

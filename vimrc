@@ -93,6 +93,8 @@ augroup filetype
     au! BufRead,BufNewFile *.patch          let b:noStripWhitespace = 1
     au! BufRead,BufNewFile *.sieve          set ft=sieve ff=unix
     au! BufRead,BufNewFile *.trst           set ft=rst
+    au! BufRead,BufNewFile *.yaml           set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile *.yml            set ts=2 sts=2 sw=2
 augroup END
 
 autocmd Filetype text call WordProcess()
@@ -204,8 +206,9 @@ Plugin 'vim-scripts/sieve.vim'
 Plugin 'zaiste/tmux.vim'
 Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'apeschel/vim-syntax-syslog-ng'
-Plugin 'mephux/bro.vim'
+"Plugin 'mephux/bro.vim'
 " Extensions
 "Plugin 'freitass/todo.txt-vim'
 
