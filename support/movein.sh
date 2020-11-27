@@ -58,12 +58,14 @@ function remote_mkdir() {
 
 
 # Check the Host
-host $HOST &> /dev/null
-rc=$?
-if [ -z $NO_DNS_CHECK ] && [ "$rc" -ne "0" ]; then
-    echo "Invalid host: $HOST";
-    exit 1;
-fi;
+if [ -z $NO_DNS_CHECK ]; then
+    host $HOST &> /dev/null
+    rc=$?
+    if [ "$rc" -ne "0" ]; then
+        echo "Invalid host: $HOST";
+        exit 1;
+    fi
+fi
 
 # Add to distribution
 if [ -f ~/.distrib_hosts ]; then
@@ -103,6 +105,10 @@ echo " => dotfiles installed."
 
 echo " => Uploading static configs.";
 for file in $STATIC; do
+    if [ ! -f "$file" ]; then
+        echo "    - Missing $file";
+        continue
+    fi
     relative=${file#"$HOME/"}
     $SSH $HOST "test -L $relative"
     rc=$?
