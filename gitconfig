@@ -25,8 +25,8 @@
     default = upstream
 [pull]
     rebase = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+[user]
+    name  = Brad Lhotsky
+	email = brad@divisionbyzero.net
+[github]
+	user = reyjrar
