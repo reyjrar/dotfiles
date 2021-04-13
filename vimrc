@@ -77,24 +77,25 @@ autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
 
 " Auto commands and filetype assignment
 augroup filetype
-    au! BufRead,BufNewFile *.mmd            set filetype=markdown
-    au! BufRead,BufNewFile *.html           set filetype=mason
-    au! BufRead,BufNewFile *.m              set filetype=mason
-    au! BufRead,BufNewFile autohandler      set filetype=mason
-    au! BufRead,BufNewFile syshandler       set filetype=mason
-    au! BufRead,BufNewFile dhandler         set filetype=mason
-    au! BufRead,BufNewFile *.mas            set filetype=mason
-    au! BufRead,BufNewFile *.comp           set filetype=mason
-    au! BufRead,BufNewFile *.pp             set filetype=puppet
-    au! BufRead,BufNewFile *.psgi           set filetype=perl
-    au! BufRead,BufNewFile *.txt            set filetype=text
-    au! BufRead,BufNewFile *.tt             set filetype=tt2html
-    au! BufRead,BufNewFile *.tt2            set filetype=tt2html
-    au! BufRead,BufNewFile *.patch          let b:noStripWhitespace = 1
-    au! BufRead,BufNewFile *.sieve          set ft=sieve ff=unix
-    au! BufRead,BufNewFile *.trst           set ft=rst
-    au! BufRead,BufNewFile *.yaml           set ts=2 sts=2 sw=2
-    au! BufRead,BufNewFile *.yml            set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile *.mmd             set filetype=markdown
+    au! BufRead,BufNewFile *.html            set filetype=mason
+    au! BufRead,BufNewFile *.m               set filetype=mason
+    au! BufRead,BufNewFile autohandler       set filetype=mason
+    au! BufRead,BufNewFile syshandler        set filetype=mason
+    au! BufRead,BufNewFile dhandler          set filetype=mason
+    au! BufRead,BufNewFile *.mas             set filetype=mason
+    au! BufRead,BufNewFile *.comp            set filetype=mason
+    au! BufRead,BufNewFile *.pp              set filetype=puppet
+    au! BufRead,BufNewFile *.psgi            set filetype=perl
+    au! BufRead,BufNewFile *.txt             set filetype=text
+    au! BufRead,BufNewFile *.tt              set filetype=tt2html
+    au! BufRead,BufNewFile *.tt2             set filetype=tt2html
+    au! BufRead,BufNewFile *.patch           let b:noStripWhitespace = 1
+    au! BufRead,BufNewFile *.sieve           set ft=sieve ff=unix
+    au! BufRead,BufNewFile *.trst            set ft=rst
+    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile */ansible*/*.yaml set ft=yaml.ansible
 augroup END
 
 autocmd Filetype text call WordProcess()
@@ -196,6 +197,7 @@ Plugin 'tpope/vim-endwise'
 "Plugin 'vim-scripts/Vim-R-plugin'
 "Plugin 'exu/pgsql.vim'
 "Plugin 'fsouza/go.vim'
+Plugin 'rust-lang/rust.vim'
 "Plugin 'fatih/vim-go'
 " Markup/Serialization Language Support
 "Plugin 'Rykka/riv.vim'
@@ -208,6 +210,7 @@ Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'apeschel/vim-syntax-syslog-ng'
+Plugin 'pearofducks/ansible-vim'
 "Plugin 'mephux/bro.vim'
 " Extensions
 "Plugin 'freitass/todo.txt-vim'
