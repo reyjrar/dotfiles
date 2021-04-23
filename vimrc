@@ -95,7 +95,6 @@ augroup filetype
     au! BufRead,BufNewFile *.trst            set ft=rst
     au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2
     au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2
-    au! BufRead,BufNewFile */ansible*/*.yaml set ft=yaml.ansible
 augroup END
 
 autocmd Filetype text call WordProcess()
@@ -210,7 +209,6 @@ Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'apeschel/vim-syntax-syslog-ng'
-Plugin 'pearofducks/ansible-vim'
 "Plugin 'mephux/bro.vim'
 " Extensions
 "Plugin 'freitass/todo.txt-vim'
