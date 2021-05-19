@@ -15,4 +15,4 @@ path_inject /usr/pgsql-9.4/bin
 path_inject $HOME/bin
 
 # CDPATH is freaking magic
-export CDPATH="$CDPATH:.:~/code/CPAN:$SB_HOME"
+export CDPATH="$CDPATH:.:~/code/CPAN:/sandbox/$USER:~/sandbox"
