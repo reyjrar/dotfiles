@@ -150,7 +150,7 @@ Plugin 'ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
+"Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/SyntaxRange
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'

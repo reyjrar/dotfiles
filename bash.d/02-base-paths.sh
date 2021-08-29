@@ -15,4 +15,6 @@ path_inject /usr/pgsql-9.4/bin
 path_inject $HOME/bin
 
 # CDPATH is freaking magic
-export CDPATH="$CDPATH:.:~/code/CPAN:/sandbox/$USER:~/sandbox"
+if [ -z "$CDPATH" ]; then
+    export CDPATH=".:~/code/CPAN:~/code:/sandbox/$USER:~/sandbox"
+fi
