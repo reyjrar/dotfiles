@@ -42,12 +42,6 @@ case "$HOSTOS" in
     *           ) host_color="$bldpur";;
 esac;
 
-# Get the /24 we're connected to
-case "$HOSTOS" in
-    "Darwin"    ) netstat_opts="-rn -f inet";;
-    *           ) netstat_opts="-rn";;
-esac
-
 function get_user_color() {
     # Set User Color based on Name
     case "$USER" in

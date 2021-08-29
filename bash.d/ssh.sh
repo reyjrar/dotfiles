@@ -46,12 +46,7 @@ function fancy_ssh() {
         fancy_sshadd
     fi
 
-    if [ -z "$TMUX" ] && [ -z "$SSH_PLAIN" ]; then
-        command ssh -t "$@" "tmux_wrapper || tmux || screen || bash -l"
-    else
-        [ -z "$SSH_PLAIN" ] && echo -e "[${bldylw}warn${txtrst}] Running tmux locally, skipping tmux on remote side.";
-        command ssh "$@"
-    fi
+    command ssh "$@"
 }
 
 function batch_ssh() {
