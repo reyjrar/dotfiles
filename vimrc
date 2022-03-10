@@ -17,6 +17,9 @@ set nowrap                                      " Do not wrap lines
 set encoding=utf-8
 set modeline
 set modelines=5
+if has('termguicolors')
+    set termguicolors
+endif
 
 " UI Tweaks
 set ruler
@@ -33,10 +36,10 @@ set laststatus=2
 " Tab handling
 set autoindent
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 set shiftround
-set smarttab
 " Auto-complete settings
 set complete=.,b,u,]
 " Enable tags:
@@ -93,8 +96,8 @@ augroup filetype
     au! BufRead,BufNewFile *.patch           let b:noStripWhitespace = 1
     au! BufRead,BufNewFile *.sieve           set ft=sieve ff=unix
     au! BufRead,BufNewFile *.trst            set ft=rst
-    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2
-    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2 expandtab
+    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2 expandtab
 augroup END
 
 autocmd Filetype text call WordProcess()
@@ -145,6 +148,9 @@ Plugin 'gmarik/Vundle.vim'
 "let g:solarized_termcolors = 256
 "let g:solarized_visibility = "high"
 Plugin 'tomasr/molokai'
+let g:molokai_original = 1
+let g:rehash256 = 1
+Plugin 'morhetz/gruvbox'
 " UI Plugins
 Plugin 'ack.vim'
 Plugin 'kien/ctrlp.vim'

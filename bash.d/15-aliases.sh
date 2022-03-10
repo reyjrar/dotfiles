@@ -20,6 +20,10 @@ else
     alias ls='ls --time-style=long-iso -F --color'
 fi
 
+if which neomutt &> /dev/null; then
+    alias mutt=$(which neomutt)
+fi
+
 # MetaCPAN Env
 METACPAN="$HOME/code/CPAN/metacpan-developer"
 if [ -d "$METACPAN" ]; then

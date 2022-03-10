@@ -1,4 +1,12 @@
 # Load FZF if available
-if [ -e /opt/local/share/fzf/shell/key-bindings.bash ]; then
-    . /opt/local/share/fzf/shell/key-bindings.bash
-fi
+fzf_dirs="
+/opt/homebrew/opt/fzf/shell
+/opt/local/share/fzf/shell
+"
+for dir in $fzf_dirs; do
+    if [ -d "$dir" ]; then
+        for file in $dir/*.bash; do
+            . $file
+        done
+    fi
+done
