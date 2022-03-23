@@ -14,7 +14,7 @@ function fancy_sshadd {
         if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
             export SSH_PRIMARY_AUTH_ID="$SSH_PRIMARY_AUTH_KEY"
         fi
-        command ssh-add -l | grep "$SSH_PRIMARY_AUTH_ID"
+        command ssh-add -l | grep "$SSH_PRIMARY_AUTH_ID" &> /dev/null
         rc=$?
         # Only if it's not already loaded
         if [[ $rc != 0 ]]; then

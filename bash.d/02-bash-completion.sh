@@ -6,6 +6,7 @@ COMPLETION_SCRIPTS="
     /opt/local/etc/bash_completion
     /opt/local/etc/profile.d/bash_completion.sh
     /etc/bash_completion.d/git
+    /opt/homebrew/etc/bash_completion
 "
 
 for file in $COMPLETION_SCRIPTS; do

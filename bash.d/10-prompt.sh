@@ -1,5 +1,4 @@
 # User specific environment and startup programs
-
 function prompt_extra() {
     addition=$1;
     # Color if not colored
@@ -23,14 +22,33 @@ function before_prompt() {
     _set_win_title $(hostname -s)
 
     # Enable tmux-powerline cwd things
-    [ -n "$TMUX"  ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD"
+    [ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD"
 
     printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
 
-    if [ -x ~/bin/vcprompt ] && [ "$VCPROMPT" != "disable" ]; then
-        vc_out=`~/bin/vcprompt`;
-        [ ${#vc_out} -gt 0 ] && printf " $vc_out";
-    fi;
+    if [ "$VCPROMPT" != "disable" ]; then
+        if git status &> /dev/null; then
+            rev=$(git rev-parse --short HEAD)
+            branch=$(git branch 2> /dev/null | grep '^*' | colrm 1 2)
+            flags=""
+            if ! git diff --no-ext-diff --exit-code --quiet; then
+                flags+="+"
+            fi
+            if ! git diff --no-ext-diff --exit-code --cached --quiet; then
+                flags+="*"
+            fi
+            if git ls-files --others --exclude-standard --directory --no-empty-directory --error-unmatch -- ':/*' &> /dev/null; then
+                flags+="?"
+            fi
+            if git rev-parse --verify --quiet refs/stash &>/dev/null; then
+                flags+="$"
+            fi
+            printf " ${bldblk}[${txtcyn}git${bldblk}:${txtgrn}%s${bldblk}@${txtred}%s${txtpur}%s${bldblk}]" "$branch" "$rev" "$flags"
+        elif [ -x ~/bin/vcprompt ]; then
+            vc_out=`~/bin/vcprompt`;
+            [ ${#vc_out} -gt 0 ] && printf " $vc_out";
+        fi
+    fi
 
     [ ! -z $PROMPT_EXTRA ] && printf " $PROMPT_EXTRA";
 
@@ -39,9 +57,10 @@ function before_prompt() {
     printf "\n";
 }
 
+# Configure VCPROMPT if using
+if [ -x ~/bin/vcprompt ]; then
+    export VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r$txtpur%m%u$bldblk]";
+fi
 
-VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r$txtpur%m%u$bldblk]";
-PROMPT_COMMAND=before_prompt
-PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
-
-export PS1 VCPROMPT_FORMAT PROMPT_COMMAND
+export PROMPT_COMMAND=before_prompt
+export PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
