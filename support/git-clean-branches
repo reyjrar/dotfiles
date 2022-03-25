@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Adds `git clean-branches` alias to cleanup branches
+#  * Prunes branches removed from the origins
+#  * Deletes branches that are merged into the current branch
+#
+# Usage:
+#  git checkout master
+#  git pull
+#  git clean-branches
+if git status &> /dev/null; then
+    for origin in $( git remote ); do
+        git remote prune "$origin"
+    done
+
+    current=$(git branch | grep '^*' | colrm 1 2);
+    for br in $(git br --merged | colrm 1 2); do
+        if [ "$current" == "$br" ]; then
+            continue
+        fi
+        git br -d "$br"
+    done
+
+fi

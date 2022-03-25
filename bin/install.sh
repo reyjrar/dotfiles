@@ -98,5 +98,6 @@ if [ "$MASTER" == "1" ]; then
 
     install_link "$basedir/support/movein.sh" "$HOME/bin/movein.sh";
     install_link "$basedir/support/distrib.sh" "$HOME/bin/distrib.sh";
+    install_link "$basedir/support/git-clean-branches" "$HOME/bin/git-clean-branches";
 fi
 

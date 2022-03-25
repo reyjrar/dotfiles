@@ -3,10 +3,8 @@ path_inject /sbin
 path_inject /usr/sbin
 path_inject /usr/local/sbin
 path_inject /usr/local/bin
-path_inject /opt/homebrew/bin
 path_inject /opt/local/sbin
 path_inject /opt/local/bin
-path_inject /opt/homebrew/opt/coreutils/libexec/gnubin
 path_inject /opt/local/libexec/gnubin
 path_inject /opt/android/sdk/tools
 path_inject /opt/android/sdk/platform-tools

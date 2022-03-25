@@ -28,6 +28,6 @@
 [pull]
     rebase = true
 [github]
-	user = reyjrar
+    user = reyjrar
 [core]
-	excludesfile = /Users/blhotsky/.gitignore_global
+    excludesfile = /Users/blhotsky/.gitignore_global
