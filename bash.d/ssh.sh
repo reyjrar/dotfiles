@@ -12,7 +12,9 @@ function fancy_sshadd {
     # No args and we find a key set load it
     if [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
         if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
-            export SSH_PRIMARY_AUTH_ID="$SSH_PRIMARY_AUTH_KEY"
+            if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
+                export SSH_PRIMARY_AUTH_ID=$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')
+            fi
         fi
         command ssh-add -l | grep "$SSH_PRIMARY_AUTH_ID" &> /dev/null
         rc=$?
@@ -32,7 +34,14 @@ function fancy_sshadd {
 
 function fancy_ssh() {
     # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
-    [ -z "$SSH_PRIMARY_AUTH_KEY" ] && SSH_PRIMARY_AUTH_KEY="$HOME/.ssh/id_rsa";
+    if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
+        for key in "$HOME/.ssh/id_ed25519" "$HOME/.ssh/id_rsa"; do
+            if [ -f "$key" ]; then
+                export SSH_PRIMARY_AUTH_KEY="$key"
+                break
+            fi
+        done
+    fi
 
     # Check host status
     if [[ $# != 0 ]]; then
