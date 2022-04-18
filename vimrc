@@ -45,6 +45,26 @@ set complete=.,b,u,]
 " Enable tags:
 set tags=./tags;/
 
+" Colors
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
 " Maps and Functions
 map <f2> :NERDTreeToggle<CR>
 map <f5> :TlistToggle<CR>
@@ -153,9 +173,29 @@ let g:rehash256 = 1
 Plugin 'morhetz/gruvbox'
 " UI Plugins
 Plugin 'ack.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor['cfg'] = s:beige
+let g:NERDTreeExtensionHighlightColor['conf'] = s:beige
+let g:NERDTreeExtensionHighlightColor['gz'] = s:red
+let g:NERDTreeExtensionHighlightColor['ini'] = s:beige
+let g:NERDTreeExtensionHighlightColor['j2'] = s:salmon
+let g:NERDTreeExtensionHighlightColor['mkdn'] = s:blue
+let g:NERDTreeExtensionHighlightColor['md'] = s:blue
+let g:NERDTreeExtensionHighlightColor['pm'] = s:orange
+let g:NERDTreeExtensionHighlightColor['pl'] = s:pink
+let g:NERDTreeExtensionHighlightColor['t'] = s:yellow
+let g:NERDTreeExtensionHighlightColor['tar'] = s:red
+let g:NERDTreeExtensionHighlightColor['yaml'] = s:beige
+let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
+let g:NERDTreeExtensionHighlightColor['zip'] = s:red
 "Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/SyntaxRange
 Plugin 'vim-airline/vim-airline'
@@ -185,6 +225,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+Plugin 'ryanoasis/vim-devicons'
 " Perl Syntax Highlighting
 Plugin 'c9s/perlomni.vim'
 Plugin 'vim-perl/vim-perl'
