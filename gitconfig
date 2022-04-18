@@ -23,6 +23,8 @@
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 [branch]
     autosetuprebase = always
+[rebase]
+    autoStash = true
 [push]
     default = upstream
 [pull]
