@@ -125,6 +125,13 @@ autocmd Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
 autocmd Filetype mail call MailHandler()
 autocmd BufWritePre * call StripTrailingWhitespace()
 
+autocmd StdinReadPre * let s:std_in=1
+" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+" Start NERDTree when Vim starts with a directory argument.
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
 " BEGIN: Conway's Tweaks
 
 " Visual Block mode is far more useful that Visual mode (so swap the commands)...
@@ -177,6 +184,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'preservim/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 let g:NERDTreeLimitedSyntax = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
