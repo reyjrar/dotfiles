@@ -9,6 +9,15 @@ alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=n
 
 # Functions
 function fancy_sshadd {
+    # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
+    if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
+        for key in "$HOME/.ssh/id_ed25519" "$HOME/.ssh/id_rsa"; do
+            if [ -f "$key" ]; then
+                export SSH_PRIMARY_AUTH_KEY="$key"
+                break
+            fi
+        done
+    fi
     # No args and we find a key set load it
     if [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
         if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
