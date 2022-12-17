@@ -225,7 +225,7 @@ Plugin 'lfilho/cosco.vim'
 noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
 Plugin 'tpope/vim-fugitive'
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Shougo/neocomplete.vim'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.

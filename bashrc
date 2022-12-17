@@ -20,7 +20,7 @@ else
     source ~/.bash.d/00-variables.sh
     source ~/.bash.d/01-functions.sh
     source ~/.bash.d/02-base-paths.sh
-    source ~/.bash.d/15-aliases.sh
+    source ~/.bash.d/99-aliases.sh
 fi;
 
 # Clear any bad RC's

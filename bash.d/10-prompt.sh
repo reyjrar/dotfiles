@@ -44,9 +44,6 @@ function before_prompt() {
                 flags+="$"
             fi
             printf " ${bldblk}[${txtcyn}git${bldblk}:${txtgrn}%s${bldblk}@${txtred}%s${txtpur}%s${bldblk}]" "$branch" "$rev" "$flags"
-        elif [ -x ~/bin/vcprompt ]; then
-            vc_out=`~/bin/vcprompt`;
-            [ ${#vc_out} -gt 0 ] && printf " $vc_out";
         fi
     fi
 
