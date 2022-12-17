@@ -9,6 +9,8 @@ alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=n
 
 # Functions
 function fancy_sshadd {
+    # Set expiry
+    expiry=$(seconds_til_3am "$SSH_KEY_DAYS_VALID")
     # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
     if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
         for key in "$HOME/.ssh/id_ed25519" "$HOME/.ssh/id_rsa"; do
@@ -30,11 +32,11 @@ function fancy_sshadd {
         # Only if it's not already loaded
         if [[ $rc != 0 ]]; then
             (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
-            command ssh-add -t $(seconds_til_3am) "$SSH_PRIMARY_AUTH_KEY"
+            command ssh-add -t "$expiry" "$SSH_PRIMARY_AUTH_KEY"
         fi
     # Add an expiry to a key automatically
     elif [[ -f "${@: -1}" ]]; then
-        command ssh-add -t $(seconds_til_3am) "$@"
+        command ssh-add -t "$expiry" "$@"
     # otherwise, do what I said.
     else
         command ssh-add "$@"

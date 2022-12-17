@@ -56,16 +56,18 @@ function tmux_wrapper() {
 }
 
 function seconds_til_3am() {
+    days="${1:-1}"
     # Check for GNU Compatibility
     date --date today > /dev/null 2>&1
     rc="$?";
     if [ "$rc" -eq "0" ]; then
         date="GNU";
-        expire_at=$(date --date "$(date --date tomorrow +%Y-%m-%d) 3:00:00" +%s);
+        future=$(date --date "${days} days" +%Y-%m-%d)
+        expire_at=$(date --date "$future 03:00:00" +%s);
         expire_seconds=$(($expire_at - $(date +%s)))
     else
         date="BSD";
-        expire_at=$(date -j -f "%Y-%m-%dT%H:%M:%S" $(date -v+1d +"%Y-%m-%dT03:00:00") +%s)
+        expire_at=$(date -j -f "%Y-%m-%dT%H:%M:%S" $(date -v+${days}d +"%Y-%m-%dT03:00:00") +%s)
         expire_seconds=$(($expire_at - $(date -j +%s)))
     fi
 
