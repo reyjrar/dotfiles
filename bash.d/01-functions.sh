@@ -8,6 +8,15 @@ function path_inject() {
     (( $DEBUG )) && echo;
 }
 
+function ssl_expiry() {
+    if [ ! -z "$1" ]; then
+        echo "" | openssl s_client -connect "$1" | openssl x509 -noout -dates
+    else
+        echo "usage: $FUNCNAME host:port";
+        return 1;
+    fi
+}
+
 function contents() {
     if [ -f "$1" ] && [ -r "$1" ]; then
         file_lines=`wc -l $1 | awk '{print $1}'`;
