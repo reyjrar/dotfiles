@@ -205,6 +205,8 @@ let g:NERDTreeExtensionHighlightColor['tar'] = s:red
 let g:NERDTreeExtensionHighlightColor['yaml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['zip'] = s:red
+let g:NERDTreeWinSize = 20
+let g:NERDTreeWinSizeMax = 40
 "Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/SyntaxRange
 Plugin 'vim-airline/vim-airline'
