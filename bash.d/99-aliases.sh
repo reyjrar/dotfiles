@@ -18,6 +18,12 @@ else
     fi
 fi
 
+# jless
+jlessBinary="jless.$(uname -s)"
+if which "$jlessBinary" &> /dev/null; then
+    alias jless="$jlessBinary"
+fi
+
 if which bat &> /dev/null; then
     alias cat='bat --paging=never'
 fi
