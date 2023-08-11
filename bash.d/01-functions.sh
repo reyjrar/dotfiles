@@ -1,9 +1,14 @@
 # Path Injection
 function path_inject() {
-    (( $DEBUG )) && echo -n "path_inject( $1 )";
-    if [ -d "$1" ]; then
-        PATH="$1:$PATH";
-        (( $DEBUG )) && echo -n " [FOUND]";
+    path=$1
+    (( $DEBUG )) && echo -n "path_inject( $path )";
+    if [ -d "$path" ]; then
+        if [[ $PATH =~ (^|:)$path(:|$) ]]; then
+            (( $DEBUG )) && echo -n " [PRESENT]";
+        else
+            PATH="$path:$PATH";
+            (( $DEBUG )) && echo -n " [ADDED]";
+        fi
     fi;
     (( $DEBUG )) && echo;
 }
