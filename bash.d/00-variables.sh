@@ -1,9 +1,9 @@
 # Shell Variables
 EDITOR="vim"
 LC_ALL="en_US.UTF-8"
-HOSTOS=`uname -s`
+HOSTOS=$(uname -s)
 
-case "$(uname -s)" in
+case "$HOSTOS" in
     "Darwin"    ) PLATFORM="mac";;
     *           ) PLATFORM="linux";;
 esac

@@ -270,7 +270,11 @@ Plugin 'apeschel/vim-syntax-syslog-ng'
 "Plugin 'mephux/bro.vim'
 " Extensions
 "Plugin 'freitass/todo.txt-vim'
-
+" Snippet Engine
+Plugin 'SirVer/ultisnips'
+let g:UltiSnipsEditSplit="vertical"
+" Snippet Repository
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 let iterm_bg = $ITERM_BG
