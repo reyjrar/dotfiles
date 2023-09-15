@@ -63,7 +63,7 @@ function install_link() {
     echo "linked to $dst";
 }
 
-function install_vundle() {
+function setup_vim() {
     vundle_repo="https://github.com/VundleVim/Vundle.vim.git"
     vundle_dir="$HOME/.vim/bundle/Vundle.vim"
 
@@ -77,6 +77,8 @@ function install_vundle() {
     else
         echo "already installed."
     fi
+    mkdir -p ~/.vimswap
+    mkdir -p ~/.vimundo
 }
 
 bindir=`dirname $0`;

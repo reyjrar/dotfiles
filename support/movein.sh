@@ -35,6 +35,7 @@ fi
 
 DIRS="
     .vimswap
+    .vimundo
     bin
     support
 "

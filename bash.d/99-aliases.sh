@@ -11,7 +11,9 @@ if [ "$HOSTOS" == "OpenBSD" ] || [ "$HOSTOS" == "FreeBSD" ]; then
         alias ls="ls -FG -D '%F %T'"
     fi
 else
-    if which exa &> /dev/null; then
+    if which eza &> /dev/null; then
+        alias ls='eza --time-style=long-iso -F --color=auto --icons'
+    elif which exa &> /dev/null; then
         alias ls='exa --time-style=long-iso -F --color=auto --icons'
     else
         alias ls='ls --time-style=long-iso -F --color'

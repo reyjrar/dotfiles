@@ -12,6 +12,8 @@ set ttyfast
 set bs=2                                        " Backspace can wrap
 set vb t_vb=                                    " Ignore Bells
 set dir=~/.vimswap
+set undofile
+set undodir=~/.vimundo
 set nofoldenable                                " Disable folding
 set nowrap                                      " Do not wrap lines
 set encoding=utf-8
@@ -66,9 +68,10 @@ let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
 " Maps and Functions
-map <f2> :NERDTreeToggle<CR>
-map <f5> :TlistToggle<CR>
+noremap <f2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
+noremap <F4> :MundoToggle<CR>
+noremap <f5> :TagbarToggle<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-k> :wincmd k<CR>
@@ -181,7 +184,8 @@ Plugin 'morhetz/gruvbox'
 " UI Plugins
 Plugin 'ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'preservim/tagbar'
+Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 let g:NERDTreeDirArrowExpandable = ''
@@ -207,22 +211,23 @@ let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['zip'] = s:red
 let g:NERDTreeWinSize = 20
 let g:NERDTreeWinSizeMax = 40
-"Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/SyntaxRange
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
-Plugin 'Raimondi/delimitMate'
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
+"Plugin 'Raimondi/delimitMate'
+"let delimitMate_expand_cr = 1
+"let delimitMate_expand_space = 1
+Plugin 'cohama/lexima.vim'
+let g:lexima_enable_newline_rules = 1
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-speeddating'
+"Plugin 'tpope/vim-speeddating'
 Plugin 'godlygeek/tabular'
-Plugin 'sjl/gundo.vim'
+Plugin 'simnalamburt/vim-mundo'
 Plugin 'lfilho/cosco.vim'
 noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
