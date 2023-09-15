@@ -5,6 +5,13 @@ function path_inject() {
     if [ -d "$path" ]; then
         if [[ $PATH =~ (^|:)$path(:|$) ]]; then
             (( $DEBUG )) && echo -n " [PRESENT]";
+            newpath="$path";
+            for dir in $( echo $PATH | tr ':' "\n" | awk '!x[$0]++' ); do
+                [ "$path" == "$dir" ] && continue
+                [ ! -d "$dir" ] && continue
+                newpath="$newpath:$dir";
+            done
+            PATH="$newpath"
         else
             PATH="$path:$PATH";
             (( $DEBUG )) && echo -n " [ADDED]";
