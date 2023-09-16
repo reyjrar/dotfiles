@@ -92,8 +92,8 @@ for rc in `ls -1 $basedir`; do
 	fi;
 done;
 
-# Install vundle
-install_vundle;
+# Setup vim
+setup_vim;
 
 if [ "$MASTER" == "1" ]; then
     [ ! -d "$HOME/bin" ] && mkdir 0750 "$HOME/bin";
