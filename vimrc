@@ -260,7 +260,7 @@ Plugin 'tpope/vim-endwise'
 "Plugin 'exu/pgsql.vim'
 "Plugin 'fsouza/go.vim'
 Plugin 'rust-lang/rust.vim'
-"Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 " Markup/Serialization Language Support
 "Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
