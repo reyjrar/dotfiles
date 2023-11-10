@@ -40,7 +40,6 @@ DIRS="
     support
 "
 STATIC="
-    $HOME/.rpmmacros
     $HOME/.gitid
     $HOME/.gitid-work
 "
@@ -125,9 +124,7 @@ done
 
 ## bash_local for non-distributed changes
 if [ $LOCAL_OVERWRITE -eq 0 ]; then
-    $SSH $HOST "test -f ~/.bash_local"
-    rc=$?
-    if [ "$rc" -ne "0" ]; then
+    if $SSH $HOST "test ! -f ~/.bash_local" &> /dev/null; then
         LOCAL_OVERWRITE=1;
     fi;
 fi;
@@ -135,6 +132,15 @@ if [ $LOCAL_OVERWRITE -eq 1 ]; then
     $SCP $SCP_OPTS ~/.bash_local $HOST:~
     echo " => Setting a default ~/.bash_local";
 fi;
+
+## Bash Variables
+remote_vars="$HOME/.bash_variables_remote"
+if [ -f "$remote_vars" ]; then
+    if $SSH $HOST "test ! -f ~/.bash_variables" &> /dev/null; then
+        $SCP $SCP_OPTS "$remote_vars" $HOST:.bash_variables
+        echo " => Setting a default ~/.bash_variables"
+    fi
+fi
 
 echo "DONE.";
 true;
