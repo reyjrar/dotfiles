@@ -7,6 +7,7 @@ set smartcase                                   "  ^- except when I use case
 set nostartofline                               " Commands evaluate from cursor position
 set showmatch
 set showcmd
+set mouse=a
 set magic
 set ttyfast
 set bs=2                                        " Backspace can wrap
@@ -34,6 +35,8 @@ set nocursorline
 set nocursorcolumn
 highlight CursorColumn ctermbg=234
 set laststatus=2
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+set list
 
 " Tab handling
 set autoindent
@@ -68,6 +71,7 @@ let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
 " Maps and Functions
+nnoremap ; :
 noremap <f2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
 noremap <F4> :MundoToggle<CR>
@@ -173,14 +177,15 @@ call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 " Color schemes
-"Plugin 'altercation/vim-colors-solarized'
-"let g:solarized_termtrans = 1
-"let g:solarized_termcolors = 256
-"let g:solarized_visibility = "high"
+Plugin 'altercation/vim-colors-solarized'
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
 Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
 Plugin 'morhetz/gruvbox'
+Plugin 'joshdick/onedark.vim'
 " UI Plugins
 Plugin 'ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -220,7 +225,14 @@ let g:airline_theme = 'powerlineish'
 "Plugin 'Raimondi/delimitMate'
 "let delimitMate_expand_cr = 1
 "let delimitMate_expand_space = 1
-Plugin 'cohama/lexima.vim'
+
+" Load lexima on 810 and greater
+if v:version >= 810
+    Plugin 'cohama/lexima.vim'
+else
+    Plugin 'tpope/vim-endwise'
+endif
+
 let g:lexima_enable_newline_rules = 1
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
@@ -254,45 +266,52 @@ let mojo_highlight_data = 1
 "Plugin 'motemen/xslate-vim'
 " Make working with Ruby less violent
 "Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-endwise'
 " Other Languages
+Plugin 'ap/vim-css-color'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'othree/html5.vim'
+Plugin 'elzr/vim-json'
 "Plugin 'vim-scripts/Vim-R-plugin'
 "Plugin 'exu/pgsql.vim'
 "Plugin 'rust-lang/rust.vim'
-Plugin 'fatih/vim-go'
-let g:go_version_warning = 0
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_fail_silently = 1
-let g:go_list_type = "quickfix"
 
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:syntastic_check_on_open = 1
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--ignore E128 --builtins="_"'
+" Golang conditionally
+if executable('go')
+    Plugin 'fatih/vim-go'
+    let g:go_version_warning = 0
+    let g:go_fmt_command = "goimports"
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_types = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_fmt_fail_silently = 1
+    let g:go_list_type = "quickfix"
 
-au FileType go nmap <leader>b  <Plug>(go-build)
-au FileType go nmap <leader>r  <Plug>(go-run)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    let g:syntastic_python_checkers = ['flake8']
+    let g:syntastic_python_flake8_args = '--ignore E128 --builtins="_"'
+
+    au FileType go nmap <leader>b  <Plug>(go-build)
+    au FileType go nmap <leader>r  <Plug>(go-run)
+    au FileType go nmap <leader>t <Plug>(go-test)
+    au FileType go nmap <leader>c <Plug>(go-coverage)
+    au FileType go nmap <Leader>ds <Plug>(go-def-split)
+    au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+    au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+    au FileType go nmap <Leader>gd <Plug>(go-doc)
+    au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+    au FileType go nmap <Leader>s <Plug>(go-implements)
+    au FileType go nmap <Leader>i <Plug>(go-info)
+    au FileType go nmap <Leader>e <Plug>(go-rename)
+endif
+
 " Markup/Serialization Language Support
 "Plugin 'Rykka/riv.vim'
 Plugin 'tpope/vim-markdown'
-Plugin 'leshill/vim-json'
 Plugin 'vim-scripts/sieve.vim'
 " Sysadmin Stuff
 Plugin 'zaiste/tmux.vim'
@@ -309,19 +328,20 @@ Plugin 'apeschel/vim-syntax-syslog-ng'
 "Plugin 'honza/vim-snippets'
 call vundle#end()
 
+" Setup to pick a random colorscheme
+"let my_colorschemes = ['molokai', 'gruvbox', 'onedark']
+"execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
+colorscheme molokai
+
+" Adjust based on iTerm2 background
 let iterm_bg = $ITERM_BG
 if iterm_bg == "light"
     set background=light
     colorscheme solarized
 elseif has("gui_running")
+    set mousefocus
     set background=light
     colorscheme solarized
-    set mouse=a
-    set mousefocus
-else
-    set mouse=
-    set background=dark
-	colorscheme molokai
 endif
 
 if has("gui_macvim")
