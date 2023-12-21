@@ -4,22 +4,19 @@ alias c="contents"
 # Get Aliases
 alias gg='git grep'
 
-if [ "$HOSTOS" == "OpenBSD" ] || [ "$HOSTOS" == "FreeBSD" ]; then
-    if [ -x "/usr/local/bin/gls" ]; then
-        alias ls='gls --time-style=long-iso -F --color'
-    else
-        alias ls="ls -FG -D '%F %T'"
-    fi
+## Alias for ls
+if which lsd &> /dev/null; then
+    alias ls='lsd --date="+%F %T" -F'
+elif which eza &> /dev/null; then
+    alias ls='eza --time-style=long-iso -F --color=auto --icons'
+elif which exa &> /dev/null; then
+    alias ls='exa --time-style=long-iso -F --color=auto --icons'
+elif which gls &> /dev/null; then
+    alias ls='gls --time-style=long-iso -F --color'
+elif [ "$HOSTOS" == "OpenBSD" ] || [ "$HOSTOS" == "FreeBSD" ]; then
+    alias ls="ls -FG -D '%F %T'"
 else
-    if which lsd &> /dev/null; then
-        alias ls='lsd --date="+%F %T" -F'
-    elif which eza &> /dev/null; then
-        alias ls='eza --time-style=long-iso -F --color=auto --icons'
-    elif which exa &> /dev/null; then
-        alias ls='exa --time-style=long-iso -F --color=auto --icons'
-    else
-        alias ls='ls --time-style=long-iso -F --color'
-    fi
+    alias ls='ls --time-style=long-iso -F --color'
 fi
 
 # jless
