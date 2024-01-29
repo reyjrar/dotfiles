@@ -1,7 +1,11 @@
 # Configurations for SSH related things
 
-alias ssh="fancy_ssh"
-alias ssh-add="fancy_sshadd"
+if [ -z "$SSH_KEEPASSXC" ]; then
+    # Use Better SSH Key Handling if KeepassXC isn't managing it
+    alias ssh="fancy_ssh"
+    alias ssh-add="fancy_sshadd"
+fi
+
 # Don't have SCP setup the ControlMaster because it doesn't setup agent forwarding
 alias scp='scp -o ControlMaster=no'
 # For the times before signed keys

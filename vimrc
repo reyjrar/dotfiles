@@ -325,7 +325,7 @@ call vundle#end()
 colorscheme molokai
 
 " Feature Based Settings
-if has('clipboard')
+if has('clipboard') && empty($SSH_CLIENT)
     set mouse=a
 endif
 
