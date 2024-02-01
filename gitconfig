@@ -32,4 +32,4 @@
 [github]
     user = reyjrar
 [core]
-	excludesfile = /Users/blhotsky/.gitignore_global
+    excludesfile = /Users/blhotsky/.gitignore_global
