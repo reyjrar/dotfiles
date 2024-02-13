@@ -324,17 +324,13 @@ call vundle#end()
 "execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
 colorscheme molokai
 
-" Feature Based Settings
-if has('clipboard') && empty($SSH_CLIENT)
-    set mouse=a
-endif
-
 " Adjust based on iTerm2 background
 let iterm_bg = $ITERM_BG
 if iterm_bg == "light"
     set background=light
     colorscheme solarized
 elseif has("gui_running")
+    set mouse=a
     set mousefocus
     set background=light
     colorscheme solarized

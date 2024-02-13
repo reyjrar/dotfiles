@@ -1,5 +1,5 @@
 [user]
-  name = Brad Lhotsky
+    name = Brad Lhotsky
 [include]
     path = ~/.gitid
 [color]
@@ -21,6 +21,7 @@
     hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %an: %s' --all
     ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+    pushf = push --force-with-lease
 [branch]
     autosetuprebase = always
 [rebase]
@@ -33,3 +34,6 @@
     user = reyjrar
 [core]
     excludesfile = /Users/blhotsky/.gitignore_global
+[rerere]
+    enabled = true
+    autoUpdate = true
