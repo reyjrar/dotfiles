@@ -8,32 +8,44 @@
     status = auto
     branch = auto
 [diff]
+    algorithm = histogram
     tool = vimdiff
 [alias]
+    br = branch
     ci = commit -v
-    cp = commit -p
-    st = status -s
-    br = branch --sort=-committerdate
     co = checkout
-    last = log -p -1 HEAD
-    unstage = reset HEAD --
+    cp = commit -p
     lp = log --format=\"%h - %an, %ar : %s\"
+    rbi = rebase -i
+    rh = reset --hard
+    st = status -s
+    last = log -p -1 HEAD
     hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %an: %s' --all
+    pushf = push --force-with-lease
+    unstage = reset HEAD --
     ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-    pushf = push --force-with-lease
+[commit]
+    verbose = true
+    gpgSign = true
 [branch]
     autosetuprebase = always
+    sort = -committerdate
 [rebase]
     autoStash = true
 [push]
-    default = upstream
+    default = current
 [pull]
     rebase = true
 [github]
     user = reyjrar
+[gpg]
+    format = ssh
 [core]
     excludesfile = /Users/blhotsky/.gitignore_global
 [rerere]
     enabled = true
     autoUpdate = true
+[tag]
+    sort = version:refname
+    gpgSing = true
