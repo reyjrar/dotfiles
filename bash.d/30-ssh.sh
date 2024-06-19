@@ -1,5 +1,4 @@
 # Configurations for SSH related things
-
 if [ -z "$SSH_KEEPASSXC" ]; then
     # Use Better SSH Key Handling if KeepassXC isn't managing it
     alias ssh="fancy_ssh"
@@ -11,26 +10,30 @@ alias scp='scp -o ControlMaster=no'
 # For the times before signed keys
 alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
+# Set the SSH_PRIMARY_AUTH_KEY
+if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
+    for key in "$HOME/.ssh/id_ed25519"; do
+        if [ -f "$key" ]; then
+            export SSH_PRIMARY_AUTH_KEY="$key"
+            break
+        fi
+    done
+fi
+if [ -n "$SSH_PRIMARY_AUTH_KEY" ]; then
+    if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
+        if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
+            export SSH_PRIMARY_AUTH_ID=$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')
+        fi
+    fi
+    export SSH_PRIMARY_PUB_KEY="${SSH_PRIMARY_AUTH_KEY}.pub"
+fi
+
 # Functions
 function fancy_sshadd {
     # Set expiry
     expiry=$(seconds_til_3am "$SSH_KEY_DAYS_VALID")
-    # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
-    if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
-        for key in "$HOME/.ssh/id_ed25519" "$HOME/.ssh/id_rsa"; do
-            if [ -f "$key" ]; then
-                export SSH_PRIMARY_AUTH_KEY="$key"
-                break
-            fi
-        done
-    fi
     # No args and we find a key set load it
     if [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
-        if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
-            if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
-                export SSH_PRIMARY_AUTH_ID=$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')
-            fi
-        fi
         command ssh-add -l | grep "$SSH_PRIMARY_AUTH_ID" &> /dev/null
         rc=$?
         # Only if it's not already loaded
@@ -48,16 +51,6 @@ function fancy_sshadd {
 }
 
 function fancy_ssh() {
-    # Check for SSH_PRIMARY_AUTH_KEY, otherwise use id_rsa
-    if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
-        for key in "$HOME/.ssh/id_ed25519" "$HOME/.ssh/id_rsa"; do
-            if [ -f "$key" ]; then
-                export SSH_PRIMARY_AUTH_KEY="$key"
-                break
-            fi
-        done
-    fi
-
     # Check host status
     if [[ $# != 0 ]]; then
         target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
