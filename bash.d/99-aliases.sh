@@ -5,13 +5,13 @@ alias c="contents"
 alias gg='git grep'
 
 ## Alias for ls
-if which lsd &> /dev/null; then
+if hash lsd &> /dev/null; then
     alias ls='lsd --date="+%F %T" -F'
-elif which eza &> /dev/null; then
+elif hash eza &> /dev/null; then
     alias ls='eza --time-style=long-iso -F --color=auto --icons'
-elif which exa &> /dev/null; then
+elif hash exa &> /dev/null; then
     alias ls='exa --time-style=long-iso -F --color=auto --icons'
-elif which gls &> /dev/null; then
+elif hash gls &> /dev/null; then
     alias ls='gls --time-style=long-iso -F --color'
 elif [ "$HOSTOS" == "OpenBSD" ] || [ "$HOSTOS" == "FreeBSD" ]; then
     alias ls="ls -FG -D '%F %T'"
@@ -21,15 +21,15 @@ fi
 
 # jless
 jlessBinary="jless.$(uname -s)"
-if which "$jlessBinary" &> /dev/null; then
+if hash "$jlessBinary" &> /dev/null; then
     alias jless="$jlessBinary"
 fi
 
-if which bat &> /dev/null; then
+if hash bat &> /dev/null; then
     alias cat='bat --paging=never'
 fi
 
-if which neomutt &> /dev/null; then
+if hash neomutt &> /dev/null; then
     alias mutt=$(which neomutt)
 fi
 
