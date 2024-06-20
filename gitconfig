@@ -34,7 +34,8 @@
 [rebase]
     autoStash = true
 [push]
-    default = current
+    default = upstream
+    autoSetupRemote = true
 [pull]
     rebase = true
 [github]
@@ -42,10 +43,12 @@
 [gpg]
     format = ssh
 [core]
-    excludesfile = /Users/blhotsky/.gitignore_global
+    excludesFile = ~/.gitignore_global
 [rerere]
     enabled = true
     autoUpdate = true
 [tag]
     sort = version:refname
-    gpgSing = true
+    gpgSign = true
+[init]
+    defaultBranch = main
