@@ -40,3 +40,8 @@ if [ -d "$METACPAN" ]; then
 else
     alias mc="echo  'No MetaCPAN dev environment found at $METACPAN!' && exit 1"
 fi
+
+## Zoxide
+if hash zoxide &> /dev/null; then
+    source <(zoxide init bash)
+fi

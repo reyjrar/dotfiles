@@ -23,7 +23,7 @@ fi
 HOST=$1
 
 SSH="/usr/bin/ssh -x"
-SCP="/usr/bin/scp"
+SCP="/usr/bin/scp -o ControlMaster=no"
 RSYNC="/usr/bin/rsync"
 TMPFILE="/tmp/movein.$USER.$$"
 
@@ -42,6 +42,7 @@ DIRS="
 STATIC="
     $HOME/.gitid
     $HOME/.gitid-work
+    $HOME/.ssh/id_ed25519.pub
 "
 function remote_mkdir() {
     local dir=$1
@@ -121,6 +122,7 @@ for file in $STATIC; do
     $SCP $SCP_OPTS $file $HOST:~/$relative
     echo "+ $relative";
 done
+
 
 ## bash_local for non-distributed changes
 if [ $LOCAL_OVERWRITE -eq 0 ]; then

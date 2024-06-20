@@ -27,7 +27,7 @@
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 [commit]
     verbose = true
-    gpgSign = true
+    gpgsign = true
 [branch]
     autosetuprebase = always
     sort = -committerdate
