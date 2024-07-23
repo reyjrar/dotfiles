@@ -8,14 +8,14 @@ if [ "$1" == "-M" ]; then
 fi
 
 function rel2abs() {
-	local relative=$1
-	local cwd=$(pwd);
+    local relative=$1
+    local cwd=$(pwd);
 
-	cd $relative;
-	absolute=$(pwd);
-	cd $cwd;
+    cd $relative;
+    absolute=$(pwd);
+    cd $cwd;
 
-	echo $absolute;
+    echo $absolute;
 }
 
 function install_rc() {
@@ -85,11 +85,11 @@ bindir=`dirname $0`;
 basedir=`rel2abs ${bindir/bin}`;
 
 for rc in `ls -1 $basedir`; do
-	if [ -f $rc ] && [ "$rc" != "README" ]; then
+    if [ -f $rc ] && [ "$rc" != "README" ]; then
         install_rc $rc;
     elif [ -d $rc ] && [ ${rc:(-2)} == ".d" ]; then
         install_rc $rc;
-	fi;
+    fi;
 done;
 
 # Setup vim

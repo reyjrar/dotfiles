@@ -36,6 +36,7 @@ fi
 DIRS="
     .vimswap
     .vimundo
+    .ssh
     bin
     support
 "
@@ -49,7 +50,7 @@ function remote_mkdir() {
     $SSH $HOST "test -d ~/$dir"
     rc=$?
     if [ "$rc" -ne "0" ]; then
-        $SSH $HOST "mkdir ~/$dir"
+        $SSH $HOST "install -m 0700 -d ~/$dir"
         echo "  +--> created ~/$dir";
     else
         (( $DEBUG )) && echo " - remote_mkdir($dir) -> directory exists"
