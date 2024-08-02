@@ -19,6 +19,7 @@ function before_prompt() {
     retval=$?
 
     history -a;     # Record history
+    history -n;     # Reread history
     _set_win_title $(hostname -s)
 
     # Enable tmux-powerline cwd things

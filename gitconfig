@@ -19,6 +19,8 @@
     rbi = rebase -i
     rh = reset --hard
     st = status -s
+    sw = switch
+    swc = switch -c
     last = log -p -1 HEAD
     hist = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %an: %s' --all
     pushf = push --force-with-lease
