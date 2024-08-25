@@ -13,4 +13,13 @@ if [ -x "$brew_install_dir/bin/brew" ]; then
         profile="$brew_install_dir/etc/profile.d/$p"
         [[ -r "$profile" ]] && . "$profile"
     done
+
+    # Load Latest PgSQL paths
+    pgsqls=($(compgen -G "$brew_install_dir/opt/postgresql@*"))
+    if [ "${#pgsqls}" -gt 0  ]; then
+        latest_pgsql="${pgsqls[1]}"
+        if [ -n "$latest_pgsql" ]; then
+            path_inject "$latest_pgsql/bin"
+        fi
+    fi
 fi
