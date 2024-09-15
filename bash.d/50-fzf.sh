@@ -3,6 +3,7 @@ fzf_dirs="
 /opt/homebrew/opt/fzf/shell
 /opt/local/share/fzf/shell
 /usr/local/share/examples/fzf/shell
+/usr/share/fzf/shell
 "
 for dir in $fzf_dirs; do
     if [ -d "$dir" ]; then
