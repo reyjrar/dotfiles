@@ -1,5 +1,9 @@
-brew_install_dir="/opt/homebrew"
-if [ -x "$brew_install_dir/bin/brew" ]; then
+for dir in "/opt/homebrew", "$HOME/homebrew"; do
+    if [ -d "$dir" ]; then
+        brew_install_dir="$dir"
+    fi
+done
+if [ -n "$brew_install_dir" ] && [ -x "$brew_install_dir/bin/brew" ]; then
     # Set Paths
     path_inject "$brew_install_dir/bin"
     eval "$($brew_install_dir/bin/brew shellenv)"

@@ -268,6 +268,7 @@ let mojo_highlight_data = 1
 " Other Languages
 Plugin 'ap/vim-css-color'
 Plugin 'hail2u/vim-css3-syntax'
+Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
 "Plugin 'elzr/vim-json'
 "Plugin 'vim-scripts/Vim-R-plugin'
@@ -276,7 +277,6 @@ Plugin 'othree/html5.vim'
 
 " Golang conditionally
 if executable('go')
-    au FileType go Plugin 'fatih/vim-go'
     au FileType go nmap <leader>b  <Plug>(go-build)
     au FileType go nmap <leader>r  <Plug>(go-run)
     au FileType go nmap <leader>t <Plug>(go-test)

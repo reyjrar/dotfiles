@@ -1,6 +1,6 @@
 # Load FZF if available
 fzf_dirs="
-/opt/homebrew/opt/fzf/shell
+$HOMEBREW_PREFIX/opt/fzf/shell
 /opt/local/share/fzf/shell
 /usr/local/share/examples/fzf/shell
 /usr/share/fzf/shell

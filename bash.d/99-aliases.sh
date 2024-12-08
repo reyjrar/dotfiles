@@ -33,14 +33,6 @@ if hash neomutt &> /dev/null; then
     alias mutt=$(which neomutt)
 fi
 
-# MetaCPAN Env
-METACPAN="$HOME/code/CPAN/metacpan-developer"
-if [ -d "$METACPAN" ]; then
-    alias mc="cd $METACPAN;"
-else
-    alias mc="echo  'No MetaCPAN dev environment found at $METACPAN!' && exit 1"
-fi
-
 ## Zoxide
 if hash zoxide &> /dev/null; then
     source <(zoxide init bash)
