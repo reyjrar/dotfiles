@@ -1,8 +1,11 @@
-for dir in "/opt/homebrew", "$HOME/homebrew"; do
+for dir in "/opt/homebrew" "$HOME/homebrew"; do
     if [ -d "$dir" ]; then
         brew_install_dir="$dir"
     fi
 done
+
+(($DEBUG)) && echo "brew_install_dir=$brew_install_dir"
+
 if [ -n "$brew_install_dir" ] && [ -x "$brew_install_dir/bin/brew" ]; then
     # Set Paths
     path_inject "$brew_install_dir/bin"

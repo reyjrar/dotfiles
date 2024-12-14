@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 MASTER=0;
-
 if [ "$1" == "-M" ]; then
     MASTER=1;
     shift 1;
@@ -81,8 +80,8 @@ function setup_vim() {
     mkdir -p ~/.vimundo
 }
 
-bindir=`dirname $0`;
-basedir=`rel2abs ${bindir/bin}`;
+bindir=$(dirname "$0");
+basedir=$(rel2abs "${bindir/bin}");
 
 for rc in `ls -1 $basedir`; do
     if [ -f $rc ] && [ "$rc" != "README" ]; then
