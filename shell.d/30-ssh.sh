@@ -1,5 +1,5 @@
 # Configurations for SSH related things
-if [ -z "$SSH_KEEPASSXC" ]; then
+if [ -z "${SSH_KEEPASSXC+x}" ]; then
     # Use Better SSH Key Handling if KeepassXC isn't managing it
     alias ssh="fancy_ssh"
     alias ssh-add="fancy_sshadd"
@@ -11,7 +11,7 @@ alias scp='scp -o ControlMaster=no'
 alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 # Set the SSH_PRIMARY_AUTH_KEY
-if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
+if [ -z "${SSH_PRIMARY_AUTH_KEY+x}" ]; then
     for key in "$HOME/.ssh/id_ed25519"; do
         if [ -f "$key" ]; then
             export SSH_PRIMARY_AUTH_KEY="$key"
@@ -20,7 +20,7 @@ if [ -z "$SSH_PRIMARY_AUTH_KEY" ]; then
     done
 fi
 if [ -n "$SSH_PRIMARY_AUTH_KEY" ]; then
-    if [ -z "$SSH_PRIMARY_AUTH_ID" ]; then
+    if [ -z "${SSH_PRIMARY_AUTH_ID+x}" ]; then
         if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
             export SSH_PRIMARY_AUTH_ID=$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')
         fi
@@ -54,7 +54,7 @@ function fancy_ssh() {
     # Check host status
     if [[ $# != 0 ]]; then
         target_host=`command ssh -G "$@" |grep -e ^hostname -e ^port |awk '{print $2}' |xargs echo`
-        if [ ! -z "$target_host" ]; then
+        if [ ! -z "${target_host+x}" ]; then
             _set_win_title "$target_host"
         fi
     fi

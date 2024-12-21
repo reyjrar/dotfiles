@@ -12,7 +12,7 @@
     tool = vimdiff
 [alias]
     br = branch
-    ci = commit
+    ci = "commit -v"
     co = checkout
     cp = commit -p
     lp = log --format=\"%h - %an, %ar : %s\"
