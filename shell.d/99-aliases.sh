@@ -13,7 +13,7 @@ elif hash exa &> /dev/null; then
     alias ls='exa --time-style=long-iso -F --color=auto --icons'
 elif hash gls &> /dev/null; then
     alias ls='gls --time-style=long-iso -F --color'
-elif [ "$HOSTOS" == "OpenBSD" ] || [ "$HOSTOS" == "FreeBSD" ]; then
+elif [ "$HOSTOS" = "OpenBSD" ] || [ "$HOSTOS" = "FreeBSD" ]; then
     alias ls="ls -FG -D '%F %T'"
 else
     alias ls='ls --time-style=long-iso -F --color'

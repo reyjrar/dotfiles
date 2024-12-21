@@ -45,10 +45,11 @@ esac;
 function get_user_color() {
     # Set User Color based on Name
     case "$USER" in
-        "root"      )   user_color="$bldred";;
-        "brad"      )   user_color="$txtgrn";;
-        "blhotsky"  )   user_color="$txtcyn";;
-        *           )   user_color="$txtpur";;
+        "root"        )   user_color="$bldred";;
+        "brad"        )   user_color="$txtgrn";;
+        "blhotsky"    )   user_color="$txtcyn";;
+        "brad.lhotsky")   user_color="$txtcyn";;
+        *             )   user_color="$txtpur";;
     esac
     echo $user_color;
 }

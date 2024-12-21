@@ -14,6 +14,6 @@ export EDITOR LANG LC_TIME HOSTOS PLATFORM
 unset USERNAME
 unset LS_COLORS
 
-if [ -f "$HOME/.bash_variables" ];  then
-    . "$HOME/.bash_variables"
-fi
+for vars in "$HOME/.shell_variables" "$HOME/.${shell_name}_variables"; do
+    [ -f "$vars" ] && . "$vars"
+done

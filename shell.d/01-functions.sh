@@ -1,19 +1,19 @@
 # Path Injection
 function path_inject() {
-    path=$1
-    (( $DEBUG )) && echo -n "path_inject( $path )";
-    if [ -d "$path" ]; then
-        if [[ $PATH =~ (^|:)$path(:|$) ]]; then
+    bindir=$1
+    (( $DEBUG )) && echo -n "path_inject( $bindir )";
+    if [ -d "$bindir" ]; then
+        if [[ $PATH =~ (^|:)$bindir(:|$) ]]; then
             (( $DEBUG )) && echo -n " [PRESENT]";
-            newpath="$path";
+            newpath="$bindir";
             for dir in $( echo $PATH | tr ':' "\n" | awk '!x[$0]++' ); do
-                [ "$path" == "$dir" ] && continue
+                [ "$bindir" = "$dir" ] && continue
                 [ ! -d "$dir" ] && continue
                 newpath="$newpath:$dir";
             done
-            PATH="$newpath"
+            PATH="$bindir"
         else
-            PATH="$path:$PATH";
+            PATH="$bindir:$PATH";
             (( $DEBUG )) && echo -n " [ADDED]";
         fi
     fi;
@@ -21,7 +21,7 @@ function path_inject() {
 }
 
 function ssl_expiry() {
-    if [ ! -z "$1" ]; then
+    if [ ! -z "${1+x}" ]; then
         echo "" | openssl s_client -connect "$1" | openssl x509 -noout -dates
     else
         echo "usage: $FUNCNAME host:port";
@@ -59,7 +59,7 @@ function send_bash_local() {
             echo "!! warning : host $host was not found in ~/.distrib_hosts";
         fi;
     fi;
-    /usr/bin/scp .bash_local $host:~
+    scp .bash_local $host:~
 }
 
 function _set_win_title() {

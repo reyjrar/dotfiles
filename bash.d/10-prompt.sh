@@ -7,7 +7,7 @@ function prompt_extra() {
         addition="${bldblk}(${host_color}${addition}${bldblk})$txtrst";
     fi;
 
-    if [ -z $PROMPT_EXTRA ]; then
+    if [ -z "${PROMPT_EXTRA+x}" ]; then
         PROMPT_EXTRA=$addition;
     else
         PROMPT_EXTRA="$PROMPT_EXTRA$addition"
@@ -27,7 +27,7 @@ function before_prompt() {
 
     printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
 
-    if [ "$VCPROMPT" != "disable" ]; then
+    if [ "${VCPROMPT+x}" != "disable" ]; then
         if git status &> /dev/null; then
             rev=$(git rev-parse --short HEAD)
             branch=$(git branch 2> /dev/null | grep '^*' | colrm 1 2)
@@ -48,7 +48,7 @@ function before_prompt() {
         fi
     fi
 
-    [ ! -z $PROMPT_EXTRA ] && printf " $PROMPT_EXTRA";
+    [ ! -z "${PROMPT_EXTRA+x}" ] && printf " $PROMPT_EXTRA";
 
     [ $retval -ne 0 ] && printf " $bldred[*${txtred}${retval}${bldred}*]$txtrst";
 

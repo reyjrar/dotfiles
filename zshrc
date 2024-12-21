@@ -1,21 +1,19 @@
-# Bash Profile
+# ZSH Profile
 #--------------
 
 # Enable Debugging in the Shell with =1
 DEBUG=0
-# Source .bashrc for interactive shells
-INTERACTIVE=0
-case $- in *i*) INTERACTIVE=1;; esac
 
-if [ $INTERACTIVE -eq 1 ]; then
+if [[ -o interactive ]]; then
     # Interactive session, load ALL THE THINGS!
+    set -u
     for rc in ~/.shell.d/*.sh; do
         file=$(basename "$rc")
         [[ $file == 99* ]] && continue
         (( $DEBUG )) && echo "rc loading '$rc'";
         source $rc;
     done;
-    for rc in ~/.bash.d/*.sh; do
+    for rc in ~/.zsh.d/*.sh; do
         (( $DEBUG )) && echo "rc loading '$rc'";
         source $rc;
     done;
