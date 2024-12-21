@@ -86,8 +86,12 @@ basedir=$(rel2abs "${bindir/bin}");
 for rc in `ls -1 $basedir`; do
     if [ -f $rc ] && [ "$rc" != "README" ]; then
         install_rc $rc;
-    elif [ -d $rc ] && [ ${rc:(-2)} == ".d" ]; then
-        install_rc $rc;
+    elif [ -d $rc ]; then
+        if [ ${rc:(-2)} == ".d" ]; then
+            install_rc $rc;
+        elif [ "$rc" == "starship" ]; then
+            install_rc $rc;
+        fi
     fi;
 done;
 
