@@ -19,7 +19,7 @@ if [ -z "${SSH_PRIMARY_AUTH_KEY+x}" ]; then
         fi
     done
 fi
-if [ -n "$SSH_PRIMARY_AUTH_KEY" ]; then
+if [ -n "${SSH_PRIMARY_AUTH_KEY+x}" ]; then
     if [ -z "${SSH_PRIMARY_AUTH_ID+x}" ]; then
         if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
             export SSH_PRIMARY_AUTH_ID=$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')
