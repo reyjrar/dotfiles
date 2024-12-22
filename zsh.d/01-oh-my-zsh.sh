@@ -12,7 +12,7 @@ if [ -d "$ZSH" ]; then
     export STARSHIP_CONFIG="$HOME/.starship/config.toml"
 
     # Plugins
-    plugins=(aliases asdf aws battery brew colored-man-pages colorize docker docker-compose emoji-clock fzf gh git git-prompt gitignore gnu-utils golang istioctl iterm2 kubectl macos perl podman postgres ssh starship themes tmux zoxide)
+    plugins=(aliases asdf aws battery brew colored-man-pages colorize docker docker-compose emoji-clock fzf gh git git-prompt gitignore gnu-utils golang istioctl iterm2 kubectl macos minikube perl podman postgres ssh starship themes tmux zoxide)
 
     set +u
     source $ZSH/oh-my-zsh.sh
