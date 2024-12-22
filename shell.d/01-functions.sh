@@ -11,13 +11,13 @@ function path_inject() {
                 [ ! -d "$dir" ] && continue
                 newpath="$newpath:$dir";
             done
-            PATH="$bindir"
+            PATH="$newpath"
         else
             PATH="$bindir:$PATH";
             (( $DEBUG )) && echo -n " [ADDED]";
         fi
     fi;
-    (( $DEBUG )) && echo;
+    (( $DEBUG )) && echo && echo "  PATH=$PATH"
 }
 
 function ssl_expiry() {
