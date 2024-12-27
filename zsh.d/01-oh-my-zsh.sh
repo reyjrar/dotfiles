@@ -9,6 +9,7 @@ if [ -d "$ZSH" ]; then
     # OMZ Settings
     HIST_STAMPS="yyyy/mm/dd"
     ZOXIDE_CMD_OVERRIDE="cd"
+    ZSH_TMUX_AUTOCONNECT=false
     export STARSHIP_CONFIG="$HOME/.starship/config.toml"
 
     # Plugins
