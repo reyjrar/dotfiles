@@ -82,7 +82,6 @@ format = '[\($hash$tag\)]($style)'
 style = "bg:git_color"
 
 [git_metrics]
-style = "bg:git_color"
 added_style = "bg:git_color"
 deleted_style = "bg:git_color"
 
