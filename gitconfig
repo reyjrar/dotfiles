@@ -46,6 +46,7 @@
     format = ssh
 [core]
     excludesFile = ~/.gitignore_global
+    hooksPath = ~/.githooks.d/hooks
 [rerere]
     enabled = true
     autoUpdate = true

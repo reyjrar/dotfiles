@@ -75,6 +75,7 @@ read_only_style = 'bg:color_blue'
 
 [git_branch]
 style = "bold color_fg0 bg:git_color"
+symbol = " "
 format = "[$symbol$branch(:$remote_branch)]($style)[](color_yellow bg:color_red)"
 
 [git_commit]
