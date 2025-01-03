@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-MASTER=0;
-if [ "$1" == "-M" ]; then
-    MASTER=1;
-    shift 1;
-fi
-
 function rel2abs() {
     local relative=$1
     local cwd=$(pwd);
@@ -48,8 +42,11 @@ function install_link() {
     src=$1
     dst=$2
 
-    echo -n "Linking '$src',  ";
-    if [ -e "$dst" ]; then
+    echo -n "linking '$src' .. ";
+    if [ -L "$dst" ]; then
+        echo -n "removing existing link .. "
+        rm "$dst";
+    elif [ -e "$dst" ]; then
         echo "$dst exists";
         return 0;
     fi
@@ -81,7 +78,7 @@ function setup_vim() {
 }
 
 bindir=$(dirname "$0");
-basedir=$(rel2abs "${bindir/bin}");
+basedir=$(rel2abs "${bindir/install}");
 
 for rc in `ls -1 $basedir`; do
     if [ -f $rc ] && [ "$rc" != "README" ]; then
@@ -98,11 +95,22 @@ done;
 # Setup vim
 setup_vim;
 
-if [ "$MASTER" == "1" ]; then
-    [ ! -d "$HOME/bin" ] && mkdir 0750 "$HOME/bin";
+# Create HOME/bin
+[ ! -d "$HOME/bin" ] && mkdir 0750 "$HOME/bin";
 
-    install_link "$basedir/support/movein.sh" "$HOME/bin/movein.sh";
-    install_link "$basedir/support/distrib.sh" "$HOME/bin/distrib.sh";
-    install_link "$basedir/support/git-clean-branches" "$HOME/bin/git-clean-branches";
+# If a git directory, we install controller scripts
+if git rev-parse --is-inside-work-tree &> /dev/null; then
+    for script in $basedir/controller/*; do
+        if [ -x "$script" ]; then
+            install_link "$script" "$HOME/bin/$(basename "$script")"
+        fi
+    done
 fi
+
+# Install Utilities
+for script in $basedir/bin/*; do
+    if [ -x "$script" ]; then
+        install_link "$script" "$HOME/bin/$(basename "$script")"
+    fi
+done
 
