@@ -13,7 +13,7 @@ fi
 
 # Check for global hooks
 hook_scripts="$script_dir/$HOOK_NAME"
-(($DEBUG)) && echo "Scanning global hooks in $script_dir"
+(($DEBUG)) && echo "Scanning global hooks in $hook_scripts"
 if [ -d "$hook_scripts" ]; then
     for hook in $hook_scripts/*; do
         if [ -x "$hook" ]; then

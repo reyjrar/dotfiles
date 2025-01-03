@@ -5,13 +5,15 @@ format = """
 $os\
 $kubernetes\
 $directory\
-[ ](color_blue bg:git_color)\
+[ ](fg:color_blue bg:git_color)\
 $git_branch\
-$git_commit\
 $git_state\
 $git_metrics\
+[ ](fg:git_color bg:color_red)\
 $git_status\
-[ ](fg:color_yellow)\
+[ ](fg:color_red bg:color_purple)\
+$git_commit\
+[ ](fg:color_purple)\
 $docker_context\
 $c\
 $cmake\
@@ -76,11 +78,12 @@ read_only_style = 'bg:color_blue'
 [git_branch]
 style = "bold color_fg0 bg:git_color"
 symbol = " "
-format = "[$symbol$branch(:$remote_branch)]($style)[](color_yellow bg:color_red)"
+format = "[$symbol$branch(:$remote_branch)]($style)"
 
 [git_commit]
-format = '[\($hash$tag\)]($style)'
-style = "bg:git_color"
+format = '[$hash$tag]($style)'
+only_detached = false
+style = "bg:color_purple"
 
 [git_metrics]
 added_style = "bg:git_color"
@@ -91,7 +94,7 @@ format = '\([$state( $progress_current/$progress_total)]($style)\)'
 style = "bold black bg:git_color"
 
 [git_status]
-format = '([$all_status$ahead_behind]($style)[](color_red bg:color_yellow))'
+format = '([$all_status$ahead_behind]($style))'
 style = "bg:color_red"
 
 [custom.user_root]

@@ -126,17 +126,22 @@ augroup filetype
     au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2 expandtab
 augroup END
 
-autocmd Filetype text call WordProcess()
-autocmd Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
-autocmd Filetype mail call MailHandler()
-autocmd BufWritePre * call StripTrailingWhitespace()
+augroup wordprocessing
+    au! Filetype text call WordProcess()
+    au! Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
+    au! Filetype mail call MailHandler()
+    au! BufWritePre * call StripTrailingWhitespace()
+    au! StdinReadPre * let s:std_in=1
+augroup END
 
-autocmd StdinReadPre * let s:std_in=1
-" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
-" Start NERDTree when Vim starts with a directory argument.
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+augroup nerdtree
+    " Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+    au! VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+    " Start NERDTree when Vim starts with a directory argument.
+    au! VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+        \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+augroup END
+
 
 " BEGIN: Conway's Tweaks
 
@@ -213,8 +218,8 @@ let g:NERDTreeExtensionHighlightColor['tar'] = s:red
 let g:NERDTreeExtensionHighlightColor['yaml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['zip'] = s:red
-let g:NERDTreeWinSize = 20
-let g:NERDTreeWinSizeMax = 40
+let g:NERDTreeWinSize = 35
+let g:NERDTreeWinSizeMax = 80
 "Plugin 'vim-scripts/SyntaxRange
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -317,6 +322,7 @@ Plugin 'vim-scripts/iptables'
 Plugin 'rodjek/vim-puppet'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'apeschel/vim-syntax-syslog-ng'
+Plugin 'hashivim/vim-terraform'
 call vundle#end()
 
 " Setup to pick a random colorscheme
