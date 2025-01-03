@@ -9,27 +9,12 @@ $directory\
 $git_branch\
 $git_state\
 $git_metrics\
-[ ](fg:git_color bg:color_red)\
-$git_status\
-[ ](fg:color_red bg:color_purple)\
+[](fg:git_color bg:color_purple)\
 $git_commit\
-[ ](fg:color_purple)\
+[](fg:color_purple bg:color_red)\
+$git_status\
+[ ](fg:color_red)\
 $docker_context\
-$c\
-$cmake\
-$deno\
-$golang\
-$helm\
-$kotlin\
-$lua\
-$nodejs\
-$perl\
-$rlang\
-$ruby\
-$rust\
-$terraform\
-$vagrant\
-$zig\
 $memory_usage\
 $direnv\
 $env_var\
