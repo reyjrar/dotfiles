@@ -10,6 +10,7 @@ if [ -d "$ZSH" ]; then
     HIST_STAMPS="yyyy/mm/dd"
     ZOXIDE_CMD_OVERRIDE="cd"
     ZSH_TMUX_AUTOCONNECT=false
+    DISABLE_LS_COLORS=true
     export STARSHIP_CONFIG="$HOME/.starship/config.toml"
 
     # Plugins
