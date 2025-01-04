@@ -1,0 +1,57 @@
+#!/bin/bash
+
+myname=$(basename "$0")
+
+function _git_pull {
+    if git pull &> /dev/null; then
+        echo "successfully pulled from remote"
+    else
+        echo "ERROR encountered"
+    fi
+}
+
+function _git_pull_all {
+    for dir in *; do
+        if [ -d "$dir" ]; then
+            pushd "$dir" &> /dev/null
+            echo -n "[$myname] $(basename "$dir") "
+            if ! git rev-parse --is-inside-work-tree &> /dev/null; then
+                echo "is not a git dir, skipping"
+            else
+                echo -n "is a git repo, "
+                if git rev-parse --abbrev-ref --symbolic-full-name @{u} &> /dev/null; then
+                    branch=$(git rev-parse --abbrev-ref HEAD)
+                    echo -n "currently on $branch, "
+                    case "$branch" in
+                        "develop")
+                            _git_pull
+                            ;;
+                        "master")
+                            _git_pull
+                            ;;
+                        "main")
+                            _git_pull
+                            ;;
+                        *)
+                            echo "skipping"
+                    esac
+                else
+                    echo "no remote configured, skipping"
+                fi
+            fi
+            popd &> /dev/null
+        fi
+    done
+}
+
+if git rev-parse --is-inside-work-tree &> /dev/null; then
+    gitdir=$(git rev-parse --show-toplevel)
+    rootdir=$(dirname "$gitdir")
+    pushd "$rootdir" &> /dev/null
+    _git_pull_all
+    popd &> /dev/null
+else
+    _git_pull_all
+fi
+
+
