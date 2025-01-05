@@ -5,7 +5,7 @@ format = """
 $os\
 $kubernetes\
 $directory\
-[ ](fg:color_blue bg:git_color)\
+[](fg:color_blue bg:git_color)\
 $git_branch\
 $git_state\
 $git_metrics\
@@ -63,10 +63,10 @@ read_only_style = 'bg:color_blue'
 [git_branch]
 style = "bold color_fg0 bg:git_color"
 symbol = " "
-format = "[$symbol$branch(:$remote_branch)]($style)"
+format = "([ $symbol$branch(:$remote_branch)]($style))"
 
 [git_commit]
-format = '[$hash$tag]($style)'
+format = '([ $hash$tag]($style))'
 only_detached = false
 style = "bg:color_purple"
 
