@@ -21,6 +21,7 @@ $env_var\
 $sudo\
 $cmd_duration\
 $line_break\
+$time\
 ${custom.user_root}\
 ${custom.user_brad}\
 ${custom.user_blhotsky}\
@@ -29,7 +30,6 @@ $aws\
 $azure\
 $jobs\
 $battery\
-$time\
 $status\
 $container\
 $character"""
@@ -104,12 +104,12 @@ format = '[@](fg:bold black)[$hostname](color_blue)'
 [time]
 disabled = false
 style = "color_yellow"
-format = '[ $time ]($style)'
+format = '[$time]($style) '
 time_format = '%H:%M'
 
 [character]
-success_symbol = "[❯](bold color_aqua)"
-error_symbol = "[❯](bold color_red)"
+success_symbol = "[ ❯](bold color_aqua)"
+error_symbol = "[ ❯](bold color_red)"
 
 [shlvl]
 disabled = true
