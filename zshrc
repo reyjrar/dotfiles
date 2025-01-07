@@ -1,5 +1,6 @@
 # ZSH Profile
 #--------------
+skip_global_compinit=1
 
 # Enable Debugging in the Shell with =1
 DEBUG=0

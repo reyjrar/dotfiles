@@ -11,15 +11,17 @@ if [ -d "$ZSH" ]; then
     ZOXIDE_CMD_OVERRIDE="cd"
     ZSH_TMUX_AUTOCONNECT=false
     DISABLE_LS_COLORS=true
-    export STARSHIP_CONFIG="$HOME/.starship/config.toml"
-
-    # Plugins
-    plugins=(aliases asdf aws battery brew colored-man-pages colorize docker docker-compose emoji-clock fzf gh git git-prompt gitignore gnu-utils golang istioctl iterm2 kubectl macos minikube perl podman postgres ssh starship themes tmux zoxide)
-
-    set +u
-    source $ZSH/oh-my-zsh.sh
+    DISABLE_UNTRACKED_FILES_DIRTY=true
 
     # User configuration
     export ZSH_COLORIZE_STYLE="monokai"
     export ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
+
+    # Plugins
+    plugins=(aliases asdf aws battery brew colored-man-pages colorize docker docker-compose emoji-clock fzf gh git git-prompt gitignore gnu-utils golang istioctl iterm2 kubectl macos minikube perl podman postgres ssh starship themes tmux zoxide)
+    set +u
+    source $ZSH/oh-my-zsh.sh
+
+    # Settings:
+    zstyle ':omz:update' mode disabled
 fi
