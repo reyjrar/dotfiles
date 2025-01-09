@@ -3,7 +3,6 @@ add_newline = false
 format = """
 [](color_blue)\
 $os\
-$kubernetes\
 $directory\
 [](fg:color_blue bg:git_color)\
 $git_branch\
@@ -13,7 +12,9 @@ $git_metrics\
 $git_commit\
 [](fg:color_purple bg:color_red)\
 $git_status\
-[ ](fg:color_red)\
+[](fg:color_red bg:color_orange)\
+$kubernetes\
+[ ](fg:color_orange)\
 $docker_context\
 $memory_usage\
 $direnv\
@@ -26,8 +27,6 @@ ${custom.user_root}\
 ${custom.user_brad}\
 ${custom.user_blhotsky}\
 $hostname\
-$aws\
-$azure\
 $jobs\
 $battery\
 $status\
@@ -53,7 +52,24 @@ git_color = '#d79921'
 style = "bg:color_blue"
 
 [kubernetes]
-style = "bg:color_blue"
+disabled = false
+format = "[$symbol$context(:$namespace)]($style)"
+style = "bg:color_orange"
+
+[[kubernetes.contexts]]
+symbol = "󰡨 "
+context_pattern = 'docker-desktop'
+context_alias = ''
+
+[[kubernetes.contexts]]
+symbol = "󰵮 "
+context_pattern = '.*-dev-((\w+)-?){1,2}.*'
+context_alias = '$1'
+
+[[kubernetes.contexts]]
+symbol = "󰔍 "
+context_pattern = '.*-sta?ge?-((\w+)-?){1,2}.*'
+context_alias = '$1'
 
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
