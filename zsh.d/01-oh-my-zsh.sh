@@ -1,7 +1,15 @@
 # Path to your Oh My Zsh installation.
-ZSH="$HOME/.oh-my-zsh"
-if [ -d "$ZSH" ]; then
-    export ZSH;
+OMZ="
+    $HOME/.oh-my-zsh
+    /usr/local/share/ohmyzsh
+"
+for dir in $OMZ; do
+    if [ ! -d "$dir" ]; then
+        continue;
+    fi
+
+    # OMZ Dir
+    export ZSH="$dir"
 
     # OMZ Themes - https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
     ZSH_THEME="re5et"
@@ -24,4 +32,5 @@ if [ -d "$ZSH" ]; then
 
     # Settings:
     zstyle ':omz:update' mode disabled
-fi
+    break
+done
