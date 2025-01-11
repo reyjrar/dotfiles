@@ -100,11 +100,13 @@ setup_vim;
 
 # If a git directory, we install controller scripts
 if git rev-parse --is-inside-work-tree &> /dev/null; then
-    for script in $basedir/controller/*; do
-        if [ -x "$script" ]; then
-            install_link "$script" "$HOME/bin/$(basename "$script")"
-        fi
-    done
+    if [ "$EUID" -ne 0 ] && [ -z "$SSH_CONNECTION" ]; then
+        for script in $basedir/controller/*; do
+            if [ -x "$script" ]; then
+                install_link "$script" "$HOME/bin/$(basename "$script")"
+            fi
+        done
+    fi
 fi
 
 # Install Utilities
