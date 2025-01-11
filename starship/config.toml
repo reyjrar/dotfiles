@@ -54,7 +54,7 @@ style = "bg:color_blue"
 [kubernetes]
 disabled = false
 format = "[ $symbol$context(:$namespace)]($style)"
-style = "bg:color_orange"
+style = "black bg:color_orange"
 
 [[kubernetes.contexts]]
 symbol = "󰡨 "
@@ -62,13 +62,18 @@ context_pattern = 'docker-desktop'
 context_alias = ''
 
 [[kubernetes.contexts]]
-symbol = "󰵮 "
-context_pattern = '.*-dev-((\w+)-?){1,2}.*'
+symbol = " "
+context_pattern = '.*-dev-(.*)'
 context_alias = '$1'
 
 [[kubernetes.contexts]]
-symbol = "󰔍 "
-context_pattern = '.*-sta?ge?-((\w+)-?){1,2}.*'
+symbol = " "
+context_pattern = '.*-sta?ge?-(.*)'
+context_alias = '$1'
+
+[[kubernetes.contexts]]
+symbol = "󰈸 "
+context_pattern = '.*-pro?d-(.*)'
 context_alias = '$1'
 
 [directory]
