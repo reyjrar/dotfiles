@@ -102,7 +102,7 @@ echo " => Sync of vim setup complete"
 ## Rsync for dotfiles
 $RSYNC $RSYNC_OPTS -a --delete --exclude=.git ~/dotfiles -e ssh $HOST:~
 echo " => Sync of dotfiles complete, running install"
-$SSH $HOST "$REMOTE_ENV ~/dotfiles/support/remote-install.sh"
+$SSH $HOST "$REMOTE_ENV ~/dotfiles/install/remote.sh"
 echo " => dotfiles installed."
 
 echo " => Uploading static configs.";
