@@ -1,8 +1,6 @@
 # Path to your Oh My Zsh installation.
-OMZ="
-    $HOME/.oh-my-zsh
-    /usr/local/share/ohmyzsh
-"
+OMZ=("$HOME/.oh-my-zsh" "/usr/local/share/ohmyzsh")
+
 for dir in $OMZ; do
     if [ ! -d "$dir" ]; then
         continue;
