@@ -1,6 +1,5 @@
 # User specific aliases and functions
 alias who='who -H -u -T'
-alias c="contents"
 # Get Aliases
 alias gg='git grep'
 
@@ -27,6 +26,10 @@ fi
 
 if hash bat &> /dev/null; then
     alias cat='bat --paging=never'
+fi
+
+if hash kubecolor &> /dev/null; then
+    alias kubectl=kubecolor
 fi
 
 if hash neomutt &> /dev/null; then
