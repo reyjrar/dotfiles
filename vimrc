@@ -225,7 +225,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'gruvbox'
 "Plugin 'Raimondi/delimitMate'
 "let delimitMate_expand_cr = 1
 "let delimitMate_expand_space = 1
@@ -328,18 +328,16 @@ call vundle#end()
 " Setup to pick a random colorscheme
 "let my_colorschemes = ['molokai', 'gruvbox', 'onedark']
 "execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
-colorscheme molokai
+colorscheme gruvbox
 
 " Adjust based on iTerm2 background
 let iterm_bg = $ITERM_BGCOLOR
 if iterm_bg == "light"
     set background=light
-    colorscheme gruvbox
 elseif has("gui_running")
     set mouse=a
     set mousefocus
     set background=light
-    colorscheme gruvbox
 endif
 
 if has("gui_macvim")
