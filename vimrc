@@ -331,15 +331,15 @@ call vundle#end()
 colorscheme molokai
 
 " Adjust based on iTerm2 background
-let iterm_bg = $ITERM_BG
+let iterm_bg = $ITERM_BGCOLOR
 if iterm_bg == "light"
     set background=light
-    colorscheme solarized
+    colorscheme gruvbox
 elseif has("gui_running")
     set mouse=a
     set mousefocus
     set background=light
-    colorscheme solarized
+    colorscheme gruvbox
 endif
 
 if has("gui_macvim")

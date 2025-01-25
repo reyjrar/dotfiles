@@ -6,9 +6,9 @@ script_dir="$(cd "$(dirname $0)/../scripts";pwd)"
 
 
 # Run Repository Hooks
-if [ -e $LOCAL_HOOK ]; then
+if [ -e "$LOCAL_HOOK" ]; then
     (($DEBUG)) && echo "Running local hooks: $LOCAL_HOOK"
-    $LOCAL_HOOK
+    "$LOCAL_HOOK"
 fi
 
 # Check for global hooks
@@ -18,7 +18,7 @@ if [ -d "$hook_scripts" ]; then
     for hook in $hook_scripts/*; do
         if [ -x "$hook" ]; then
             (($DEBUG)) && echo "Running $hook"
-            $hook
+            "$hook"
         fi
     done
 fi

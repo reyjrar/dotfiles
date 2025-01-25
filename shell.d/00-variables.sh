@@ -11,6 +11,7 @@ esac
 
 export LESS="-RM"
 export EDITOR LANG LC_TIME HOSTOS PLATFORM
+export ITERM_BGCOLOR="light"
 unset USERNAME
 unset LS_COLORS
 
