@@ -27,6 +27,7 @@ endif
 set ruler
 set bg=dark
 set number
+"set relativenumber
 set showmode
 set nohlsearch
 set lazyredraw
@@ -122,8 +123,8 @@ augroup filetype
     au! BufRead,BufNewFile *.patch           let b:noStripWhitespace = 1
     au! BufRead,BufNewFile *.sieve           set ft=sieve ff=unix
     au! BufRead,BufNewFile *.trst            set ft=rst
-    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2 expandtab
-    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2 expandtab
+    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2
 augroup END
 
 augroup wordprocessing
@@ -182,14 +183,11 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
 Plugin 'morhetz/gruvbox'
-Plugin 'joshdick/onedark.vim'
 " UI Plugins
 Plugin 'ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -220,35 +218,31 @@ let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['zip'] = s:red
 let g:NERDTreeWinSize = 35
 let g:NERDTreeWinSizeMax = 80
-"Plugin 'vim-scripts/SyntaxRange
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'gruvbox'
-"Plugin 'Raimondi/delimitMate'
-"let delimitMate_expand_cr = 1
-"let delimitMate_expand_space = 1
 
 " Load lexima on 810 and greater
 if v:version >= 810
     Plugin 'cohama/lexima.vim'
+    let g:lexima_enable_newline_rules = 1
 else
     Plugin 'tpope/vim-endwise'
 endif
 
-let g:lexima_enable_newline_rules = 1
+Plugin 'dense-analysis/ale'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-speeddating'
 Plugin 'godlygeek/tabular'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'lfilho/cosco.vim'
 noremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 " Git integration
 Plugin 'tpope/vim-fugitive'
-"Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neocomplete.vim'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -264,21 +258,59 @@ Plugin 'vim-perl/vim-perl'
 let perl_extended_vars = 1
 let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
-"let perl_sync_dist = 500
 Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
-"Plugin 'motemen/xslate-vim'
-" Make working with Ruby less violent
-"Plugin 'vim-ruby/vim-ruby'
 " Other Languages
+Plugin 'fatih/vim-go'
+Plugin 'elzr/vim-json'
+Plugin 'exu/pgsql.vim'
+Plugin 'rust-lang/rust.vim'
+" Markup/Serialization Language Support
 Plugin 'ap/vim-css-color'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
-"Plugin 'elzr/vim-json'
-"Plugin 'vim-scripts/Vim-R-plugin'
-"Plugin 'exu/pgsql.vim'
-"Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'vim-scripts/sieve.vim'
+" Sysadmin Stuff
+Plugin 'zaiste/tmux.vim'
+Plugin 'vim-scripts/iptables'
+Plugin 'rodjek/vim-puppet'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'apeschel/vim-syntax-syslog-ng'
+Plugin 'hashivim/vim-terraform'
+call vundle#end()
+
+" Re-enable filetype and syntax
+filetype plugin on
+filetype indent on
+syntax on
+
+" Setup to pick a random colorscheme
+"let my_colorschemes = ['molokai', 'gruvbox', 'onedark']
+"execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
+colorscheme gruvbox
+
+" Adjust based on iTerm2 background
+let term_bg = $ITERM_BGCOLOR
+let term_profile = $ITERM_PROFILE
+if executable("defaults")
+    let macosMode = trim(system("defaults read -g AppleInterfaceStyle"))
+    if macosMode == "Dark"
+        set bg=dark
+    else
+        set bg=light
+    endif
+elseif stridx(tolower(term_profile),"light") >= 0 || term_bg == "light"
+    set background=light
+elseif has("gui_running")
+    set mouse=a
+    set mousefocus
+    set background=light
+endif
+
+" borrowed from: https://github.com/ellzey/dotfiles/blob/master/vimrc#L98
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " Golang conditionally
 if executable('go')
@@ -313,41 +345,3 @@ if executable('go')
     let g:syntastic_python_flake8_args = '--ignore E128 --builtins="_"'
 endif
 
-" Markup/Serialization Language Support
-Plugin 'tpope/vim-markdown'
-"Plugin 'vim-scripts/sieve.vim'
-" Sysadmin Stuff
-Plugin 'zaiste/tmux.vim'
-Plugin 'vim-scripts/iptables'
-Plugin 'rodjek/vim-puppet'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'apeschel/vim-syntax-syslog-ng'
-Plugin 'hashivim/vim-terraform'
-call vundle#end()
-
-" Setup to pick a random colorscheme
-"let my_colorschemes = ['molokai', 'gruvbox', 'onedark']
-"execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
-colorscheme gruvbox
-
-" Adjust based on iTerm2 background
-let iterm_bg = $ITERM_BGCOLOR
-if iterm_bg == "light"
-    set background=light
-elseif has("gui_running")
-    set mouse=a
-    set mousefocus
-    set background=light
-endif
-
-if has("gui_macvim")
-    set transparency=15
-endif
-
-filetype plugin on
-filetype indent on
-syntax on
-
-" borrowed from: https://github.com/ellzey/dotfiles/blob/master/vimrc#L98
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
