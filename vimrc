@@ -25,8 +25,11 @@ endif
 
 " UI Tweaks
 set ruler
-set bg=dark
 set number
+if has("gui_running")
+    set mouse=a
+    set mousefocus
+endif
 "set relativenumber
 set showmode
 set nohlsearch
@@ -92,6 +95,31 @@ function MailHandler()
     setlocal fo+=aw
 endfunction
 
+function InitializeBackground()
+    " Adjust based on iTerm2 background
+    let system_appearance = $SYSTEM_APPEARANCE
+    let term_profile = $ITERM_PROFILE
+    if len(system_appearance)
+        execute "set bg=".system_appearance
+    elseif stridx(tolower(term_profile),"light") >= 0
+        set background=light
+    elseif stridx(tolower(term_profile),"dark") >= 0
+        set background=dark
+    endif
+endfunction
+
+function UpdateBackground()
+    " Adjust based on the macOS settings
+    if executable("defaults")
+        let macosMode = trim(system("defaults read -g AppleInterfaceStyle"))
+        if macosMode ==? "dark"
+            set bg=dark
+        else
+            set bg=light
+        endif
+    endif
+endfunction
+
 fun! StripTrailingWhitespace()
     let l:cursorpos = getpos(".")
     " Only strip if the b:noStripWhitespace variable isn't set
@@ -104,6 +132,10 @@ endfun
 
 " Set tmux tab name
 autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+
+if has('macunix')
+    autocmd VimEnter,FocusGained * call UpdateBackground()
+endif
 
 " Auto commands and filetype assignment
 augroup filetype
@@ -289,24 +321,7 @@ syntax on
 "let my_colorschemes = ['molokai', 'gruvbox', 'onedark']
 "execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
 colorscheme gruvbox
-
-" Adjust based on iTerm2 background
-let term_bg = $ITERM_BGCOLOR
-let term_profile = $ITERM_PROFILE
-if executable("defaults")
-    let macosMode = trim(system("defaults read -g AppleInterfaceStyle"))
-    if macosMode == "Dark"
-        set bg=dark
-    else
-        set bg=light
-    endif
-elseif stridx(tolower(term_profile),"light") >= 0 || term_bg == "light"
-    set background=light
-elseif has("gui_running")
-    set mouse=a
-    set mousefocus
-    set background=light
-endif
+call InitializeBackground()
 
 " borrowed from: https://github.com/ellzey/dotfiles/blob/master/vimrc#L98
 highlight ExtraWhitespace ctermbg=red guibg=red

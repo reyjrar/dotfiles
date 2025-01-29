@@ -1,3 +1,6 @@
+# Starship precmd to set SYSTEM_APPEARANCE
+export starship_precmd_user_func="set_system_appearance"
+
 # User specific environment and startup programs
 function prompt_extra() {
     addition=$1;

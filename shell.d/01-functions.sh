@@ -50,6 +50,12 @@ function contents() {
     fi
 }
 
+function set_system_appearance() {
+    if hash defaults &> /dev/null; then
+        export SYSTEM_APPEARANCE=$(defaults read -g AppleInterfaceStyle |tr '[:upper:]' '[:lower:]')
+    fi
+}
+
 function send_bash_local() {
     host=$1
     if [ -f ~/.distrib_hosts ]; then
