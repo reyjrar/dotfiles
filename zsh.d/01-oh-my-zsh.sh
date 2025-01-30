@@ -24,11 +24,16 @@ for dir in $OMZ; do
     export ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
 
     # Plugins
-    plugins=(aliases asdf aws battery brew colored-man-pages colorize docker docker-compose emoji-clock fzf gh git git-prompt gitignore gnu-utils golang istioctl iterm2 kubectl macos minikube perl podman postgres ssh starship themes tmux zoxide)
-    set +u
-    source $ZSH/oh-my-zsh.sh
+    plugins=(aliases asdf aws battery brew colored-man-pages colorize
+             docker docker-compose emoji-clock fzf gh git git-prompt
+             gitignore gnu-utils golang istioctl iterm2 kubectl
+             macos minikube perl podman postgres ssh starship themes tmux zoxide)
 
     # Settings:
     zstyle ':omz:update' mode disabled
+
+    set +u
+    source $ZSH/oh-my-zsh.sh
+
     break
 done
