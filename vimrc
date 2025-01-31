@@ -275,8 +275,8 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'c9s/perlomni.vim'
 Plugin 'vim-perl/vim-perl'
 let perl_extended_vars = 1
-let perl_want_scope_in_variables = 1
 let perl_include_pod = 1
+let perl_want_scope_in_variables = 1
 Plugin 'yko/mojo.vim'
 let mojo_highlight_data = 1
 " Other Languages
@@ -304,9 +304,7 @@ filetype plugin on
 filetype indent on
 syntax on
 
-" Setup to pick a random colorscheme
-"let my_colorschemes = ['molokai', 'gruvbox', 'onedark']
-"execute 'colorscheme' my_colorschemes[rand() % (len(my_colorschemes) ) ]
+" Setup Color Scheme
 colorscheme gruvbox
 call InitializeBackground()
 
@@ -316,18 +314,21 @@ match ExtraWhitespace /\s\+$/
 
 " Golang conditionally
 if executable('go')
-    au FileType go nmap <leader>b  <Plug>(go-build)
-    au FileType go nmap <leader>r  <Plug>(go-run)
-    au FileType go nmap <leader>t <Plug>(go-test)
-    au FileType go nmap <leader>c <Plug>(go-coverage)
-    au FileType go nmap <Leader>ds <Plug>(go-def-split)
-    au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-    au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-    au FileType go nmap <Leader>gd <Plug>(go-doc)
-    au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-    au FileType go nmap <Leader>s <Plug>(go-implements)
-    au FileType go nmap <Leader>i <Plug>(go-info)
-    au FileType go nmap <Leader>e <Plug>(go-rename)
+    augroup golang
+        au!
+        au FileType go nmap <leader>b  <Plug>(go-build)
+        au FileType go nmap <leader>r  <Plug>(go-run)
+        au FileType go nmap <leader>t  <Plug>(go-test)
+        au FileType go nmap <leader>c  <Plug>(go-coverage)
+        au FileType go nmap <Leader>ds <Plug>(go-def-split)
+        au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+        au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+        au FileType go nmap <Leader>gd <Plug>(go-doc)
+        au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+        au FileType go nmap <Leader>s  <Plug>(go-implements)
+        au FileType go nmap <Leader>i  <Plug>(go-info)
+        au FileType go nmap <Leader>e  <Plug>(go-rename)
+    augroup END
 
     let g:go_version_warning = 0
     let g:go_fmt_command = "goimports"
