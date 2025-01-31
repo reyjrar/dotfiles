@@ -155,8 +155,8 @@ augroup filetype
     au! BufRead,BufNewFile *.patch           let b:noStripWhitespace = 1
     au! BufRead,BufNewFile *.sieve           set ft=sieve ff=unix
     au! BufRead,BufNewFile *.trst            set ft=rst
-    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2
-    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2
+    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2 expandtab
+    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2 expandtab
 augroup END
 
 augroup wordprocessing
@@ -177,23 +177,18 @@ augroup END
 
 
 " BEGIN: Conway's Tweaks
-
 " Visual Block mode is far more useful that Visual mode (so swap the commands)...
 nnoremap v <C-V>
 nnoremap <C-V> v
-
 vnoremap v <C-V>
 vnoremap <C-V> v
-
 "Square up visual selections...
 set virtualedit=block
-
 " Make BS/DEL work as expected in visual modes (i.e. delete the selected text)...
 vmap <BS> x
 " When shifting, retain selection over multiple shifts...
 vmap <expr> > KeepVisualSelection(">")
 vmap <expr> < KeepVisualSelection("<")
-
 function! KeepVisualSelection(cmd)
     set nosmartindent
     if mode() ==# "V"
@@ -202,7 +197,6 @@ function! KeepVisualSelection(cmd)
         return a:cmd . ":set smartindent\<CR>"
     endif
 endfunction
-
 " END: Conway's Tweaks
 
 " Vundle Plugin Configurations
@@ -253,6 +247,7 @@ let g:NERDTreeWinSizeMax = 80
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'gruvbox'
 
@@ -260,10 +255,11 @@ let g:airline_theme = 'gruvbox'
 if v:version >= 810
     Plugin 'cohama/lexima.vim'
     let g:lexima_enable_newline_rules = 1
-else
-    Plugin 'tpope/vim-endwise'
 endif
-
+" Don't load external completions automatically
+let g:ale_completion_autoimport = 0
+" Enable ale autocomplete
+let g:ale_completion_enabled = 1
 Plugin 'dense-analysis/ale'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
