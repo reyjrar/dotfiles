@@ -30,7 +30,6 @@ if has("gui_running")
     set mouse=a
     set mousefocus
 endif
-"set relativenumber
 set showmode
 set nohlsearch
 set lazyredraw
@@ -93,6 +92,10 @@ endfunction
 function MailHandler()
     call WordProcess()
     setlocal fo+=aw
+endfunction
+
+function Max(x, y)
+    return a:x > a:y ? a:x : a:y
 endfunction
 
 function InitializeBackground()
@@ -242,7 +245,7 @@ let g:NERDTreeExtensionHighlightColor['tar'] = s:red
 let g:NERDTreeExtensionHighlightColor['yaml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
 let g:NERDTreeExtensionHighlightColor['zip'] = s:red
-let g:NERDTreeWinSize = 35
+let g:NERDTreeWinSize = Max(&columns / 6, 25)
 let g:NERDTreeWinSizeMax = 80
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
