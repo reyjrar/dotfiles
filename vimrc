@@ -84,9 +84,7 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
 function WordProcess()
-    set tw=78
-    set spelllang=en_us
-    set spell
+    setlocal tw=78 spelllang=en_us spell
 endfunction
 
 function MailHandler()
@@ -158,8 +156,8 @@ augroup filetype
     au! BufRead,BufNewFile *.patch           let b:noStripWhitespace = 1
     au! BufRead,BufNewFile *.sieve           set ft=sieve ff=unix
     au! BufRead,BufNewFile *.trst            set ft=rst
-    au! BufRead,BufNewFile *.yaml            set ts=2 sts=2 sw=2 expandtab
-    au! BufRead,BufNewFile *.yml             set ts=2 sts=2 sw=2 expandtab
+    au! BufRead,BufNewFile *.yaml            setlocal ts=2 sts=2 sw=2 expandtab
+    au! BufRead,BufNewFile *.yml             setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 augroup wordprocessing
