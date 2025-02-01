@@ -53,7 +53,7 @@ function contents() {
 function set_system_appearance() {
     if hash defaults &> /dev/null; then
         appearance=$(defaults read -g AppleInterfaceStyle 2> /dev/null |tr '[:upper:]' '[:lower:]')
-        export SYSTEM_APPEARNCE="${appearance:-light}"
+        export SYSTEM_APPEARNCE="${appearance:-dark}"
     fi
 }
 
