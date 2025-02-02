@@ -104,7 +104,7 @@ function InitializeBackground()
         execute "set bg=".system_appearance
     elseif stridx(tolower(term_profile),"light") >= 0
         set background=light
-    elseif stridx(tolower(term_profile),"dark") >= 0
+    else
         set background=dark
     endif
 endfunction
