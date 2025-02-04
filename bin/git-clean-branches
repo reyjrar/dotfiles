@@ -8,21 +8,30 @@
 #  git checkout master
 #  git pull
 #  git clean-branches
+declare -a mainline=('develop' 'main' 'master')
 if git rev-parse --is-inside-work-tree &> /dev/null; then
     for origin in $( git remote ); do
         git remote prune "$origin"
     done
 
     current=$(git branch | grep '^*' | colrm 1 2);
+
+    for br in "${mainline[@]}"; do
+        if [ "$br" = "$current" ]; then
+            echo "Cannot be run on $current branch";
+            exit 1;
+        fi
+    done
+
     for br in $(git br --merged | colrm 1 2); do
-        if [ "$current" == "$br" ]; then
+        if [ "$current" = "$br" ]; then
             continue
         fi
         git br -d "$br"
     done
 
     # Squash Merged:
-    for mainline in 'develop' 'main' 'master'; do
+    for mainline in "${mainline[@]}"; do
         if git rev-parse --verify "$mainline" &> /dev/null; then
             git checkout -q "$mainline"
             output=$(git for-each-ref refs/heads/ "--format=%(refname:short)")
