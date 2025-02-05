@@ -1,7 +1,11 @@
 # User specific aliases and functions
 alias who='who -H -u -T'
-# Get Aliases
+
+# Git Aliases
 alias gg='git grep'
+if hash difft &> /dev/null; then
+    export GIT_EXTERNAL_DIFF="difft --skip-unchanged"
+fi
 
 ## Alias for ls
 if hash lsd &> /dev/null; then
@@ -40,3 +44,4 @@ fi
 if hash zoxide &> /dev/null; then
     source <(zoxide init bash)
 fi
+
