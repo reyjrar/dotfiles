@@ -16,15 +16,11 @@ if git rev-parse --is-inside-work-tree &> /dev/null; then
 
     current=$(git branch | grep '^*' | colrm 1 2);
 
-    for br in "${mainline[@]}"; do
-        if [ "$br" = "$current" ]; then
-            echo "Cannot be run on $current branch";
-            exit 1;
-        fi
-    done
-
     for br in $(git br --merged | colrm 1 2); do
         if [ "$current" = "$br" ]; then
+            continue
+        elif [[ " ${mainline[@]} " =~ " $br " ]]; then
+            # Don't delete mainline branches
             continue
         fi
         git br -d "$br"
@@ -36,6 +32,10 @@ if git rev-parse --is-inside-work-tree &> /dev/null; then
             git checkout -q "$mainline"
             output=$(git for-each-ref refs/heads/ "--format=%(refname:short)")
             while read branch; do
+                if [[ " ${mainline[@]} " =~ " $branch " ]]; then
+                    # skip mainline branches
+                    continue
+                fi
                 mergeBase=$(git merge-base $mainline $branch)
                 if [[ $(git cherry $mainline $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]]; then
                     git branch -D $branch
