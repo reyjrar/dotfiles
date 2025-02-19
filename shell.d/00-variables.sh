@@ -16,6 +16,10 @@ export DO_NOT_TRACK=true
 unset USERNAME
 unset LS_COLORS
 
+if [[ "$TERM" == *256color ]]; then
+    export TERM="xterm-256color"
+fi
+
 for vars in "$HOME/.shell_variables" "$HOME/.${shell_name}_variables"; do
     [ -f "$vars" ] && . "$vars"
 done
