@@ -12,6 +12,7 @@
     ui = auto
 [diff]
     algorithm = histogram
+    colorMoved = true
     mnemonicPrefix = true
     renames = true
 [help]
@@ -33,6 +34,8 @@
     unstage = reset HEAD --
     ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+[grep]
+    patternType = perl
 [fetch]
     prune = true
     pruneTags = true
