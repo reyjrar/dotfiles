@@ -53,8 +53,13 @@ style = "bg:color_blue"
 
 [kubernetes]
 disabled = false
-format = "[ $symbol$context(:$namespace)]($style)"
+format = "[ $symbol$context]($style)"
 style = "black bg:color_orange"
+
+[[kubernetes.contexts]]
+symbol = "☸ "
+context_pattern = 'minikube'
+context_alias = ''
 
 [[kubernetes.contexts]]
 symbol = "󰡨 "

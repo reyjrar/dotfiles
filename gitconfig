@@ -8,9 +8,14 @@
     diff = auto
     status = auto
     branch = auto
+[column]
+    ui = auto
 [diff]
     algorithm = histogram
-    tool = vimdiff
+    mnemonicPrefix = true
+    renames = true
+[help]
+    autocorrect = prompt
 [alias]
     br = branch
     ci = "commit -v"
@@ -28,6 +33,10 @@
     unstage = reset HEAD --
     ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 [commit]
     verbose = true
     gpgsign = true
@@ -35,10 +44,13 @@
     autosetuprebase = always
     sort = -committerdate
 [rebase]
+    autoSquash = true
     autoStash = true
+    updateRefs = true
 [push]
-    default = upstream
     autoSetupRemote = true
+    default = upstream
+    followTabs = true
 [pull]
     rebase = true
 [github]
