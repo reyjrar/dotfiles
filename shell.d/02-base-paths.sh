@@ -7,7 +7,9 @@ path_inject /usr/local/sbin
 path_inject /usr/local/bin
 path_inject /opt/local/sbin
 path_inject /opt/local/bin
+path_inject /opt/homebrew/bin
 path_inject /var/ossec/bin
+path_inject $HOME/go/bin
 path_inject $HOME/bin
 path_inject $HOME/.local/bin
 
