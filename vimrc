@@ -161,18 +161,20 @@ augroup filetype
 augroup END
 
 augroup wordprocessing
-    au! Filetype text call WordProcess()
-    au! Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
-    au! Filetype mail call MailHandler()
-    au! BufWritePre * call StripTrailingWhitespace()
-    au! StdinReadPre * let s:std_in=1
+    au!
+    au Filetype text call WordProcess()
+    au Filetype markdown call WordProcess() | let b:noStripWhitespace = 1
+    au Filetype mail call MailHandler()
+    au BufWritePre * call StripTrailingWhitespace()
+    au StdinReadPre * let s:std_in=1
 augroup END
 
 augroup nerdtree
+    au!
     " Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
-    au! VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+    au VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
     " Start NERDTree when Vim starts with a directory argument.
-    au! VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    au VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
         \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 augroup END
 
