@@ -27,7 +27,7 @@ for dir in $OMZ; do
     plugins=(aliases asdf aws battery brew colored-man-pages colorize
              docker docker-compose emoji-clock fzf gh git git-prompt
              gitignore gnu-utils golang istioctl iterm2 kubectl
-             macos minikube perl podman postgres ssh starship themes tmux zoxide)
+             macos minikube perl podman postgres rust ssh starship themes tmux zoxide)
 
     # Settings:
     zstyle ':omz:update' mode disabled
