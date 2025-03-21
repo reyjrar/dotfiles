@@ -140,5 +140,10 @@ error_symbol = "[ ❯](bold color_red)"
 [shlvl]
 disabled = true
 
+[sudo]
+disabled = false
+symbol = "󰅶 "
+format = "[$symbol]($style)"
+
 [username]
 disabled = true
