@@ -141,7 +141,7 @@ error_symbol = "[ ❯](bold color_red)"
 disabled = true
 
 [sudo]
-disabled = false
+disabled = true
 symbol = "󰅶 "
 format = "[$symbol]($style)"
 
