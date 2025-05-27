@@ -82,6 +82,7 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 function WordProcess()
     setlocal tw=78 spelllang=en_us spell
@@ -322,7 +323,7 @@ if executable('go')
         au FileType go nmap <leader>b  <Plug>(go-build)
         au FileType go nmap <leader>r  <Plug>(go-run)
         au FileType go nmap <leader>t  <Plug>(go-test)
-        au FileType go nmap <leader>c  <Plug>(go-coverage)
+        au FileType go nmap <leader>c  <Plug>(go-coverage-toggle)
         au FileType go nmap <Leader>ds <Plug>(go-def-split)
         au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
         au FileType go nmap <Leader>dt <Plug>(go-def-tab)
@@ -333,21 +334,17 @@ if executable('go')
         au FileType go nmap <Leader>e  <Plug>(go-rename)
     augroup END
 
-    let g:go_version_warning = 0
+    let g:go_auto_type_info = 1
+    let g:go_def_mode = "gopls"
     let g:go_fmt_command = "goimports"
+    let g:go_fmt_fail_silently = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_fields = 1
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
-    let g:go_highlight_fields = 1
-    let g:go_highlight_types = 1
     let g:go_highlight_operators = 1
-    let g:go_highlight_build_constraints = 1
-    let g:go_fmt_fail_silently = 1
+    let g:go_highlight_types = 1
     let g:go_list_type = "quickfix"
-
-    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-    let g:syntastic_python_checkers = ['flake8']
-    let g:syntastic_python_flake8_args = '--ignore E128 --builtins="_"'
+    let g:go_version_warning = 0
 endif
 
