@@ -4,7 +4,7 @@ alias who='who -H -u -T'
 # Git Aliases
 alias gg='git grep'
 if hash difft &> /dev/null; then
-    export GIT_EXTERNAL_DIFF="difft --skip-unchanged"
+    export GIT_EXTERNAL_DIFF="difft --skip-unchanged --display=inline"
 fi
 
 ## Alias for ls
