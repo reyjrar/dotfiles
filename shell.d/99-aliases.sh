@@ -22,7 +22,12 @@ else
     alias ls='ls --time-style=long-iso -F --color'
 fi
 
-# jless
+## FZF
+if hash fzf &> /dev/null; then
+    alias f="fzf --delimiter=':' --preview 'bat --style=numbers --color=always --line-range :500 {1}' --bind 'enter:become(vim {1})'"
+fi
+
+## jless
 jlessBinary="jless.$(uname -s)"
 if hash "$jlessBinary" &> /dev/null; then
     alias jless="$jlessBinary"
