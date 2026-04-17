@@ -23,9 +23,7 @@ $sudo\
 $cmd_duration\
 $line_break\
 $time\
-${custom.user_root}\
-${custom.user_brad}\
-${custom.user_blhotsky}\
+$username\
 $hostname\
 $jobs\
 $battery\
@@ -146,4 +144,6 @@ symbol = "󰅶 "
 format = "[$symbol]($style)"
 
 [username]
-disabled = true
+disabled = false
+style_user = "bold cyan"
+format = "[$user]($style)"
