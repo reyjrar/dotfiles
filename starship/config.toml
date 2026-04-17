@@ -123,7 +123,7 @@ format = '''[$output](bold color_blue)'''
 
 [hostname]
 ssh_only = true
-format = '[@](fg:bold black)[$hostname](color_blue)'
+format = '[@](fg:white)[$hostname](color_blue) '
 
 [time]
 disabled = false
@@ -132,8 +132,8 @@ format = '[$time]($style) '
 time_format = '%H:%M'
 
 [character]
-success_symbol = "[ ❯](bold color_aqua)"
-error_symbol = "[ ❯](bold color_red)"
+success_symbol = "[❯](bold color_aqua)"
+error_symbol = "[❯](bold color_red)"
 
 [shlvl]
 disabled = true
