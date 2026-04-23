@@ -12,6 +12,7 @@ esac
 export LESS="-RM"
 export EDITOR LANG LC_TIME HOSTOS PLATFORM
 export SYSTEM_APPEARNCE="${SYSTEM_APPEANCE:-dark}"
+export DO_NOT_TRACK=true
 unset USERNAME
 unset LS_COLORS
 
