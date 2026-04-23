@@ -7,7 +7,7 @@ function prompt_extra() {
     # Color if not colored
     echo $addition | grep '\\' &> /dev/null;
     if [ "$?" != "0" ]; then
-        addition="${bldblk}(${host_color}${addition}${bldblk})$txtrst";
+        addition="${txtwht}(${host_color}${addition}${txtwht})$txtrst";
     fi;
 
     if [ -z "${PROMPT_EXTRA+x}" ]; then
@@ -28,7 +28,7 @@ function before_prompt() {
     # Enable tmux-powerline cwd things
     [ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD"
 
-    printf "$bldblk[$host_color%s$bldblk] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
+    printf "$txtwht[$host_color%s$txtwht] $(get_user_color)%s" "$(date '+%H:%M:%S')" "$PWD"
 
     if [ "${VCPROMPT+x}" != "disable" ]; then
         if git status &> /dev/null; then
@@ -47,7 +47,7 @@ function before_prompt() {
             if git rev-parse --verify --quiet refs/stash &>/dev/null; then
                 flags+="$"
             fi
-            printf " ${bldblk}[${txtcyn}git${bldblk}:${txtgrn}%s${bldblk}@${txtred}%s${txtpur}%s${bldblk}]" "$branch" "$rev" "$flags"
+            printf " ${txtwht}[${txtcyn}git${txtwht}:${txtgrn}%s${txtwht}@${txtred}%s${txtpur}%s${txtwht}]" "$branch" "$rev" "$flags"
         fi
     fi
 
@@ -60,8 +60,8 @@ function before_prompt() {
 
 # Configure VCPROMPT if using
 if [ -x ~/bin/vcprompt ]; then
-    export VCPROMPT_FORMAT="$bldblk[$txtcyn%n$blkblk:$txtgrn%b$bldblk@$txtred%r$txtpur%m%u$bldblk]";
+    export VCPROMPT_FORMAT="$txtwht[$txtcyn%n$txtwht:$txtgrn%b$txtwht@$txtred%r$txtpur%m%u$txtwht]";
 fi
 
 export PROMPT_COMMAND=before_prompt
-export PS1="\[$(get_user_color)\]\u\[$bldblk\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
+export PS1="\[$(get_user_color)\]\u\[$txtwht\]@\[$host_color\]\h \[$(get_user_color)\]\\\$ \[$txtrst\]"
