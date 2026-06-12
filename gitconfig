@@ -63,6 +63,7 @@
 [core]
     excludesFile = ~/.gitignore_global
     hooksPath = ~/.githooks.d/hooks
+    pager = delta --color-only
 [rerere]
     enabled = true
     autoUpdate = true

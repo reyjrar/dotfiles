@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Adds `git mainline` alias to take us back to the mainline
+#
+# Usage:
+#  git mainline
+declare -a mainline=('develop' 'main' 'master')
+if git rev-parse --is-inside-work-tree &> /dev/null; then
+    current=$(git branch | grep '^*' | colrm 1 2);
+    # Squash Merged:
+    for mainline in "${mainline[@]}"; do
+        if git rev-parse --verify "$mainline" &> /dev/null; then
+            if git show -s --format="%D" $(git merge-base --fork-point "$mainline") | grep -q 'HEAD'; then
+                echo -n "On '$current', from '$mainline', "
+                if [ "$current" = "$mainline" ]; then
+                    echo "already there!";
+                    break;
+                else
+                    git stash -u
+                    git switch "$mainline"
+                    git pull
+                fi
+                echo "";
+            fi
+        fi
+    done
+fi
