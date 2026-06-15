@@ -231,3 +231,5 @@ if hash brew &> /dev/null; then
         sudo ln -sf "$lfs_source" "$lfs_target"
     fi
 fi
+# Kill affected applications
+echo "-- COMPLETE --"
