@@ -10,8 +10,19 @@ alias scp='scp -o ControlMaster=no'
 # For the times before signed keys
 alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
+# Load Keys from Secure Enclave
+if hash sc_auth &> /dev/null; then
+    # Check for a valid SSH Identity
+    SSH_PRIMARY_AUTH_ID="$(sc_auth list-ctk-identities -t ssh | grep SHA256 | awk '{print $2}')"
+    if [ -n "${SSH_PRIMARY_AUTH_ID}" ]; then
+        export SSH_PRIMARY_AUTH_ID
+        export SSH_SK_PROVIDER="/usr/lib/ssh-keychain.dylib"
+        export SSH_CCTK_PROTECTION="$(sc_auth list-ctk-identities -t ssh |grep "$SSH_PRIMARY_AUTH_ID" | awk '{print $3}')"
+    fi
+fi
+
 # Set the SSH_PRIMARY_AUTH_KEY
-if [ -z "${SSH_PRIMARY_AUTH_KEY+x}" ]; then
+if [ -z "${SSH_PRIMARY_AUTH_KEY+x}" ] && [ -z "${SSH_SK_PROVIDER+x}" ]; then
     for key in "$HOME/.ssh/id_ed25519"; do
         if [ -f "$key" ]; then
             export SSH_PRIMARY_AUTH_KEY="$key"
@@ -22,7 +33,7 @@ fi
 if [ -n "${SSH_PRIMARY_AUTH_KEY+x}" ]; then
     if [ -z "${SSH_PRIMARY_AUTH_ID+x}" ]; then
         if [ -f "$SSH_PRIMARY_AUTH_KEY" ]; then
-            export SSH_PRIMARY_AUTH_ID=$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')
+            export SSH_PRIMARY_AUTH_ID="$(ssh-keygen -l -f "$SSH_PRIMARY_AUTH_KEY" | awk '{print $2}')"
         fi
     fi
     export SSH_PRIMARY_PUB_KEY="${SSH_PRIMARY_AUTH_KEY}.pub"
@@ -31,15 +42,21 @@ fi
 # Functions
 function fancy_sshadd {
     # Set expiry
-    expiry=$(seconds_til_3am "$SSH_KEY_DAYS_VALID")
+    expiry="$(seconds_til_3am "$SSH_KEY_DAYS_VALID")"
     # No args and we find a key set load it
-    if [[ $# == 0 ]] && [[ -f "$SSH_PRIMARY_AUTH_KEY" ]]; then
+    if [[ $# == 0 ]] && [[ -n "${SSH_PRIMARY_AUTH_ID+x}" ]]; then
         command ssh-add -l | grep "$SSH_PRIMARY_AUTH_ID" &> /dev/null
         rc=$?
         # Only if it's not already loaded
         if [[ $rc != 0 ]]; then
-            (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
-            command ssh-add -t "$expiry" "$SSH_PRIMARY_AUTH_KEY"
+            if [ -n "${SSH_SK_PROVIDER+x}" ]; then
+                (($DEBUG)) && echo "Attempting to load key from $SSH_SK_PROVIDER.";
+                # No expiry because secure enclave access is guarded by touch id or unprotected
+                SSH_ASKPASS=true SSH_ASKPASS_REQUIRE=force command ssh-add -K
+            else
+                (($DEBUG)) && echo "Attempting to load SSH_PRIMARY_AUTH_KEY for $expiry seconds.";
+                command ssh-add -t "$expiry" "$SSH_PRIMARY_AUTH_KEY"
+            fi
         fi
     # Add an expiry to a key automatically
     elif [[ -f "${@: -1}" ]]; then
