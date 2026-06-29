@@ -41,7 +41,7 @@ function install_xdg() {
     rc="$1"
     xdgdata="$HOME/.config"
     mkdir -p "$xdgdata"
-    cp -rvf "$basedir/$rc/*" "$xdgdata"
+    cp -rvf "$basedir/$rc"/* "$xdgdata"
 }
 
 function install_link() {
