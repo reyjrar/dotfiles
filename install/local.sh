@@ -35,7 +35,13 @@ function install_rc() {
     echo -n "linking to $whereilive .. ";
     ln -s $whereilive $final;
     echo "done.";
+}
 
+function install_xdg() {
+    rc="$1"
+    xdgdata="$HOME/.config"
+    mkdir -p "$xdgdata"
+    cp -rvf "$basedir/$rc" "$xdgdata"
 }
 
 function install_link() {
@@ -82,12 +88,14 @@ basedir=$(rel2abs "${bindir/install}");
 
 for rc in `ls -1 $basedir`; do
     if [ -f $rc ] && [ "$rc" != "README" ]; then
-        install_rc $rc;
+        install_rc "$rc";
     elif [ -d $rc ]; then
         if [ ${rc:(-2)} == ".d" ]; then
-            install_rc $rc;
+            install_rc "$rc";
         elif [ "$rc" == "starship" ]; then
-            install_rc $rc;
+            install_rc "$rc";
+        elif [ "$rc" == "xdg" ]; then
+            install_xdg "$rc";
         fi
     fi;
 done;

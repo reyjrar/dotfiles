@@ -1,0 +1,21 @@
+# Font Settings
+font-family = Inconsolata Nerd Font Mono
+font-size = 18
+adjust-cell-width = -5%
+adjust-cell-height = -10%
+
+# Theme
+theme = dark:Gruvbox Dark,light:Gruvbox Light
+
+# Shell and UI Features
+shell-integration-features = no-cursor,sudo,no-title,ssh-terminfo
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+window-padding-balance = true
+window-save-state = always
+macos-titlebar-style = transparent
+window-colorspace = "display-p3"
+
+# Key Bindings
+keybind = cmd+left=previous_tab
+keybind = cmd+right=next_tab
