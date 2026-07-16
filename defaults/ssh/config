@@ -1,0 +1,15 @@
+# Domain Overrides
+Host *.db0.us *.divisionbyzero.net
+    ForwardAgent yes
+
+# Defaults
+Host *
+    CanonicalizeHostname yes
+    #CanonicalDomains home.db0.us db0.us divisionbyzero.net
+    #SendEnv SYSTEM_APPEARANCE
+    ServerAliveInterval 10
+    ServerAliveCountMax 3
+    # Use Control Master for Multiple Connections
+    ControlMaster auto
+    ControlPath ~/.ssh/ctrl/%C
+    ControlPersist 60

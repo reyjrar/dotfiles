@@ -11,7 +11,10 @@ alias scp='scp -o ControlMaster=no'
 alias unsafe_ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 # Load Keys from Secure Enclave
-if hash sc_auth &> /dev/null; then
+if hash yubikey-agent &> /dev/null; then
+    export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
+    export SSH_PRIMARY_AUTH_ID="$(command ssh-add -l |grep YubiKey | awk '{print $2}')"
+elif hash sc_auth &> /dev/null; then
     # Check for a valid SSH Identity
     SSH_PRIMARY_AUTH_ID="$(sc_auth list-ctk-identities -t ssh | grep SHA256 | awk '{print $2}')"
     if [ -n "${SSH_PRIMARY_AUTH_ID}" ]; then
@@ -22,7 +25,7 @@ if hash sc_auth &> /dev/null; then
 fi
 
 # Set the SSH_PRIMARY_AUTH_KEY
-if [ -z "${SSH_PRIMARY_AUTH_KEY+x}" ] && [ -z "${SSH_SK_PROVIDER+x}" ]; then
+if [ -z "${SSH_PRIMARY_AUTH_KEY+x}" ] && [ -z "${SSH_PRIMARY_AUTH_ID+x}" ]; then
     for key in "$HOME/.ssh/id_ed25519"; do
         if [ -f "$key" ]; then
             export SSH_PRIMARY_AUTH_KEY="$key"

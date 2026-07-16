@@ -103,8 +103,11 @@ done;
 # Setup vim
 setup_vim;
 
-# Create HOME/bin
+# Create some directories
 [ ! -d "$HOME/bin" ] && mkdir 0750 "$HOME/bin";
+[ ! -d "$HOME/.vim/swap" ] && mkdir -p "$HOME/vim/swap";
+[ ! -d "$HOME/.ssh" ] && mkdir 0700 "$HOME/.ssh";
+[ ! -d "$HOME/.ssh/ctrl" ] && mkdir 0700 "$HOME/.ssh/ctrl";
 
 # If a git directory, we install controller scripts
 if git rev-parse --is-inside-work-tree &> /dev/null; then
@@ -123,4 +126,3 @@ for script in $basedir/bin/*; do
         install_link "$script" "$HOME/bin/$(basename "$script")"
     fi
 done
-
