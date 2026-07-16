@@ -62,7 +62,6 @@
     format = ssh
 [core]
     excludesFile = ~/.gitignore_global
-    hooksPath = ~/.githooks.d/hooks
     pager = delta --color-only
 [rerere]
     enabled = true
@@ -72,10 +71,5 @@
     gpgSign = true
 [init]
     defaultBranch = main
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [credential]
 	helper = cache

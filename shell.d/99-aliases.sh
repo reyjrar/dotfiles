@@ -3,7 +3,9 @@ alias who='who -H -u -T'
 
 # Git Aliases
 alias gg='git grep'
-if hash difft &> /dev/null; then
+if hash git-delta &> /dev/null; then
+   : # noop
+elif hash difft &> /dev/null; then
     export GIT_EXTERNAL_DIFF="difft --skip-unchanged --display=inline"
 fi
 
@@ -33,20 +35,17 @@ if hash "$jlessBinary" &> /dev/null; then
     alias jless="$jlessBinary"
 fi
 
+## bat
 if hash bat &> /dev/null; then
     alias cat='bat --paging=never'
 fi
 
+## kubecolor
 if hash kubecolor &> /dev/null; then
     alias kubectl=kubecolor
 fi
 
+## neomutt
 if hash neomutt &> /dev/null; then
     alias mutt=$(which neomutt)
 fi
-
-## Zoxide
-if hash zoxide &> /dev/null; then
-    source <(zoxide init bash)
-fi
-
