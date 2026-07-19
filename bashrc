@@ -9,14 +9,17 @@ case $- in *i*) INTERACTIVE=1;; esac
 
 if [ $INTERACTIVE -eq 1 ]; then
     # Interactive session, load ALL THE THINGS!
-    for shell in 'shell' 'bash'; do
-        for rc in ~/.${shell}.d/*.sh; do
-            file=$(basename "$rc")
-            [[ $file == 9* ]] && continue
-            (( $DEBUG )) && echo "rc loading '${shell}.d/$rc'";
-            source $rc;
-        done;
-    done;
+    set -o nullglob
+    for shell in 'shell' 'bashrc'; do
+        for i in $(seq 0 9); do
+            for rc in ~/.${shell}.d/*.sh; do
+                file=$(basename "$rc")
+                (( $DEBUG )) && echo "rc loading '${shell}.d/$rc'";
+                source $rc;
+            done
+        done 2> /dev/null
+    done
+    set +o nullglob
     (( $DEBUG )) && echo "Loaded fully interactive."
 else
     # Non-interactive, sparse load

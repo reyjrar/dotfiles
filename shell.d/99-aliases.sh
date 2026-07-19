@@ -1,4 +1,5 @@
 # User specific aliases and functions
+# vim:ft=sh
 alias who='who -H -u -T'
 
 # Git Aliases
@@ -41,8 +42,13 @@ if hash bat &> /dev/null; then
 fi
 
 ## kubecolor
-if hash kubecolor &> /dev/null; then
-    alias kubectl=kubecolor
+if hash kubectl &> /dev/null; then
+    source <(kubectl completion "$shell_name")
+    alias k=kubectl
+
+    if hash kubecolor &> /dev/null; then
+        alias kubectl=kubecolor
+    fi
 fi
 
 ## neomutt
